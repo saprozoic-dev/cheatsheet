@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Epicenter · Collector Crypt Gacha Cheatsheet</title>
+<meta name="description" content="Type your bankroll, get the Collector Crypt gacha machine most likely to grow it. Live inventory, every machine, updated twice a day.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap">
+<style>
+/* VOICE work: a printed rate card for gacha players, dense and exact
+   IDEA the cheat sheet a planning office would pin up: ruled tables, a verdict in the margin
+   PICTURE the live pick panel for the typed bankroll, then the ruled bankroll table
+   COLOUR stone ground, black ink, white panels, brick for the verdict; four band colours
+   TYPE Schibsted Grotesk 800/700 display + Schibsted Grotesk text
+   LAYOUT title left with the freshness card right; tool panel full width; sections stack */
+:root{
+  --bg:#e7e4df; --panel:#ffffff; --sunk:#f4f2ee; --ink:#141210; --muted:#5b554f; --faint:#857e76; --line:#d5d0c8; --rule:#141210;
+  --acc:#c8371e; --acc-bg:#f7e1dc;
+  --d:#c8371e; --d-bg:#f7e1dc; --a:#a6640c; --a-bg:#f4e6cf; --b:#2b5c8a; --b-bg:#dee8f2; --c:#2f6b4c; --c-bg:#dcebe2;
+  --warn:#a6640c;
+  --sans:"Schibsted Grotesk",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#171513; --panel:#211e1b; --sunk:#1b1917; --ink:#f0ece6; --muted:#b3aba1; --faint:#8a8279; --line:#38332e; --rule:#f0ece6;
+  --acc:#ea6247; --acc-bg:#3b211b;
+  --d:#ea6247; --d-bg:#3b211b; --a:#dc9c45; --a-bg:#33291b; --b:#7aa7d4; --b-bg:#1c2834; --c:#76b791; --c-bg:#1b2c22;
+  --warn:#dc9c45; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#171513; --panel:#211e1b; --sunk:#1b1917; --ink:#f0ece6; --muted:#b3aba1; --faint:#8a8279; --line:#38332e; --rule:#f0ece6;
+  --acc:#ea6247; --acc-bg:#3b211b;
+  --d:#ea6247; --d-bg:#3b211b; --a:#dc9c45; --a-bg:#33291b; --b:#7aa7d4; --b-bg:#1c2834; --c:#76b791; --c-bg:#1b2c22;
+  --warn:#dc9c45; color-scheme:dark;
+}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:64px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{max-width:100%}
+[hidden]{display:none!important}
+a{color:inherit;text-underline-offset:3px}
+.wrap{max-width:1760px;margin:0 auto;padding-left:max(3vw,16px);padding-right:max(3vw,16px)}
+h1,h2,h3{margin:0;letter-spacing:-.02em;text-wrap:balance}
+h1{font-size:clamp(32px,5vw,50px);font-weight:800;line-height:1.04}
+h2{font-size:clamp(22px,2.6vw,28px);font-weight:700;line-height:1.15}
+h3{font-size:17px;font-weight:700;line-height:1.3}
+.lede{font-size:clamp(16px,1.5vw,18px);color:var(--muted);max-width:56ch;margin:0}
+.eyebrow{font-size:13px;font-weight:600;color:var(--muted)}
+.n{font-variant-numeric:tabular-nums}
+.dim{color:var(--muted)}
+
+/* masthead */
+.mast{padding-top:clamp(28px,4vw,52px);padding-bottom:22px;border-bottom:2px solid var(--rule)}
+footer{font-size:13.5px;color:var(--muted);line-height:1.7}
+.mast-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr) minmax(330px,0.8fr);gap:28px 48px;align-items:end}
+.mast-mid{display:flex;flex-direction:column;gap:10px;padding-bottom:4px}
+.mast-mid .meta{margin-top:0}
+.mast-mid .disclaim{margin:0}
+.mast-copy{display:flex;flex-direction:column;gap:12px}
+.brand{font-size:14px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);margin-bottom:-4px}
+.credit{font-size:14px;color:var(--muted);margin:0}
+.credit a{color:var(--ink);font-weight:600}
+.updated{--fc:var(--c);--fbg:var(--c-bg);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:18px 20px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;align-items:center}
+.updated.old{--fc:var(--a);--fbg:var(--a-bg)}
+.updated.stale{--fc:var(--d);--fbg:var(--d-bg)}
+.up-pulse{width:14px;height:14px;border-radius:50%;background:var(--fc);box-shadow:0 0 0 6px var(--fbg);grid-row:1}
+.up-main{font-size:clamp(24px,3vw,32px);font-weight:800;line-height:1.1;letter-spacing:-.02em}
+.up-main b{color:var(--fc);font-weight:800}
+.up-sub{grid-column:2;font-size:14px;color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:14px;font-size:13.5px;color:var(--muted)}
+.meta span{white-space:nowrap}
+
+.changes{margin-top:20px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.changes summary{display:flex;align-items:center;gap:6px 14px;flex-wrap:wrap;padding:14px 52px 14px 20px;cursor:pointer;list-style:none;position:relative}
+.changes summary::-webkit-details-marker{display:none}
+.changes summary:hover{background:var(--sunk);border-radius:10px}
+.changes summary:focus-visible{outline:2px solid var(--acc);outline-offset:2px;border-radius:10px}
+.ch-t{font-size:16px;font-weight:800}
+.ch-s{font-size:14px;color:var(--muted)}
+.ch-i{position:absolute;right:20px;top:50%;width:10px;height:10px;border-right:2.5px solid var(--muted);border-bottom:2.5px solid var(--muted);transform:translateY(-70%) rotate(45deg);transition:transform .15s}
+.changes[open] .ch-i{transform:translateY(-30%) rotate(-135deg)}
+.changes .callouts{padding:0 16px 16px}
+.changes .callout{background:var(--sunk);border-color:var(--line)}
+.changes .moves li{background:var(--panel)}
+.promo{position:relative;margin-top:12px;display:flex;align-items:center;justify-content:space-between;gap:8px 16px;flex-wrap:wrap;
+  padding:9px 10px 9px 18px;border-radius:10px;background:color-mix(in srgb,var(--a) 11%,var(--panel));border:1px solid color-mix(in srgb,var(--a) 45%,transparent)}
+.promo-txt{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px}
+.promo-txt b{font-size:15px;font-weight:800;color:var(--a)}
+.promo-txt span{font-size:14px;color:var(--muted)}
+.promo-btn{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:700;text-decoration:none;color:#fff;background:var(--a);padding:7px 13px;border-radius:7px;white-space:nowrap}
+.promo-btn:hover{filter:brightness(1.07)}
+@media(max-width:520px){.promo{flex-wrap:nowrap}.promo-txt span{display:none}.promo-txt b{font-size:14.5px}}
+.promo-btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.footbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px;border-top:1px solid var(--line);margin-top:18px;padding-top:16px;font-size:14px}
+.footbar .play-link{display:inline-flex;align-items:center;gap:6px;color:var(--a);font-weight:700;text-decoration:none}
+.footbar .play-link:hover{text-decoration:underline}
+.disclaim{font-size:13px;color:var(--faint);margin:12px 0 0;max-width:80ch}
+
+/* top strip: changes + referral side by side on wide screens */
+.topstrip{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start;margin-top:20px}
+.topstrip .changes,.topstrip .promo{margin-top:0}
+
+/* two-panel layout: What to play (left, always visible) | tabs + tables (right) */
+.layout{display:grid;grid-template-columns:minmax(400px,0.82fr) minmax(0,1.6fr);gap:28px;align-items:start;margin-top:22px;padding-bottom:48px}
+.pickpane{position:sticky;top:14px;max-height:calc(100vh - 28px);overflow:auto;display:flex;flex-direction:column;gap:14px;
+  background:var(--sunk);border:1px solid var(--line);border-radius:10px;padding:18px;scrollbar-width:thin}
+.pane-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.pane-h h2{font-size:22px}
+.pickpane .lk-in{border:1px solid var(--line);border-radius:6px;background:var(--panel);padding:14px 16px}
+.pickpane .answer{grid-template-columns:minmax(0,1fr);gap:16px;padding:20px 18px}
+.pickpane .ans-stats{grid-template-columns:repeat(4,minmax(0,auto));justify-content:start;gap:12px 24px}
+@media(max-width:520px){.pickpane{padding:12px}.pickpane .ans-stats{grid-template-columns:repeat(2,minmax(0,auto))}.pickpane .zones{grid-template-columns:minmax(0,1fr)}}
+.pickpane .play{grid-template-columns:minmax(0,1fr);padding:0 18px 18px}
+.pickpane .subsec{margin-top:6px}
+.pickpane .zones{grid-template-columns:repeat(2,minmax(0,1fr))}
+.pickpane .why{grid-template-columns:minmax(0,1fr)}
+.mainpane{min-width:0}
+.mainpane .defs,.mainpane .defs-3{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+.updated .up-main{font-size:clamp(22px,1.8vw,32px)}
+.toc{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.toc .tabrow{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.toc .tabrow::-webkit-scrollbar{display:none}
+.tab{flex:none;font:600 14.5px/1 var(--sans);color:var(--muted);background:none;border:0;padding:15px 12px 13px;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink);font-weight:800;border-bottom-color:var(--acc)}
+.tab:focus-visible{outline:2px solid var(--acc);outline-offset:-4px;border-radius:4px}
+
+main{padding-top:22px;min-height:60vh}
+section{display:flex;flex-direction:column;gap:16px;scroll-margin-top:64px}
+.subsec{display:flex;flex-direction:column;gap:16px;margin-top:22px}
+.shead{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:10px}
+.shead .eyebrow{font-weight:500}
+.note{font-size:14px;color:var(--muted);max-width:80ch;margin:0}
+.note b{color:var(--ink)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:6px}
+
+/* tool */
+.lookup{overflow:hidden}
+.lk-in{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;padding:16px 20px;background:var(--sunk)}
+.lk-in label{font-size:15px;font-weight:700}
+.field{display:flex;align-items:center;gap:4px;background:var(--panel);border:1.5px solid var(--ink);border-radius:5px;padding:7px 12px}
+.field span{color:var(--faint);font-size:20px;font-weight:600}
+input{border:0;background:transparent;color:var(--ink);font:700 24px/1.1 var(--sans);width:6.5ch;padding:0;font-variant-numeric:tabular-nums}
+input:focus{outline:none}
+input::placeholder{color:var(--faint);font-weight:500}
+.field:focus-within{box-shadow:0 0 0 3px var(--acc-bg)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font:600 13.5px/1 var(--sans);padding:9px 11px;border:1px solid var(--line);border-radius:4px;background:var(--panel);color:var(--muted);cursor:pointer;font-variant-numeric:tabular-nums}
+.chip:hover{border-color:var(--ink);color:var(--ink)}
+.chip:focus-visible{outline:2px solid var(--acc);outline-offset:1px}
+.answer{padding:24px 22px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:start}
+.ans-main{display:flex;flex-direction:column;gap:6px}
+.ans-pick{font-size:clamp(30px,4.6vw,46px);font-weight:800;line-height:1.04;letter-spacing:-.025em;color:var(--zc,var(--ink))}
+.ans-why{color:var(--muted);max-width:60ch;margin:4px 0 0;font-size:15px}
+.ans-why b{color:var(--ink)}
+.ans-alt{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-top:4px;padding-top:10px;border-top:1px solid var(--line)}
+.alt-lab{font-size:13px;font-weight:600;color:var(--faint)}
+.alt-lab.is-tie{color:var(--zc,var(--muted))}
+.alt-nm{font-size:19px;font-weight:700}
+.alt-nm a{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
+.alt-nm a:hover{text-decoration-color:currentColor}
+.go-btn{display:inline-flex;width:fit-content;align-self:flex-start;align-items:center;gap:7px;margin-top:10px;font-size:14px;font-weight:700;text-decoration:none;color:#fff;background:var(--zc,var(--ink));padding:7px 13px;border-radius:7px}
+.go-btn:hover{filter:brightness(1.08)} .go-btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.alt-p{font-size:15px;color:var(--muted);font-variant-numeric:tabular-nums}
+.ans-stats{display:grid;grid-template-columns:repeat(2,minmax(0,auto));gap:14px 28px;align-items:start}
+.stat{display:flex;flex-direction:column;gap:2px}
+.stat b{font-size:26px;font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted)}
+.zbadge{font-size:13px;font-weight:700;padding:6px 10px;border-radius:4px;white-space:nowrap;background:var(--zbg);color:var(--zc)}
+.play{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;padding:0 22px 22px}
+.phead{grid-column:1/-1;font-size:14px;font-weight:700;color:var(--muted)}
+.pcard{border:1px solid var(--line);border-radius:5px;padding:14px 16px;background:var(--sunk);display:flex;flex-direction:column;gap:6px}
+.pcard .plab{font-size:13px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:8px}
+.pcard .plab::before{content:"";width:10px;height:10px;background:var(--pc,var(--line));border-radius:2px}
+.pcard .pnm{font-size:18px;font-weight:700;line-height:1.2}
+.pcard p{margin:0;font-size:14px;color:var(--muted);line-height:1.55}
+.pcard p b{color:var(--ink);font-weight:700;font-variant-numeric:tabular-nums}
+
+/* definitions */
+.defs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.term{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:16px 16px 18px;display:flex;flex-direction:column;gap:8px}
+.term dt{display:flex;align-items:center;gap:10px;font-size:17px;font-weight:800;letter-spacing:-.01em}
+.term dt::before{content:"";flex:none;width:12px;height:12px;border:2.5px solid var(--acc)}
+.term.sim dt::before{border-color:var(--b);border-radius:0}
+.term.money dt::before{border-radius:50%}
+.term dd{margin:0;font-size:14.5px;color:var(--muted);line-height:1.5}
+.keyhead{font-size:14px;font-weight:700;color:var(--muted);margin-top:4px}
+.keybox>summary{display:flex;align-items:center;gap:10px;width:fit-content;font-size:14px;font-weight:700;color:var(--muted);cursor:pointer;list-style:none;padding:4px 30px 4px 0;position:relative;border-radius:4px}
+.keybox>summary::-webkit-details-marker{display:none}
+.keybox>summary:hover{color:var(--ink)}
+.keybox>summary:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.keybox>summary .ch-i{right:6px;width:8px;height:8px;border-width:0 2px 2px 0}
+.keybox[open]>summary .ch-i{transform:translateY(-30%) rotate(-135deg)}
+.keybox[open]>summary{margin-bottom:10px}
+/* hover a definition -> light up its column (and the reverse) */
+.term{cursor:default;transition:border-color .12s,box-shadow .12s}
+.term.on{border-color:var(--b);box-shadow:0 0 0 1px var(--b)}
+.term.on dt{color:var(--b)}
+table .colhl{box-shadow:inset 0 0 0 999px color-mix(in srgb,var(--b) 13%,transparent)}
+thead th.colhl{color:var(--b)}
+.tiemark.pop,.thinpill.pop{outline:2px solid var(--b);outline-offset:1px}
+@media(prefers-reduced-motion:reduce){.term{transition:none}}
+
+.defs-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.legend{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:13.5px;color:var(--muted);margin:0}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend i{width:11px;height:11px;border:2.5px solid var(--acc);border-radius:50%}
+.legend i.sq{border-color:var(--b);border-radius:0}
+
+/* bands */
+.zones{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.zone{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.zone .rng{align-self:flex-start;font-size:14px;font-weight:700;color:var(--zc);background:var(--zbg);padding:4px 9px;border-radius:4px;font-variant-numeric:tabular-nums}
+.zone .pick{font-size:19px;font-weight:800;line-height:1.2;letter-spacing:-.01em}
+.zone p{margin:0;font-size:14px;color:var(--muted);line-height:1.5}
+.zone p b{color:var(--ink)}
+.z-a{--zc:var(--a);--zbg:var(--a-bg)} .z-b{--zc:var(--b);--zbg:var(--b-bg)}
+.z-c{--zc:var(--c);--zbg:var(--c-bg)} .z-d{--zc:var(--d);--zbg:var(--d-bg)}
+.why{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:18px;padding:20px 22px}
+.why p{margin:0 0 10px;font-size:15px;color:var(--muted)}
+.why p:last-child{margin:0}
+.why b{color:var(--ink)}
+.steps{display:flex;flex-direction:column;gap:10px;margin:0;padding:0;list-style:none}
+.steps li{background:var(--sunk);border:1px solid var(--line);border-radius:5px;padding:12px 14px;font-size:14.5px}
+.steps li b{display:block;font-size:15px}
+
+/* callouts from the automatic update */
+.callouts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:12px}
+.callout{padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.callout p{margin:0;font-size:14.5px;color:var(--muted)}
+.callout p b{color:var(--ink)}
+.callout h3 small{display:block;font-size:13px;font-weight:500;color:var(--muted);letter-spacing:0;margin-top:2px}
+.moves{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:14.5px}
+.moves li{padding:7px 10px;background:var(--sunk);border-radius:4px}
+.moves li span{display:block;font-size:13px;color:var(--muted)}
+
+/* tables */
+.tblbox{background:var(--panel);border:1px solid var(--line);border-radius:6px;overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:660px;font-size:14.5px}
+th,td{text-align:right;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+#tbl th:nth-child(2),#tbl td:nth-child(2),#tbl th:nth-child(3),#tbl td:nth-child(3){text-align:left}
+thead th{font-size:13px;font-weight:700;color:var(--ink);background:var(--panel);border-bottom:2px solid var(--rule);position:sticky;top:0}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:var(--sunk)}
+tbody tr.hi td{background:var(--zbg)}
+td.bank{font-weight:700;font-variant-numeric:tabular-nums}
+td.n,td .n{font-variant-numeric:tabular-nums}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:9px;vertical-align:1px;background:var(--zc)}
+tr.za{--zc:var(--a);--zbg:var(--a-bg)} tr.zb{--zc:var(--b);--zbg:var(--b-bg)}
+tr.zc{--zc:var(--c);--zbg:var(--c-bg)} tr.zd{--zc:var(--d);--zbg:var(--d-bg)}
+td.pick{font-weight:700;color:var(--zc)}
+.stale{color:var(--warn);font-weight:600}
+.tiemark{font-size:11.5px;font-weight:700;color:var(--muted);border:1px solid var(--line);border-radius:3px;padding:1px 5px;margin-left:8px;vertical-align:1px}
+.reconpill,.thinpill{display:inline-block;font-size:11.5px;font-weight:700;padding:1px 6px;border-radius:3px;background:var(--a-bg);color:var(--a);margin-left:8px;vertical-align:1px}
+#etbl tr.top td{background:var(--c-bg)}
+#etbl tr.top td:first-child{color:var(--c)}
+#etbl tr.off td{color:var(--muted)}
+#etbl tr.divrow td{background:var(--sunk);font-size:13px;font-weight:600;color:var(--muted);text-align:left;white-space:normal}
+#etbl .typ{color:var(--faint);font-size:12.5px;margin-left:7px}
+.esum{padding:18px 22px;margin:0;color:var(--muted);font-size:15px}
+.esum b{color:var(--ink)}
+.esum .enm{display:inline-block;font-size:24px;font-weight:800;color:var(--c);letter-spacing:-.02em;margin:4px 0 2px}
+
+ol.proto{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:8px;font-size:15px;color:var(--muted);max-width:80ch}
+ol.proto b{color:var(--ink)}
+.foot{border-top:2px solid var(--rule);padding-top:18px;padding-bottom:40px;font-size:13.5px;color:var(--muted);line-height:1.7}
+footer b{color:var(--ink)}
+
+@media(max-width:1280px){.mast-grid{grid-template-columns:minmax(0,1.3fr) minmax(280px,0.9fr)}.mast-mid{grid-column:1;grid-row:2}}
+@media(max-width:1100px){.layout{grid-template-columns:minmax(0,1fr)}.pickpane{position:static;max-height:none;overflow:visible}.topstrip{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:980px){.zones{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:820px){.mast-grid{grid-template-columns:minmax(0,1fr);align-items:start}.mast-mid{grid-row:auto;order:3}.why{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:720px){.defs,.defs-3{grid-template-columns:repeat(2,minmax(0,1fr))}.answer{grid-template-columns:minmax(0,1fr);gap:18px}.play{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:520px){.defs,.defs-3,.zones{grid-template-columns:minmax(0,1fr)}.lk-in{padding:14px}.tab{padding:14px 9px 12px;font-size:14px}.answer{padding:20px 16px}.play{padding:0 16px 18px}table{font-size:13.5px}th,td{padding:8px 10px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+
+<header class="wrap"><div class="mast">
+  <div class="mast-grid">
+    <div class="mast-copy">
+      <div class="brand">Epicenter</div>
+      <h1>Collector Crypt Gacha Cheatsheet</h1>
+      <p class="lede">Type your bankroll &rarr; get the machine most likely to grow it. Live inventory, every machine.</p>
+      <p class="credit">All data pulled from <a href="https://gap.knutegil.dev/inventory" target="_blank" rel="noopener">Knut&rsquo;s Gap Tracker Inventory page</a></p>
+    </div>
+    <div class="mast-mid">
+      <div class="meta"><span>34 machines</span><span>30k sims per bankroll</span><span>Instant-buyback prices</span></div>
+      <p class="disclaim">For comparison only. Every machine loses money on average. Not financial advice &mdash; only play what you can afford to lose.</p>
+    </div>
+    <div class="updated" id="updated" data-t="2026-11-22T21:12:15.814Z">
+      <span class="up-pulse" aria-hidden="true"></span>
+      <div class="up-main">Updated <b id="upAgo">Nov 22, 1:12 pm PT</b></div>
+      <div class="up-sub" id="upSub">Auto-updates ~9&nbsp;am &amp; 9&nbsp;pm PT</div>
+    </div>
+  </div>
+</div></header>
+
+<div class="wrap topstrip"><details class="changes" id="changes">
+  <summary><span class="ch-t">What changed</span><span class="ch-s">First auto-update</span><span class="ch-i" aria-hidden="true"></span></summary>
+  <div class="callouts">
+<div class="panel callout">
+  <h3>Sustain &amp; picks<small>Auto-update, Nov 22, 1:12 pm PT</small></h3>
+  <p><b>First auto-update.</b> All machines now share one read time.</p>
+</div>
+
+<div class="panel callout">
+  <h3>Picks on a thin tier<small>Can shift fast &mdash; sim assumes the cards stay</small></h3>
+  <ul class="moves"><li><b>Dragonball&nbsp;$250</b> leads $2,600 <span>51 epics, avg $4,192. Sells out &rarr; next pick: Baseball&nbsp;$250.</span></li><li><b>Dragonball&nbsp;$250</b> leads $2,800&ndash;$6,000 <span>51 epics, avg $4,192. Sells out &rarr; next pick: Dragonball&nbsp;$100.</span></li><li><b>Watch&nbsp;$500</b> leads $7,000&ndash;$20,000 <span>33 epics, avg $11,672. Sells out &rarr; next pick: Dragonball&nbsp;$250.</span></li></ul>
+</div>
+  </div>
+</details>
+<aside class="promo" id="refBox" aria-label="Referral link">
+  <div class="promo-txt"><b>Found this useful?</b><span>Use my referral link &mdash; it keeps the cheatsheet going. Thank you!</span></div>
+  <a class="promo-btn" id="refLink" href="https://collectorcrypt.com/r/1bg5sijn55vk/gacha" target="_blank" rel="noopener">Play with my link <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M10 14 20 4"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a>
+</aside></div>
+
+<div class="wrap layout">
+
+<aside class="pickpane" id="pickpane" aria-label="What to play">
+  <div class="pane-h"><h2 id="pickTitle">What to play</h2><span class="eyebrow">Updates as you type</span></div>
+  <div class="lk-in">
+    <label for="bank">Your bankroll</label>
+    <div class="field"><span>$</span><input id="bank" type="text" inputmode="numeric" value="" placeholder="&mdash;&mdash;" autocomplete="off" aria-label="Your bankroll in dollars"></div>
+    <div class="chips" id="chips"></div>
+  </div>
+
+<section id="pick" aria-labelledby="pickTitle">
+  <div class="panel lookup">
+    <div class="answer" id="ans"></div>
+    <div class="play" id="play"></div>
+  </div>
+<div class="subsec" id="bands">
+  <div class="shead"><h2>Bankroll bands</h2><span class="eyebrow">Who leads as bankroll grows</span></div>
+  <div class="zones" id="zones"></div>
+  <p class="note"><b>Starter&nbsp;$25: leads low, then fades.</b> Commons cost just &minus;$6.74, but hits are small (rares ~$71, epics ~$185, top $455) &mdash; can&rsquo;t move a few-hundred bankroll.</p>
+  <div class="panel why">
+    <div>
+      <h3 style="margin-bottom:10px">Why the pick changes with bankroll</h3>
+      <p><b>Sustain</b> keeps you alive. <b>Hit size</b> moves you up. Strong on one usually = weak on the other.</p>
+      <p>Ranking = 30,000 sims per bankroll, counting how often each <b>hits 2&times; before going broke</b>. Weighs both automatically &rarr; best sustain &ne; best pick.</p>
+    </div>
+    <ol class="steps">
+      <li><b>Small bankroll</b>Few packs, epics rarely land. Sustain wins.</li>
+      <li><b>Large bankroll</b>Enough packs for big tiers to hit. Hit size wins.</li>
+    </ol>
+  </div>
+</div>
+</section>
+</aside>
+
+<div class="mainpane">
+<nav class="toc"><div class="tabrow" role="tablist" aria-label="Sections">
+  <button class="tab" role="tab" id="tab-table" aria-controls="table" data-tab="table">Full table</button><button class="tab" role="tab" id="tab-epics" aria-controls="epics" data-tab="epics">Epics</button><button class="tab" role="tab" id="tab-machines" aria-controls="machines" data-tab="machines">All machines</button><button class="tab" role="tab" id="tab-about" aria-controls="about" data-tab="about">About the data</button>
+</div></nav>
+
+<main>
+
+<section id="epics" role="tabpanel" aria-labelledby="tab-epics" tabindex="0">
+  <div class="shead"><h2>What an epic costs, and what it pays</h2><span class="eyebrow">Uses your bankroll (left)</span></div>
+  <p class="panel esum" id="esum"></p>
+  <details class="keybox" open><summary><span>Column key</span><span class="ch-i" aria-hidden="true"></span></summary>
+  <dl class="defs">
+    <div class="term money"><dt>Costs to wait</dt><dd>Avg cost of the 99 non-epic pulls before your 1-in-100 epic.</dd></div>
+    <div class="term money"><dt>Epic pays</dt><dd>Avg epic sell-back. &ldquo;Typ&rdquo; = middle epic, usually lower (a few big cards lift the avg).</dd></div>
+    <div class="term money"><dt>Back per $1</dt><dd>Epic pays &divide; costs to wait. 74&cent; = each $1 lost waiting returns 74&cent; in epic.</dd></div>
+    <div class="term money"><dt>Thin tier</dt><dd>So few cards that a few pulls can change the machine. Picks on one move fast.</dd></div>
+  </dl>
+  </details>
+  <div class="tblbox"><table id="etbl">
+    <thead><tr><th>Machine</th><th>Pulls it buys</th><th>Chance of an epic</th><th>Costs to wait</th><th>Epic pays</th><th>Back per $1</th><th>One epic adds</th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+  <p class="note">Sorted by <b>back per $1</b> (machines where an epic is likelier than not); the rest below, by chance. <b>One epic adds</b> = avg epic &divide; your bankroll. No machine pays back the full $1 &mdash; you profit when an epic lands early or big. <span class="thinpill" style="margin-left:0">thin</span> = under 50 epics or 100 commons. 4,000 sims per machine, interpolated between bankrolls. Top pick ranks by doubling, so it can differ.</p>
+</section>
+
+<section id="table" role="tabpanel" aria-labelledby="tab-table" tabindex="0">
+  <div class="shead"><h2>Full table</h2><span class="eyebrow">$50 steps to $500, $100 to $3k, wider to $20k</span></div>
+  <details class="keybox" open><summary><span>Column key</span><span class="ch-i" aria-hidden="true"></span></summary>
+  <dl class="defs">
+    <div class="term sim"><dt>Chance to double</dt><dd>How often a session hits 2&times; your bankroll before you can&rsquo;t buy a pack. Picks ranked by this.</dd></div>
+    <div class="term sim"><dt>Median packs</dt><dd>Packs a typical session lasts. Half run shorter, half longer.</dd></div>
+    <div class="term sim"><dt>Chance of $5,000</dt><dd>How often a session ever reaches $5,000. Shown for bankrolls under $5k.</dd></div>
+    <div class="term sim"><dt>Tie</dt><dd>Top two within sim noise. Treat as equal &mdash; play either.</dd></div>
+  </dl>
+  </details>
+  <div class="tblbox"><table id="tbl">
+    <thead><tr><th>Bankroll</th><th>Best machine</th><th>Runner-up</th><th>Chance to double</th><th>Runner-up&rsquo;s chance</th><th>Median packs</th><th>Chance of $5,000</th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+  <p class="note"><span class="tiemark" style="margin-left:0">TIE</span> = within sim noise (2 std errors) &rarr; interchangeable. Median packs = typical session; the avg runs 3&ndash;7&times; higher (early epics). <b>Above $3k:</b> sessions stop at 2&times; or bust; machines only simmed up to 100 packs of bankroll.</p>
+</section>
+
+<section id="machines" role="tabpanel" aria-labelledby="tab-machines" tabindex="0">
+  <div class="shead"><h2>All machines</h2><span class="eyebrow">Sorted by sustain (&ne; pick order)</span></div>
+  <details class="keybox" open><summary><span>Column key</span><span class="ch-i" aria-hidden="true"></span></summary>
+  <dl class="defs defs-3">
+    <div class="term money"><dt>Sustain</dt><dd>How long you survive on a machine. % of pack price you get back on avg, all tiers.</dd></div>
+    <div class="term money"><dt>Buyback</dt><dd>% of a card&rsquo;s insured value you get selling it back instantly (85&ndash;93&#37;).</dd></div>
+    <div class="term money"><dt>Floor loss</dt><dd>Cost of a plain common pull. 3&ndash;4 of every 5 pulls &rarr; the steady drain.</dd></div>
+    <div class="term money"><dt>Step-up</dt><dd>What an uncommon gains over pack price. Negative = even uncommons lose.</dd></div>
+    <div class="term money"><dt>Hit size</dt><dd>Avg rare/epic payout after buyback. The pulls that move you up.</dd></div>
+    <div class="term money"><dt>Read</dt><dd>When the machine&rsquo;s inventory was last pulled. <span class="stale">Amber</span> = older than the newest pull.</dd></div>
+  </dl>
+  </details>
+  <div class="tblbox"><table id="mtbl">
+    <thead><tr><th>Machine</th><th>Pack</th><th>Buyback</th><th>Sustain</th><th>Floor loss</th><th>Step-up</th><th>Hit size</th><th>Read</th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+  <p class="note">Read floor loss + step-up together: you want a floor that keeps you alive and a step-up that climbs.</p>
+</section>
+
+<section id="about" role="tabpanel" aria-labelledby="tab-about" tabindex="0">
+  <div class="shead"><h2>About the data</h2><span class="eyebrow">How it stays current</span></div>
+  <ol class="proto">
+    <li><b>Auto-updates 2&times;/day.</b> Pulls the tracker &rarr; re-sims &rarr; republishes. &ldquo;Updated&rdquo; card amber/red = runs skipped.</li>
+    <li><b>Source:</b> Knut&rsquo;s tracker (gap.knutegil.dev). Last pull Nov 22, 1:12 pm PT.</li>
+    <li><b>Restock tell:</b> common count &uarr; + common avg &darr;. Check uncommons too &mdash; a refill can drop commons but lift uncommons &rarr; better machine.</li>
+    <li><b>Thin epic tiers swing hardest.</b> Watch&nbsp;$500: 33 epics, Grail&nbsp;$1000: 40, Dragonball&nbsp;$250: 51, Pok&eacute;mon&nbsp;$5000: 55. Watch the avg, not the count.</li>
+    <li>Read time per machine in <b>All machines</b>. Older than the newest pull = <span class="stale">amber</span>.</li>
+  </ol>
+</section>
+
+</main>
+</div>
+</div>
+
+<footer class="wrap"><div class="foot">
+  Sims reinvest winnings; a session ends when the balance drops below one pack.<br>
+  <b>Odds</b> 75/20/4/1, except 80/15/4/1 on Elite&nbsp;$50, Bronze&nbsp;$100, One Piece&nbsp;$50, Anime&nbsp;$75.<br><b>85&#37; buyback:</b> Anime&nbsp;$75, Elite&nbsp;$50, One Piece&nbsp;$50, Starter&nbsp;$25<br><b>90&#37; buyback:</b> Baseball&nbsp;$100, Baseball&nbsp;$250, Basketball&nbsp;$100, Basketball&nbsp;$250, Bronze&nbsp;$100, Football&nbsp;$100, Football&nbsp;$250, Hyper&nbsp;$500, One Piece&nbsp;$250, Pok&eacute;mon&nbsp;$250, Soccer&nbsp;$100, Soccer&nbsp;$250, Soccer&nbsp;$50, Sports&nbsp;$100, Watch&nbsp;$250<br><b>93&#37; buyback:</b> Dragonball&nbsp;$100, Dragonball&nbsp;$250, Dragonball&nbsp;$50, Grail&nbsp;$1000, Lorcana&nbsp;$100, Lorcana&nbsp;$50, One Piece&nbsp;$1000, PSA&nbsp;10&nbsp;$500, Pok&eacute;mon&nbsp;$2500, Pok&eacute;mon&nbsp;$5000, Riftbound&nbsp;100, Riftbound&nbsp;250, Riftbound&nbsp;50, Sports&nbsp;$500, Watch&nbsp;$500<br>
+  <b>Odds + buybacks pulled every update</b>, matching hand-checked values. Big Pok&eacute;mon packs win no row, even at $20k &mdash; commons cost ~$898 ($2,500) / ~$1,638 ($5,000) per pull.<br>
+  Every machine is &minus;EV. This ranks them against each other, nothing more.<br>
+  All data pulled from <a href="https://gap.knutegil.dev/inventory" target="_blank" rel="noopener">Knut&rsquo;s Gap Tracker Inventory page</a> twice a day &mdash; thanks, Knut. Inventories, card values + odds originate on Collector Crypt. Not affiliated with Collector Crypt or the tracker. Not financial advice.
+  <div class="footbar">
+    <span><b>Epicenter</b> &middot; Collector Crypt Gacha Cheatsheet</span>
+    <a class="play-link" href="https://collectorcrypt.com/r/1bg5sijn55vk/gacha" target="_blank" rel="noopener">Play with my referral link <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M10 14 20 4"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a>
+    <span>Data: <a href="https://gap.knutegil.dev/inventory" target="_blank" rel="noopener">Knut&rsquo;s Gap Tracker</a></span>
+  </div>
+</div></footer>
+
+<script>
+const D={"rows":[{"bank":25,"best":"Starter $25","p2":5.59,"md":1,"second":"\u2014","p2b":0.0,"tie":false,"lng":"Starter $25","lngmd":1,"k1":0.0,"z":"b"},{"bank":50,"best":"Starter $25","p2":13.79,"md":7,"second":"Lorcana $50","p2b":8.41,"tie":false,"lng":"Starter $25","lngmd":7,"k1":0.0,"z":"b"},{"bank":100,"best":"Starter $25","p2":16.57,"md":24,"second":"Riftbound 50","p2b":15.81,"tie":false,"lng":"Starter $25","lngmd":24,"k1":0.0,"z":"b"},{"bank":150,"best":"Riftbound 50","p2":18.68,"md":11,"second":"Lorcana $50","p2b":18.67,"tie":true,"lng":"Starter $25","lngmd":47,"k1":0.2,"z":"b"},{"bank":200,"best":"Lorcana $50","p2":20.28,"md":19,"second":"Riftbound 50","p2b":20.07,"tie":true,"lng":"Starter $25","lngmd":72,"k1":0.46,"z":"b"},{"bank":250,"best":"Riftbound 50","p2":21.54,"md":26,"second":"Lorcana $50","p2b":20.83,"tie":false,"lng":"Starter $25","lngmd":100,"k1":0.29,"z":"b"},{"bank":300,"best":"Riftbound 50","p2":22.23,"md":35,"second":"Riftbound 100","p2b":21.55,"tie":false,"lng":"Starter $25","lngmd":127,"k1":0.47,"z":"b"},{"bank":350,"best":"Riftbound 50","p2":22.52,"md":45,"second":"Riftbound 100","p2b":21.98,"tie":true,"lng":"Starter $25","lngmd":156,"k1":0.52,"z":"b"},{"bank":400,"best":"Riftbound 100","p2":22.89,"md":22,"second":"Riftbound 50","p2b":22.2,"tie":false,"lng":"Starter $25","lngmd":186,"k1":0.91,"z":"b"},{"bank":450,"best":"Riftbound 100","p2":23.15,"md":27,"second":"Riftbound 50","p2b":21.75,"tie":false,"lng":"Starter $25","lngmd":216,"k1":1.04,"z":"b"},{"bank":500,"best":"Riftbound 100","p2":23.24,"md":32,"second":"Riftbound 50","p2b":21.09,"tie":false,"lng":"Starter $25","lngmd":245,"k1":1.23,"z":"b"},{"bank":600,"best":"Riftbound 100","p2":23.36,"md":45,"second":"Sports $100","p2b":20.72,"tie":false,"lng":"Starter $25","lngmd":307,"k1":1.67,"z":"b"},{"bank":700,"best":"Riftbound 100","p2":23.1,"md":58,"second":"Sports $100","p2b":21.54,"tie":false,"lng":"Starter $25","lngmd":368,"k1":1.96,"z":"b"},{"bank":800,"best":"Riftbound 100","p2":22.94,"md":71,"second":"Sports $100","p2b":21.76,"tie":false,"lng":"Starter $25","lngmd":431,"k1":2.36,"z":"b"},{"bank":900,"best":"Riftbound 100","p2":22.47,"md":87,"second":"Sports $100","p2b":21.64,"tie":false,"lng":"Starter $25","lngmd":490,"k1":2.7,"z":"b"},{"bank":1000,"best":"Riftbound 100","p2":21.95,"md":102,"second":"Dragonball $100","p2b":21.85,"tie":true,"lng":"Starter $25","lngmd":556,"k1":3.19,"z":"b"},{"bank":1100,"best":"Dragonball $100","p2":22.13,"md":82,"second":"Riftbound 100","p2b":22.0,"tie":true,"lng":"Starter $25","lngmd":619,"k1":9.01,"z":"b"},{"bank":1200,"best":"One Piece $250","p2":22.23,"md":21,"second":"Dragonball $100","p2b":22.11,"tie":true,"lng":"Starter $25","lngmd":681,"k1":8.22,"z":"b"},{"bank":1300,"best":"One Piece $250","p2":22.92,"md":24,"second":"Dragonball $100","p2b":22.48,"tie":true,"lng":"Starter $25","lngmd":744,"k1":9.05,"z":"b"},{"bank":1400,"best":"One Piece $250","p2":23.63,"md":27,"second":"Pokemon $250","p2b":22.86,"tie":false,"lng":"Starter $25","lngmd":806,"k1":9.94,"z":"b"},{"bank":1500,"best":"One Piece $250","p2":23.69,"md":31,"second":"Pokemon $250","p2b":23.46,"tie":true,"lng":"Starter $25","lngmd":868,"k1":10.8,"z":"b"},{"bank":1600,"best":"One Piece $250","p2":23.87,"md":34,"second":"Football $250","p2b":23.8,"tie":true,"lng":"Starter $25","lngmd":931,"k1":11.84,"z":"b"},{"bank":1700,"best":"Football $250","p2":24.05,"md":34,"second":"Pokemon $250","p2b":23.98,"tie":true,"lng":"Starter $25","lngmd":993,"k1":14.43,"z":"b"},{"bank":1800,"best":"Football $250","p2":24.62,"md":37,"second":"Pokemon $250","p2b":24.08,"tie":true,"lng":"Starter $25","lngmd":1058,"k1":15.72,"z":"b"},{"bank":1900,"best":"Football $250","p2":24.87,"md":41,"second":"Baseball $250","p2b":24.18,"tie":true,"lng":"Starter $25","lngmd":1121,"k1":17.0,"z":"b"},{"bank":2000,"best":"Football $250","p2":24.65,"md":44,"second":"Baseball $250","p2b":24.54,"tie":true,"lng":"Starter $25","lngmd":1182,"k1":18.16,"z":"b"},{"bank":2100,"best":"Football $250","p2":24.81,"md":47,"second":"Baseball $250","p2b":24.59,"tie":true,"lng":"Starter $25","lngmd":1246,"k1":19.45,"z":"b"},{"bank":2200,"best":"Baseball $250","p2":24.83,"md":48,"second":"Football $250","p2b":24.68,"tie":true,"lng":"Starter $25","lngmd":1311,"k1":21.14,"z":"b"},{"bank":2300,"best":"Baseball $250","p2":24.91,"md":52,"second":"Football $250","p2b":24.64,"tie":true,"lng":"Starter $25","lngmd":1376,"k1":22.38,"z":"b"},{"bank":2400,"best":"Baseball $250","p2":24.9,"md":55,"second":"Football $250","p2b":24.42,"tie":true,"lng":"Starter $25","lngmd":1439,"k1":23.67,"z":"b"},{"bank":2500,"best":"Baseball $250","p2":24.94,"md":59,"second":"Football $250","p2b":24.59,"tie":true,"lng":"Starter $25","lngmd":1499,"k1":24.94,"z":"b"},{"bank":2600,"best":"Dragonball $250","p2":24.92,"md":62,"second":"Baseball $250","p2b":24.87,"tie":true,"lng":"Starter $25","lngmd":1564,"k1":25.6,"z":"b"},{"bank":2700,"best":"Baseball $250","p2":25.21,"md":67,"second":"Dragonball $250","p2b":25.16,"tie":true,"lng":"Starter $25","lngmd":1629,"k1":27.86,"z":"b"},{"bank":2800,"best":"Dragonball $250","p2":25.38,"md":69,"second":"Baseball $250","p2b":24.96,"tie":true,"lng":"Starter $25","lngmd":1687,"k1":27.65,"z":"b"},{"bank":2900,"best":"Dragonball $250","p2":25.93,"md":73,"second":"Baseball $250","p2b":25.03,"tie":false,"lng":"Starter $25","lngmd":1752,"k1":29.0,"z":"b"},{"bank":3000,"best":"Dragonball $250","p2":26.21,"md":77,"second":"Baseball $250","p2b":24.79,"tie":false,"lng":"Starter $25","lngmd":1820,"k1":30.07,"z":"b"},{"bank":3500,"best":"Dragonball $250","p2":27.07,"md":71,"second":"Dragonball $100","p2b":24.33,"tie":false,"lng":"Dragonball $50","lngmd":1087,"k1":35.89,"z":"b"},{"bank":4000,"best":"Dragonball $250","p2":27.46,"md":85,"second":"Dragonball $100","p2b":24.14,"tie":false,"lng":"Dragonball $50","lngmd":1305,"k1":42.31,"z":"b"},{"bank":4500,"best":"Dragonball $250","p2":28.04,"md":100,"second":"Dragonball $100","p2b":23.52,"tie":false,"lng":"Dragonball $50","lngmd":1524,"k1":50.2,"z":"b"},{"bank":5000,"best":"Dragonball $250","p2":28.45,"md":116,"second":"Watch $500","p2b":25.38,"tie":false,"lng":"Dragonball $50","lngmd":1756,"k1":100.0,"z":"b"},{"bank":6000,"best":"Dragonball $250","p2":28.67,"md":152,"second":"Watch $500","p2b":28.35,"tie":true,"lng":"Riftbound 100","lngmd":1156,"k1":100.0,"z":"b"},{"bank":7000,"best":"Watch $500","p2":30.05,"md":49,"second":"Dragonball $250","p2b":28.72,"tie":false,"lng":"Riftbound 100","lngmd":1395,"k1":100.0,"z":"b"},{"bank":8000,"best":"Watch $500","p2":31.12,"md":57,"second":"Dragonball $250","p2b":28.18,"tie":false,"lng":"Riftbound 100","lngmd":1648,"k1":100.0,"z":"b"},{"bank":9000,"best":"Watch $500","p2":31.42,"md":67,"second":"Dragonball $250","p2b":27.7,"tie":false,"lng":"Riftbound 100","lngmd":1889,"k1":100.0,"z":"b"},{"bank":10000,"best":"Watch $500","p2":31.74,"md":76,"second":"Dragonball $250","p2b":26.88,"tie":false,"lng":"Riftbound 100","lngmd":2143,"k1":100.0,"z":"b"},{"bank":12000,"best":"Watch $500","p2":31.66,"md":97,"second":"Dragonball $250","p2b":24.97,"tie":false,"lng":"One Piece $250","lngmd":623,"k1":100.0,"z":"b"},{"bank":14000,"best":"Watch $500","p2":31.42,"md":122,"second":"Grail $1000","p2b":23.11,"tie":false,"lng":"One Piece $250","lngmd":768,"k1":100.0,"z":"b"},{"bank":16000,"best":"Watch $500","p2":31.19,"md":152,"second":"Grail $1000","p2b":22.86,"tie":false,"lng":"One Piece $250","lngmd":909,"k1":100.0,"z":"b"},{"bank":18000,"best":"Watch $500","p2":30.65,"md":194,"second":"Grail $1000","p2b":22.7,"tie":false,"lng":"Watch $250","lngmd":1059,"k1":100.0,"z":"b"},{"bank":20000,"best":"Watch $500","p2":29.98,"md":233,"second":"Grail $1000","p2b":22.12,"tie":false,"lng":"Watch $250","lngmd":1220,"k1":100.0,"z":"b"}],"mach":[{"n":"Dragonball $100","cost":100,"bb":93.0,"sus":96.69,"hit":467,"floor":33.56,"step":17.53,"fresh":"Nov 22","recon":false,"hitmed":153,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":88.2,"150":51.3,"200":34.6,"250":26.6,"300":21.4,"350":20.0,"400":19.2,"450":18.0,"500":16.8,"600":14.5,"700":12.2,"800":10.1,"900":8.7,"1000":7.4,"1100":6.0,"1200":4.7,"1300":4.5,"1400":4.2,"1500":3.9,"1600":3.7,"1700":3.4,"1800":3.1,"1900":2.8,"2000":2.5,"2100":2.4,"2200":2.4,"2300":2.3,"2400":2.3,"2500":2.2,"2600":2.1,"2700":2.0,"2800":1.8,"2900":1.7,"3000":1.6,"3500":1.1,"4000":1.0,"4500":0.8,"5000":0.7,"6000":0.3,"7000":0.1,"8000":0.1,"9000":0.0,"10000":0.0,"12000":0.0,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":0,"100":1,"150":2,"200":3,"250":5,"300":6,"350":8,"400":9,"450":11,"500":12,"600":15,"700":18,"800":21,"900":24,"1000":27,"1100":30,"1200":33,"1300":36,"1400":39,"1500":42,"1600":45,"1700":48,"1800":51,"1900":54,"2000":57,"2100":60,"2200":63,"2300":66,"2400":69,"2500":72,"2600":75,"2700":78,"2800":81,"2900":84,"3000":87,"3500":102,"4000":117,"4500":132,"5000":146,"6000":176,"7000":206,"8000":236,"9000":266,"10000":295,"12000":355,"14000":415,"16000":474,"18000":534,"20000":593}},{"n":"Dragonball $250","cost":250,"bb":93.0,"sus":96.61,"hit":1264,"floor":85.28,"step":23.9,"fresh":"Nov 22","recon":false,"hitmed":308,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":100.0,"150":100.0,"200":100.0,"250":77.7,"300":55.0,"350":39.9,"400":38.7,"450":37.4,"500":37.4,"600":30.1,"700":23.5,"800":20.0,"900":20.0,"1000":19.4,"1100":18.6,"1200":17.9,"1300":17.1,"1400":16.4,"1500":15.6,"1600":14.9,"1700":14.2,"1800":13.4,"1900":12.7,"2000":12.0,"2100":11.6,"2200":11.4,"2300":11.2,"2400":11.0,"2500":10.8,"2600":10.6,"2700":10.3,"2800":10.1,"2900":9.9,"3000":9.7,"3500":8.2,"4000":6.6,"4500":5.5,"5000":4.8,"6000":3.2,"7000":2.0,"8000":1.6,"9000":1.5,"10000":1.1,"12000":0.4,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":0,"100":0,"150":0,"200":0,"250":1,"300":1,"350":2,"400":2,"450":3,"500":3,"600":5,"700":6,"800":7,"900":8,"1000":9,"1100":10,"1200":12,"1300":13,"1400":14,"1500":15,"1600":16,"1700":18,"1800":19,"1900":20,"2000":21,"2100":22,"2200":23,"2300":25,"2400":26,"2500":27,"2600":28,"2700":29,"2800":30,"2900":32,"3000":33,"3500":39,"4000":44,"4500":50,"5000":56,"6000":68,"7000":80,"8000":91,"9000":103,"10000":115,"12000":138,"14000":162,"16000":185,"18000":209,"20000":232}},{"n":"Riftbound 100","cost":100,"bb":93.0,"sus":95.98,"hit":406,"floor":32.41,"step":25.0,"fresh":"Nov 22","recon":false,"hitmed":224,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":87.2,"150":60.1,"200":53.4,"250":48.0,"300":42.3,"350":20.0,"400":18.5,"450":16.3,"500":14.2,"600":9.9,"700":5.7,"800":4.1,"900":3.6,"1000":3.0,"1100":2.5,"1200":2.3,"1300":2.1,"1400":1.9,"1500":1.7,"1600":1.4,"1700":1.2,"1800":0.9,"1900":0.8,"2000":0.8,"2100":0.7,"2200":0.6,"2300":0.5,"2400":0.4,"2500":0.3,"2600":0.2,"2700":0.2,"2800":0.2,"2900":0.1,"3000":0.1,"3500":0.0,"4000":0.0,"4500":0.0,"5000":0.0,"6000":0.0,"7000":0.0,"8000":0.0,"9000":0.0,"10000":0.0,"12000":0.0,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":0,"100":1,"150":2,"200":4,"250":5,"300":7,"350":8,"400":10,"450":11,"500":13,"600":16,"700":19,"800":22,"900":25,"1000":28,"1100":31,"1200":34,"1300":38,"1400":41,"1500":44,"1600":47,"1700":50,"1800":53,"1900":56,"2000":59,"2100":62,"2200":65,"2300":68,"2400":71,"2500":75,"2600":78,"2700":81,"2800":84,"2900":87,"3000":90,"3500":105,"4000":121,"4500":136,"5000":152,"6000":183,"7000":213,"8000":244,"9000":275,"10000":306,"12000":368,"14000":429,"16000":491,"18000":553,"20000":614}},{"n":"Watch $500","cost":500,"bb":93.0,"sus":95.9,"hit":3059,"floor":202.47,"step":17.08,"fresh":"Nov 22","recon":false,"hitmed":603,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":100.0,"150":100.0,"200":100.0,"250":100.0,"300":100.0,"350":100.0,"400":100.0,"450":94.7,"500":81.4,"600":50.8,"700":36.3,"800":30.3,"900":26.0,"1000":22.7,"1100":20.0,"1200":20.0,"1300":20.0,"1400":20.0,"1500":20.0,"1600":20.0,"1700":20.0,"1800":20.0,"1900":19.9,"2000":19.7,"2100":19.5,"2200":19.4,"2300":19.2,"2400":19.0,"2500":18.9,"2600":18.7,"2700":18.5,"2800":18.4,"2900":18.2,"3000":18.0,"3500":17.2,"4000":16.4,"4500":16.4,"5000":16.4,"6000":16.4,"7000":15.2,"8000":13.8,"9000":12.4,"10000":11.0,"12000":7.5,"14000":4.0,"16000":2.1,"18000":1.6,"20000":1.0},"dry":{"25":0,"50":0,"100":0,"150":0,"200":0,"250":0,"300":0,"350":0,"400":0,"450":0,"500":1,"600":1,"700":1,"800":2,"900":2,"1000":3,"1100":3,"1200":4,"1300":4,"1400":5,"1500":5,"1600":6,"1700":6,"1800":7,"1900":7,"2000":8,"2100":8,"2200":9,"2300":9,"2400":10,"2500":10,"2600":11,"2700":11,"2800":12,"2900":12,"3000":13,"3500":15,"4000":18,"4500":20,"5000":23,"6000":28,"7000":33,"8000":38,"9000":42,"10000":47,"12000":57,"14000":67,"16000":77,"18000":87,"20000":97}},{"n":"Lorcana $100","cost":100,"bb":93.0,"sus":95.7,"hit":404,"floor":31.97,"step":22.5,"fresh":"Nov 22","recon":false,"hitmed":148,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":77.6,"150":49.8,"200":30.1,"250":26.0,"300":24.4,"350":20.0,"400":18.6,"450":16.6,"500":14.6,"600":10.6,"700":6.6,"800":4.1,"900":3.9,"1000":3.7,"1100":3.4,"1200":3.2,"1300":3.0,"1400":2.8,"1500":2.6,"1600":2.4,"1700":2.3,"1800":2.2,"1900":2.1,"2000":2.0,"2100":1.9,"2200":1.7,"2300":1.6,"2400":1.5,"2500":1.4,"2600":1.3,"2700":1.2,"2800":1.2,"2900":1.1,"3000":1.1,"3500":1.0,"4000":0.7,"4500":0.6,"5000":0.3,"6000":0.1,"7000":0.0,"8000":0.0,"9000":0.0,"10000":0.0,"12000":0.0,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":0,"100":1,"150":2,"200":4,"250":5,"300":7,"350":8,"400":10,"450":11,"500":13,"600":16,"700":19,"800":22,"900":26,"1000":29,"1100":32,"1200":35,"1300":38,"1400":41,"1500":44,"1600":47,"1700":51,"1800":54,"1900":57,"2000":60,"2100":63,"2200":66,"2300":69,"2400":72,"2500":76,"2600":79,"2700":82,"2800":85,"2900":88,"3000":91,"3500":107,"4000":122,"4500":138,"5000":154,"6000":185,"7000":216,"8000":248,"9000":279,"10000":310,"12000":373,"14000":435,"16000":498,"18000":560,"20000":623}},{"n":"Dragonball $50","cost":50,"bb":93.0,"sus":95.66,"hit":201,"floor":15.94,"step":11.21,"fresh":"Nov 22","recon":false,"hitmed":76,"hitodds":5,"clr":{"25":100.0,"50":78.5,"100":40.7,"150":28.8,"200":18.4,"250":14.0,"300":9.6,"350":5.1,"400":3.0,"450":2.7,"500":2.5,"600":2.1,"700":2.1,"800":1.9,"900":1.5,"1000":1.4,"1100":1.3,"1200":1.2,"1300":1.0,"1400":1.0,"1500":1.0,"1600":0.9,"1700":0.7,"1800":0.6,"1900":0.5,"2000":0.5,"2100":0.5,"2200":0.5,"2300":0.5,"2400":0.5,"2500":0.5,"2600":0.4,"2700":0.4,"2800":0.4,"2900":0.3,"3000":0.1,"3500":0.0,"4000":0.0,"4500":0.0,"5000":0.0,"6000":0.0,"7000":0.0,"8000":0.0,"9000":0.0,"10000":0.0,"12000":0.0,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":1,"100":4,"150":7,"200":10,"250":13,"300":16,"350":19,"400":22,"450":26,"500":29,"600":35,"700":41,"800":48,"900":54,"1000":60,"1100":66,"1200":73,"1300":79,"1400":85,"1500":91,"1600":98,"1700":104,"1800":110,"1900":117,"2000":123,"2100":129,"2200":135,"2300":142,"2400":148,"2500":154,"2600":160,"2700":167,"2800":173,"2900":179,"3000":186,"3500":217,"4000":248,"4500":280,"5000":311,"6000":374,"7000":436,"8000":499,"9000":562,"10000":625,"12000":750,"14000":875,"16000":1001,"18000":1126,"20000":1252}},{"n":"Lorcana $50","cost":50,"bb":93.0,"sus":95.42,"hit":214,"floor":18.76,"step":17.97,"fresh":"Nov 22","recon":false,"hitmed":112,"hitodds":5,"clr":{"25":100.0,"50":90.6,"100":56.4,"150":29.6,"200":18.8,"250":15.2,"300":11.6,"350":8.0,"400":5.5,"450":4.6,"500":3.6,"600":2.1,"700":1.4,"800":0.8,"900":0.8,"1000":0.8,"1100":0.8,"1200":0.7,"1300":0.7,"1400":0.7,"1500":0.7,"1600":0.7,"1700":0.7,"1800":0.7,"1900":0.7,"2000":0.7,"2100":0.7,"2200":0.6,"2300":0.6,"2400":0.5,"2500":0.4,"2600":0.4,"2700":0.4,"2800":0.4,"2900":0.4,"3000":0.4,"3500":0.3,"4000":0.0,"4500":0.0,"5000":0.0,"6000":0.0,"7000":0.0,"8000":0.0,"9000":0.0,"10000":0.0,"12000":0.0,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":1,"100":3,"150":6,"200":8,"250":11,"300":14,"350":16,"400":19,"450":22,"500":24,"600":30,"700":35,"800":40,"900":46,"1000":51,"1100":56,"1200":62,"1300":67,"1400":72,"1500":78,"1600":83,"1700":88,"1800":94,"1900":99,"2000":104,"2100":110,"2200":115,"2300":120,"2400":126,"2500":131,"2600":136,"2700":142,"2800":147,"2900":152,"3000":158,"3500":184,"4000":211,"4500":238,"5000":264,"6000":318,"7000":371,"8000":424,"9000":478,"10000":531,"12000":637,"14000":744,"16000":851,"18000":957,"20000":1064}},{"n":"Riftbound 50","cost":50,"bb":93.0,"sus":95.32,"hit":224,"floor":18.76,"step":15.24,"fresh":"Nov 22","recon":false,"hitmed":121,"hitodds":5,"clr":{"25":100.0,"50":84.5,"100":59.3,"150":34.2,"200":19.0,"250":16.3,"300":13.5,"350":10.7,"400":8.6,"450":6.9,"500":5.2,"600":2.8,"700":2.0,"800":1.4,"900":1.1,"1000":1.0,"1100":1.0,"1200":0.9,"1300":0.8,"1400":0.8,"1500":0.8,"1600":0.7,"1700":0.6,"1800":0.6,"1900":0.6,"2000":0.6,"2100":0.5,"2200":0.4,"2300":0.3,"2400":0.1,"2500":0.1,"2600":0.1,"2700":0.1,"2800":0.1,"2900":0.1,"3000":0.1,"3500":0.0,"4000":0.0,"4500":0.0,"5000":0.0,"6000":0.0,"7000":0.0,"8000":0.0,"9000":0.0,"10000":0.0,"12000":0.0,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":1,"100":3,"150":6,"200":8,"250":11,"300":14,"350":16,"400":19,"450":22,"500":24,"600":30,"700":35,"800":40,"900":46,"1000":51,"1100":56,"1200":62,"1300":67,"1400":72,"1500":78,"1600":83,"1700":88,"1800":94,"1900":99,"2000":104,"2100":110,"2200":115,"2300":120,"2400":126,"2500":131,"2600":136,"2700":142,"2800":147,"2900":152,"3000":158,"3500":184,"4000":211,"4500":238,"5000":264,"6000":318,"7000":371,"8000":424,"9000":478,"10000":531,"12000":637,"14000":744,"16000":851,"18000":957,"20000":1064}},{"n":"Watch $250","cost":250,"bb":90.0,"sus":95.15,"hit":1026,"floor":94.4,"step":99.4,"fresh":"Nov 22","recon":false,"hitmed":511,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":100.0,"150":100.0,"200":100.0,"250":82.0,"300":75.9,"350":70.6,"400":61.7,"450":57.1,"500":52.3,"600":39.5,"700":31.2,"800":21.7,"900":19.6,"1000":17.9,"1100":16.2,"1200":14.5,"1300":12.8,"1400":11.1,"1500":9.5,"1600":7.8,"1700":6.1,"1800":4.4,"1900":3.6,"2000":3.4,"2100":3.2,"2200":3.0,"2300":2.8,"2400":2.6,"2500":2.4,"2600":2.2,"2700":2.0,"2800":1.8,"2900":1.8,"3000":1.7,"3500":1.5,"4000":1.4,"4500":1.4,"5000":1.3,"6000":1.2,"7000":1.2,"8000":1.2,"9000":1.1,"10000":0.9,"12000":0.3,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":0,"100":0,"150":0,"200":0,"250":1,"300":1,"350":2,"400":2,"450":3,"500":3,"600":4,"700":5,"800":6,"900":7,"1000":8,"1100":10,"1200":11,"1300":12,"1400":13,"1500":14,"1600":15,"1700":16,"1800":17,"1900":18,"2000":19,"2100":20,"2200":21,"2300":22,"2400":23,"2500":24,"2600":25,"2700":26,"2800":28,"2900":29,"3000":30,"3500":35,"4000":40,"4500":46,"5000":51,"6000":61,"7000":72,"8000":83,"9000":93,"10000":104,"12000":125,"14000":146,"16000":167,"18000":189,"20000":210}},{"n":"Sports $500","cost":500,"bb":93.0,"sus":94.86,"hit":2184,"floor":183.75,"step":139.76,"fresh":"Nov 22","recon":false,"hitmed":966,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":100.0,"150":100.0,"200":100.0,"250":100.0,"300":100.0,"350":100.0,"400":100.0,"450":96.1,"500":86.6,"600":78.5,"700":69.8,"800":63.3,"900":53.7,"1000":48.1,"1100":43.5,"1200":39.0,"1300":36.3,"1400":27.5,"1500":25.5,"1600":23.1,"1700":21.5,"1800":20.0,"1900":19.5,"2000":18.8,"2100":18.2,"2200":17.5,"2300":16.8,"2400":16.2,"2500":15.5,"2600":14.8,"2700":14.2,"2800":13.5,"2900":12.8,"3000":12.2,"3500":8.8,"4000":7.6,"4500":7.2,"5000":6.9,"6000":5.9,"7000":4.7,"8000":3.2,"9000":1.7,"10000":1.5,"12000":1.0,"14000":0.5,"16000":0.2,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":0,"100":0,"150":0,"200":0,"250":0,"300":0,"350":0,"400":0,"450":0,"500":1,"600":1,"700":2,"800":2,"900":3,"1000":3,"1100":4,"1200":4,"1300":5,"1400":5,"1500":6,"1600":6,"1700":7,"1800":8,"1900":8,"2000":9,"2100":9,"2200":10,"2300":10,"2400":11,"2500":11,"2600":12,"2700":12,"2800":13,"2900":14,"3000":14,"3500":17,"4000":20,"4500":22,"5000":25,"6000":30,"7000":36,"8000":41,"9000":47,"10000":52,"12000":63,"14000":74,"16000":85,"18000":96,"20000":107}},{"n":"One Piece $1000","cost":1000,"bb":93.0,"sus":94.86,"hit":4452,"floor":318.01,"step":72.37,"fresh":"Nov 22","recon":false,"hitmed":1627,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":100.0,"150":100.0,"200":100.0,"250":100.0,"300":100.0,"350":100.0,"400":100.0,"450":100.0,"500":99.4,"600":94.5,"700":89.6,"800":84.5,"900":78.3,"1000":72.1,"1100":66.3,"1200":62.3,"1300":58.4,"1400":54.8,"1500":52.7,"1600":50.6,"1700":48.5,"1800":46.6,"1900":44.6,"2000":42.7,"2100":41.1,"2200":39.5,"2300":37.8,"2400":36.1,"2500":34.3,"2600":32.7,"2700":31.2,"2800":29.7,"2900":28.1,"3000":26.7,"3500":22.6,"4000":21.8,"4500":21.1,"5000":21.0,"6000":20.4,"7000":17.8,"8000":13.9,"9000":10.6,"10000":7.6,"12000":3.8,"14000":2.5,"16000":2.4,"18000":1.7,"20000":1.4},"dry":{"25":0,"50":0,"100":0,"150":0,"200":0,"250":0,"300":0,"350":0,"400":0,"450":0,"500":0,"600":0,"700":0,"800":0,"900":0,"1000":1,"1100":1,"1200":1,"1300":1,"1400":2,"1500":2,"1600":2,"1700":3,"1800":3,"1900":3,"2000":4,"2100":4,"2200":4,"2300":5,"2400":5,"2500":5,"2600":6,"2700":6,"2800":6,"2900":6,"3000":7,"3500":8,"4000":10,"4500":12,"5000":13,"6000":16,"7000":19,"8000":23,"9000":26,"10000":29,"12000":35,"14000":41,"16000":48,"18000":54,"20000":60}},{"n":"Grail $1000","cost":1000,"bb":93.0,"sus":94.83,"hit":4685,"floor":318.1,"step":13.15,"fresh":"Nov 22","recon":false,"hitmed":1614,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":100.0,"150":100.0,"200":100.0,"250":100.0,"300":100.0,"350":100.0,"400":100.0,"450":100.0,"500":99.1,"600":92.4,"700":85.7,"800":79.2,"900":74.2,"1000":69.4,"1100":64.7,"1200":61.3,"1300":58.0,"1400":54.8,"1500":52.5,"1600":50.3,"1700":48.0,"1800":45.4,"1900":42.7,"2000":40.1,"2100":37.8,"2200":35.5,"2300":33.5,"2400":32.3,"2500":31.1,"2600":29.7,"2700":27.9,"2800":26.1,"2900":24.8,"3000":24.5,"3500":22.8,"4000":22.0,"4500":21.0,"5000":20.8,"6000":20.3,"7000":18.1,"8000":14.7,"9000":12.1,"10000":10.0,"12000":6.8,"14000":5.1,"16000":3.5,"18000":2.5,"20000":2.0},"dry":{"25":0,"50":0,"100":0,"150":0,"200":0,"250":0,"300":0,"350":0,"400":0,"450":0,"500":0,"600":0,"700":0,"800":0,"900":0,"1000":1,"1100":1,"1200":1,"1300":1,"1400":2,"1500":2,"1600":2,"1700":3,"1800":3,"1900":3,"2000":4,"2100":4,"2200":4,"2300":5,"2400":5,"2500":5,"2600":6,"2700":6,"2800":6,"2900":6,"3000":7,"3500":8,"4000":10,"4500":12,"5000":13,"6000":16,"7000":19,"8000":23,"9000":26,"10000":29,"12000":35,"14000":41,"16000":48,"18000":54,"20000":60}},{"n":"Basketball $100","cost":100,"bb":90.0,"sus":94.61,"hit":459,"floor":35.95,"step":18.08,"fresh":"Nov 22","recon":false,"hitmed":202,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":86.0,"150":66.5,"200":50.2,"250":36.6,"300":23.4,"350":20.0,"400":18.5,"450":16.9,"500":15.4,"600":12.8,"700":10.9,"800":9.1,"900":7.6,"1000":6.0,"1100":4.5,"1200":3.7,"1300":3.6,"1400":3.6,"1500":3.6,"1600":3.6,"1700":3.5,"1800":3.5,"1900":3.5,"2000":3.3,"2100":3.0,"2200":2.7,"2300":2.6,"2400":2.5,"2500":2.5,"2600":2.3,"2700":2.1,"2800":1.8,"2900":1.7,"3000":1.5,"3500":0.9,"4000":0.4,"4500":0.0,"5000":0.0,"6000":0.0,"7000":0.0,"8000":0.0,"9000":0.0,"10000":0.0,"12000":0.0,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":0,"100":1,"150":2,"200":3,"250":5,"300":6,"350":7,"400":9,"450":10,"500":12,"600":14,"700":17,"800":20,"900":23,"1000":26,"1100":28,"1200":31,"1300":34,"1400":37,"1500":39,"1600":42,"1700":45,"1800":48,"1900":51,"2000":53,"2100":56,"2200":59,"2300":62,"2400":64,"2500":67,"2600":70,"2700":73,"2800":76,"2900":78,"3000":81,"3500":95,"4000":109,"4500":123,"5000":137,"6000":165,"7000":192,"8000":220,"9000":248,"10000":276,"12000":332,"14000":387,"16000":443,"18000":498,"20000":554}},{"n":"Soccer $100","cost":100,"bb":90.0,"sus":94.53,"hit":465,"floor":37.21,"step":21.01,"fresh":"Nov 22","recon":false,"hitmed":256,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":99.0,"150":97.8,"200":78.7,"250":52.2,"300":30.1,"350":20.0,"400":18.2,"450":16.4,"500":14.6,"600":11.0,"700":7.4,"800":5.6,"900":4.4,"1000":3.2,"1100":2.0,"1200":2.0,"1300":2.0,"1400":2.0,"1500":2.0,"1600":1.9,"1700":1.9,"1800":1.9,"1900":1.8,"2000":1.6,"2100":1.3,"2200":1.1,"2300":1.0,"2400":0.9,"2500":0.9,"2600":0.9,"2700":0.8,"2800":0.8,"2900":0.7,"3000":0.6,"3500":0.5,"4000":0.5,"4500":0.5,"5000":0.3,"6000":0.2,"7000":0.1,"8000":0.0,"9000":0.0,"10000":0.0,"12000":0.0,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":0,"100":1,"150":2,"200":3,"250":5,"300":6,"350":7,"400":9,"450":10,"500":11,"600":14,"700":17,"800":19,"900":22,"1000":25,"1100":27,"1200":30,"1300":33,"1400":35,"1500":38,"1600":41,"1700":44,"1800":46,"1900":49,"2000":52,"2100":54,"2200":57,"2300":60,"2400":62,"2500":65,"2600":68,"2700":70,"2800":73,"2900":76,"3000":78,"3500":92,"4000":105,"4500":119,"5000":132,"6000":159,"7000":186,"8000":213,"9000":240,"10000":267,"12000":320,"14000":374,"16000":428,"18000":482,"20000":535}},{"n":"Hyper $500","cost":500,"bb":90.0,"sus":94.53,"hit":2192,"floor":181.11,"step":119.53,"fresh":"Nov 22","recon":false,"hitmed":958,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":100.0,"150":100.0,"200":100.0,"250":100.0,"300":100.0,"350":100.0,"400":100.0,"450":95.3,"500":89.6,"600":78.6,"700":69.5,"800":62.0,"900":53.5,"1000":47.0,"1100":42.3,"1200":38.1,"1300":34.4,"1400":29.5,"1500":25.8,"1600":21.9,"1700":20.3,"1800":19.7,"1900":19.2,"2000":18.6,"2100":18.1,"2200":17.6,"2300":17.0,"2400":16.5,"2500":15.9,"2600":15.4,"2700":14.8,"2800":14.2,"2900":13.7,"3000":13.2,"3500":10.5,"4000":8.4,"4500":7.4,"5000":6.4,"6000":4.5,"7000":3.6,"8000":2.6,"9000":2.3,"10000":1.9,"12000":1.3,"14000":0.7,"16000":0.4,"18000":0.2,"20000":0.1},"dry":{"25":0,"50":0,"100":0,"150":0,"200":0,"250":0,"300":0,"350":0,"400":0,"450":0,"500":1,"600":1,"700":2,"800":2,"900":3,"1000":3,"1100":4,"1200":4,"1300":5,"1400":5,"1500":6,"1600":7,"1700":7,"1800":8,"1900":8,"2000":9,"2100":9,"2200":10,"2300":10,"2400":11,"2500":12,"2600":12,"2700":13,"2800":13,"2900":14,"3000":14,"3500":17,"4000":20,"4500":23,"5000":25,"6000":31,"7000":36,"8000":42,"9000":47,"10000":53,"12000":64,"14000":75,"16000":86,"18000":97,"20000":108}},{"n":"Soccer $250","cost":250,"bb":90.0,"sus":94.53,"hit":1177,"floor":93.95,"step":52.17,"fresh":"Nov 22","recon":false,"hitmed":639,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":100.0,"150":100.0,"200":100.0,"250":96.5,"300":94.7,"350":91.4,"400":80.4,"450":70.9,"500":64.4,"600":53.2,"700":37.1,"800":29.5,"900":19.7,"1000":18.6,"1100":17.5,"1200":16.3,"1300":15.2,"1400":14.1,"1500":12.9,"1600":11.8,"1700":10.7,"1800":9.6,"1900":8.5,"2000":8.0,"2100":7.6,"2200":7.2,"2300":6.8,"2400":6.5,"2500":6.1,"2600":5.7,"2700":5.3,"2800":5.0,"2900":4.6,"3000":4.3,"3500":3.4,"4000":2.4,"4500":2.0,"5000":1.6,"6000":1.0,"7000":0.8,"8000":0.5,"9000":0.3,"10000":0.3,"12000":0.3,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":0,"100":0,"150":0,"200":0,"250":1,"300":1,"350":2,"400":2,"450":3,"500":3,"600":4,"700":5,"800":6,"900":7,"1000":8,"1100":10,"1200":11,"1300":12,"1400":13,"1500":14,"1600":15,"1700":16,"1800":17,"1900":18,"2000":19,"2100":20,"2200":21,"2300":22,"2400":23,"2500":24,"2600":26,"2700":27,"2800":28,"2900":29,"3000":30,"3500":35,"4000":40,"4500":46,"5000":51,"6000":62,"7000":72,"8000":83,"9000":94,"10000":104,"12000":126,"14000":147,"16000":168,"18000":189,"20000":211}},{"n":"Sports $100","cost":100,"bb":90.0,"sus":94.52,"hit":437,"floor":36.31,"step":24.38,"fresh":"Nov 22","recon":false,"hitmed":215,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":90.6,"150":75.3,"200":53.4,"250":38.3,"300":24.8,"350":20.0,"400":18.8,"450":17.5,"500":16.2,"600":13.6,"700":11.1,"800":9.3,"900":8.0,"1000":6.8,"1100":5.5,"1200":4.6,"1300":3.9,"1400":3.1,"1500":2.3,"1600":1.8,"1700":1.3,"1800":0.9,"1900":0.4,"2000":0.3,"2100":0.3,"2200":0.3,"2300":0.3,"2400":0.3,"2500":0.3,"2600":0.3,"2700":0.3,"2800":0.3,"2900":0.3,"3000":0.3,"3500":0.2,"4000":0.2,"4500":0.2,"5000":0.1,"6000":0.1,"7000":0.0,"8000":0.0,"9000":0.0,"10000":0.0,"12000":0.0,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":0,"100":1,"150":2,"200":3,"250":5,"300":6,"350":7,"400":9,"450":10,"500":12,"600":14,"700":17,"800":20,"900":23,"1000":25,"1100":28,"1200":31,"1300":34,"1400":36,"1500":39,"1600":42,"1700":45,"1800":47,"1900":50,"2000":53,"2100":56,"2200":58,"2300":61,"2400":64,"2500":67,"2600":69,"2700":72,"2800":75,"2900":78,"3000":80,"3500":94,"4000":108,"4500":122,"5000":135,"6000":163,"7000":191,"8000":218,"9000":246,"10000":273,"12000":328,"14000":383,"16000":438,"18000":493,"20000":549}},{"n":"Baseball $250","cost":250,"bb":90.0,"sus":94.5,"hit":1244,"floor":85.01,"step":1.48,"fresh":"Nov 22","recon":false,"hitmed":504,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":100.0,"150":90.4,"200":80.3,"250":73.5,"300":69.0,"350":63.7,"400":57.9,"450":54.9,"500":50.4,"600":42.4,"700":36.4,"800":33.9,"900":29.5,"1000":26.9,"1100":24.4,"1200":23.4,"1300":21.5,"1400":20.5,"1500":20.0,"1600":19.6,"1700":18.8,"1800":18.0,"1900":17.2,"2000":16.3,"2100":15.5,"2200":14.7,"2300":13.9,"2400":13.1,"2500":12.2,"2600":11.4,"2700":10.6,"2800":9.8,"2900":9.0,"3000":8.1,"3500":5.1,"4000":3.9,"4500":2.7,"5000":1.6,"6000":0.9,"7000":0.5,"8000":0.2,"9000":0.0,"10000":0.0,"12000":0.0,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":0,"100":0,"150":0,"200":0,"250":1,"300":1,"350":2,"400":2,"450":3,"500":3,"600":5,"700":6,"800":7,"900":8,"1000":9,"1100":10,"1200":12,"1300":13,"1400":14,"1500":15,"1600":16,"1700":18,"1800":19,"1900":20,"2000":21,"2100":22,"2200":23,"2300":25,"2400":26,"2500":27,"2600":28,"2700":29,"2800":30,"2900":32,"3000":33,"3500":39,"4000":45,"4500":50,"5000":56,"6000":68,"7000":80,"8000":92,"9000":103,"10000":115,"12000":139,"14000":162,"16000":186,"18000":209,"20000":233}},{"n":"Football $250","cost":250,"bb":90.0,"sus":94.5,"hit":1225,"floor":84.83,"step":5.58,"fresh":"Nov 22","recon":false,"hitmed":527,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":100.0,"150":91.8,"200":82.7,"250":75.8,"300":70.6,"350":65.0,"400":58.8,"450":55.0,"500":51.6,"600":46.4,"700":40.0,"800":36.4,"900":33.1,"1000":30.1,"1100":26.3,"1200":23.9,"1300":22.4,"1400":21.2,"1500":20.0,"1600":19.5,"1700":18.5,"1800":17.5,"1900":16.6,"2000":15.6,"2100":14.7,"2200":13.7,"2300":12.7,"2400":11.8,"2500":10.8,"2600":9.9,"2700":8.9,"2800":7.9,"2900":7.0,"3000":6.0,"3500":3.3,"4000":2.6,"4500":1.9,"5000":1.2,"6000":0.9,"7000":0.5,"8000":0.0,"9000":0.0,"10000":0.0,"12000":0.0,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":0,"100":0,"150":0,"200":0,"250":1,"300":1,"350":2,"400":2,"450":3,"500":3,"600":5,"700":6,"800":7,"900":8,"1000":9,"1100":11,"1200":12,"1300":13,"1400":14,"1500":15,"1600":16,"1700":18,"1800":19,"1900":20,"2000":21,"2100":22,"2200":23,"2300":25,"2400":26,"2500":27,"2600":28,"2700":29,"2800":31,"2900":32,"3000":33,"3500":39,"4000":45,"4500":51,"5000":56,"6000":68,"7000":80,"8000":92,"9000":104,"10000":115,"12000":139,"14000":163,"16000":186,"18000":210,"20000":233}},{"n":"One Piece $250","cost":250,"bb":90.0,"sus":94.5,"hit":1116,"floor":82.35,"step":23.59,"fresh":"Nov 22","recon":false,"hitmed":485,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":100.0,"150":85.5,"200":71.8,"250":65.0,"300":60.5,"350":57.2,"400":54.8,"450":52.3,"500":48.7,"600":40.4,"700":36.0,"800":34.2,"900":32.2,"1000":29.4,"1100":27.4,"1200":26.0,"1300":23.6,"1400":21.9,"1500":20.3,"1600":19.3,"1700":17.9,"1800":16.4,"1900":15.0,"2000":13.5,"2100":12.1,"2200":10.7,"2300":9.3,"2400":7.8,"2500":6.4,"2600":5.0,"2700":3.5,"2800":2.2,"2900":2.1,"3000":2.1,"3500":1.8,"4000":1.5,"4500":1.3,"5000":1.1,"6000":0.7,"7000":0.4,"8000":0.0,"9000":0.0,"10000":0.0,"12000":0.0,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":0,"100":0,"150":0,"200":0,"250":1,"300":1,"350":2,"400":2,"450":3,"500":4,"600":5,"700":6,"800":7,"900":8,"1000":10,"1100":11,"1200":12,"1300":13,"1400":14,"1500":16,"1600":17,"1700":18,"1800":19,"1900":21,"2000":22,"2100":23,"2200":24,"2300":25,"2400":27,"2500":28,"2600":29,"2700":30,"2800":31,"2900":33,"3000":34,"3500":40,"4000":46,"4500":52,"5000":58,"6000":70,"7000":82,"8000":95,"9000":107,"10000":119,"12000":143,"14000":167,"16000":192,"18000":216,"20000":240}},{"n":"Bronze $100","cost":100,"bb":90.0,"sus":94.49,"hit":402,"floor":29.87,"step":21.87,"fresh":"Nov 22","recon":false,"hitmed":221,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":91.7,"150":73.3,"200":57.8,"250":41.9,"300":28.0,"350":20.0,"400":18.0,"450":16.0,"500":14.0,"600":10.0,"700":6.1,"800":4.1,"900":3.1,"1000":2.1,"1100":1.2,"1200":0.9,"1300":0.8,"1400":0.7,"1500":0.6,"1600":0.6,"1700":0.6,"1800":0.6,"1900":0.6,"2000":0.6,"2100":0.5,"2200":0.5,"2300":0.5,"2400":0.5,"2500":0.4,"2600":0.4,"2700":0.4,"2800":0.4,"2900":0.4,"3000":0.4,"3500":0.4,"4000":0.3,"4500":0.2,"5000":0.1,"6000":0.1,"7000":0.0,"8000":0.0,"9000":0.0,"10000":0.0,"12000":0.0,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":0,"100":1,"150":2,"200":4,"250":6,"300":7,"350":9,"400":11,"450":12,"500":14,"600":17,"700":21,"800":24,"900":27,"1000":31,"1100":34,"1200":37,"1300":41,"1400":44,"1500":47,"1600":51,"1700":54,"1800":57,"1900":61,"2000":64,"2100":67,"2200":71,"2300":74,"2400":78,"2500":81,"2600":84,"2700":88,"2800":91,"2900":94,"3000":98,"3500":114,"4000":131,"4500":148,"5000":165,"6000":198,"7000":232,"8000":265,"9000":298,"10000":332,"12000":399,"14000":466,"16000":533,"18000":600,"20000":667}},{"n":"Baseball $100","cost":100,"bb":90.0,"sus":94.49,"hit":426,"floor":35.01,"step":22.19,"fresh":"Nov 22","recon":false,"hitmed":167,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":82.4,"150":57.5,"200":40.4,"250":31.0,"300":23.0,"350":20.0,"400":18.3,"450":16.5,"500":14.8,"600":11.8,"700":9.3,"800":7.3,"900":5.9,"1000":4.7,"1100":3.9,"1200":3.4,"1300":3.4,"1400":3.4,"1500":3.4,"1600":3.4,"1700":3.3,"1800":3.1,"1900":2.9,"2000":2.6,"2100":2.3,"2200":2.1,"2300":1.9,"2400":1.8,"2500":1.7,"2600":1.6,"2700":1.4,"2800":1.3,"2900":1.2,"3000":1.2,"3500":0.7,"4000":0.2,"4500":0.0,"5000":0.0,"6000":0.0,"7000":0.0,"8000":0.0,"9000":0.0,"10000":0.0,"12000":0.0,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":0,"100":1,"150":2,"200":3,"250":5,"300":6,"350":8,"400":9,"450":10,"500":12,"600":15,"700":18,"800":20,"900":23,"1000":26,"1100":29,"1200":32,"1300":35,"1400":38,"1500":40,"1600":43,"1700":46,"1800":49,"1900":52,"2000":55,"2100":58,"2200":60,"2300":63,"2400":66,"2500":69,"2600":72,"2700":75,"2800":78,"2900":80,"3000":83,"3500":98,"4000":112,"4500":126,"5000":140,"6000":169,"7000":198,"8000":226,"9000":255,"10000":283,"12000":340,"14000":398,"16000":455,"18000":512,"20000":569}},{"n":"Basketball $250","cost":250,"bb":90.0,"sus":94.49,"hit":1090,"floor":76.41,"step":7.8,"fresh":"Nov 22","recon":false,"hitmed":374,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":100.0,"150":86.3,"200":72.6,"250":63.8,"300":58.0,"350":52.5,"400":47.5,"450":43.4,"500":38.9,"600":30.4,"700":22.2,"800":20.7,"900":20.5,"1000":20.5,"1100":20.2,"1200":20.1,"1300":20.0,"1400":20.0,"1500":20.0,"1600":19.5,"1700":18.5,"1800":17.5,"1900":16.5,"2000":15.5,"2100":14.5,"2200":13.5,"2300":12.5,"2400":11.4,"2500":10.4,"2600":9.4,"2700":8.4,"2800":7.4,"2900":6.4,"3000":5.4,"3500":2.3,"4000":2.0,"4500":1.7,"5000":1.4,"6000":1.0,"7000":0.6,"8000":0.5,"9000":0.3,"10000":0.1,"12000":0.0,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":0,"100":0,"150":0,"200":0,"250":1,"300":1,"350":2,"400":2,"450":3,"500":4,"600":5,"700":6,"800":8,"900":9,"1000":10,"1100":12,"1200":13,"1300":14,"1400":16,"1500":17,"1600":18,"1700":19,"1800":21,"1900":22,"2000":23,"2100":25,"2200":26,"2300":27,"2400":29,"2500":30,"2600":31,"2700":33,"2800":34,"2900":35,"3000":36,"3500":43,"4000":50,"4500":56,"5000":63,"6000":76,"7000":89,"8000":102,"9000":115,"10000":128,"12000":154,"14000":180,"16000":207,"18000":233,"20000":259}},{"n":"Football $100","cost":100,"bb":90.0,"sus":94.48,"hit":422,"floor":35.4,"step":24.52,"fresh":"Nov 22","recon":false,"hitmed":186,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":83.0,"150":61.5,"200":47.2,"250":35.2,"300":23.2,"350":20.0,"400":17.8,"450":15.6,"500":13.4,"600":10.2,"700":8.0,"800":6.0,"900":4.3,"1000":3.3,"1100":3.1,"1200":3.0,"1300":3.0,"1400":3.0,"1500":3.0,"1600":2.9,"1700":2.9,"1800":2.8,"1900":2.7,"2000":2.5,"2100":2.3,"2200":2.2,"2300":2.1,"2400":2.0,"2500":2.0,"2600":1.8,"2700":1.5,"2800":1.4,"2900":1.3,"3000":1.2,"3500":0.6,"4000":0.4,"4500":0.0,"5000":0.0,"6000":0.0,"7000":0.0,"8000":0.0,"9000":0.0,"10000":0.0,"12000":0.0,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":0,"100":1,"150":2,"200":3,"250":5,"300":6,"350":8,"400":9,"450":10,"500":12,"600":15,"700":17,"800":20,"900":23,"1000":26,"1100":29,"1200":32,"1300":34,"1400":37,"1500":40,"1600":43,"1700":46,"1800":49,"1900":51,"2000":54,"2100":57,"2200":60,"2300":63,"2400":65,"2500":68,"2600":71,"2700":74,"2800":77,"2900":80,"3000":82,"3500":97,"4000":111,"4500":125,"5000":139,"6000":167,"7000":195,"8000":224,"9000":252,"10000":280,"12000":337,"14000":393,"16000":450,"18000":506,"20000":563}},{"n":"Pokemon $250","cost":250,"bb":90.0,"sus":94.48,"hit":1258,"floor":85.05,"step":-2.12,"fresh":"Nov 22","recon":false,"hitmed":585,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":100.0,"150":93.6,"200":85.3,"250":76.3,"300":71.6,"350":67.2,"400":63.2,"450":60.0,"500":56.1,"600":49.0,"700":44.5,"800":40.3,"900":35.7,"1000":32.2,"1100":28.5,"1200":26.2,"1300":23.6,"1400":21.5,"1500":20.1,"1600":19.5,"1700":18.4,"1800":17.4,"1900":16.3,"2000":15.3,"2100":14.2,"2200":13.1,"2300":12.1,"2400":11.0,"2500":10.0,"2600":8.9,"2700":7.9,"2800":6.8,"2900":5.8,"3000":4.8,"3500":2.7,"4000":2.2,"4500":1.8,"5000":1.4,"6000":1.2,"7000":0.9,"8000":0.5,"9000":0.3,"10000":0.0,"12000":0.0,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":0,"100":0,"150":0,"200":0,"250":1,"300":1,"350":2,"400":2,"450":3,"500":3,"600":5,"700":6,"800":7,"900":8,"1000":9,"1100":10,"1200":12,"1300":13,"1400":14,"1500":15,"1600":16,"1700":18,"1800":19,"1900":20,"2000":21,"2100":22,"2200":23,"2300":25,"2400":26,"2500":27,"2600":28,"2700":29,"2800":30,"2900":32,"3000":33,"3500":39,"4000":45,"4500":50,"5000":56,"6000":68,"7000":80,"8000":92,"9000":103,"10000":115,"12000":139,"14000":162,"16000":186,"18000":209,"20000":233}},{"n":"PSA 10 $500","cost":500,"bb":93.0,"sus":94.34,"hit":2106,"floor":177.1,"step":121.19,"fresh":"Nov 22","recon":false,"hitmed":1004,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":100.0,"150":100.0,"200":100.0,"250":100.0,"300":100.0,"350":100.0,"400":100.0,"450":99.0,"500":96.3,"600":81.9,"700":70.2,"800":62.5,"900":56.9,"1000":50.5,"1100":43.3,"1200":39.8,"1300":37.4,"1400":34.6,"1500":29.2,"1600":24.7,"1700":20.0,"1800":20.0,"1900":19.5,"2000":18.8,"2100":18.1,"2200":17.4,"2300":16.7,"2400":16.0,"2500":15.3,"2600":14.6,"2700":13.9,"2800":13.2,"2900":12.5,"3000":11.8,"3500":8.4,"4000":5.7,"4500":4.9,"5000":4.2,"6000":2.8,"7000":2.2,"8000":1.6,"9000":1.4,"10000":1.2,"12000":0.9,"14000":0.5,"16000":0.4,"18000":0.4,"20000":0.3},"dry":{"25":0,"50":0,"100":0,"150":0,"200":0,"250":0,"300":0,"350":0,"400":0,"450":0,"500":1,"600":1,"700":2,"800":2,"900":3,"1000":3,"1100":4,"1200":4,"1300":5,"1400":6,"1500":6,"1600":7,"1700":7,"1800":8,"1900":8,"2000":9,"2100":10,"2200":10,"2300":11,"2400":11,"2500":12,"2600":12,"2700":13,"2800":13,"2900":14,"3000":15,"3500":17,"4000":20,"4500":23,"5000":26,"6000":32,"7000":37,"8000":43,"9000":48,"10000":54,"12000":65,"14000":77,"16000":88,"18000":99,"20000":111}},{"n":"Pokemon $5000","cost":5000,"bb":93.0,"sus":94.03,"hit":18920,"floor":1638.48,"step":1171.34,"fresh":"Nov 22","recon":false,"hitmed":9574,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":100.0,"150":100.0,"200":100.0,"250":100.0,"300":100.0,"350":100.0,"400":100.0,"450":100.0,"500":100.0,"600":100.0,"700":100.0,"800":100.0,"900":100.0,"1000":100.0,"1100":100.0,"1200":100.0,"1300":100.0,"1400":100.0,"1500":100.0,"1600":100.0,"1700":100.0,"1800":100.0,"1900":100.0,"2000":100.0,"2100":100.0,"2200":100.0,"2300":100.0,"2400":100.0,"2500":100.0,"2600":100.0,"2700":100.0,"2800":100.0,"2900":100.0,"3000":100.0,"3500":100.0,"4000":100.0,"4500":98.6,"5000":94.9,"6000":90.4,"7000":78.8,"8000":71.2,"9000":59.0,"10000":44.9,"12000":28.0,"14000":19.6,"16000":17.6,"18000":15.5,"20000":13.5},"dry":{"25":0,"50":0,"100":0,"150":0,"200":0,"250":0,"300":0,"350":0,"400":0,"450":0,"500":0,"600":0,"700":0,"800":0,"900":0,"1000":0,"1100":0,"1200":0,"1300":0,"1400":0,"1500":0,"1600":0,"1700":0,"1800":0,"1900":0,"2000":0,"2100":0,"2200":0,"2300":0,"2400":0,"2500":0,"2600":0,"2700":0,"2800":0,"2900":0,"3000":0,"3500":0,"4000":0,"4500":0,"5000":1,"6000":1,"7000":2,"8000":2,"9000":3,"10000":4,"12000":5,"14000":6,"16000":7,"18000":8,"20000":10}},{"n":"Soccer $50","cost":50,"bb":90.0,"sus":93.86,"hit":219,"floor":18.53,"step":11.91,"fresh":"Nov 22","recon":false,"hitmed":93,"hitodds":5,"clr":{"25":100.0,"50":83.8,"100":46.8,"150":24.9,"200":18.6,"250":15.8,"300":13.0,"350":10.2,"400":8.4,"450":7.4,"500":6.5,"600":4.9,"700":4.0,"800":3.1,"900":2.3,"1000":1.7,"1100":1.5,"1200":1.2,"1300":0.7,"1400":0.3,"1500":0.2,"1600":0.2,"1700":0.2,"1800":0.2,"1900":0.2,"2000":0.2,"2100":0.2,"2200":0.2,"2300":0.2,"2400":0.2,"2500":0.2,"2600":0.2,"2700":0.2,"2800":0.2,"2900":0.2,"3000":0.1,"3500":0.1,"4000":0.0,"4500":0.0,"5000":0.0,"6000":0.0,"7000":0.0,"8000":0.0,"9000":0.0,"10000":0.0,"12000":0.0,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":1,"100":3,"150":6,"200":9,"250":11,"300":14,"350":17,"400":19,"450":22,"500":25,"600":30,"700":36,"800":41,"900":46,"1000":52,"1100":57,"1200":63,"1300":68,"1400":73,"1500":79,"1600":84,"1700":90,"1800":95,"1900":100,"2000":106,"2100":111,"2200":117,"2300":122,"2400":127,"2500":133,"2600":138,"2700":143,"2800":149,"2900":154,"3000":160,"3500":187,"4000":214,"4500":241,"5000":268,"6000":322,"7000":376,"8000":429,"9000":483,"10000":537,"12000":645,"14000":753,"16000":861,"18000":969,"20000":1077}},{"n":"Anime $75","cost":75,"bb":85.0,"sus":93.82,"hit":357,"floor":23.71,"step":1.66,"fresh":"Nov 22","recon":false,"hitmed":135,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":64.7,"150":44.8,"200":33.7,"250":19.8,"300":18.3,"350":16.7,"400":15.2,"450":13.7,"500":12.2,"600":9.8,"700":7.5,"800":5.6,"900":5.2,"1000":4.8,"1100":4.5,"1200":4.3,"1300":4.1,"1400":3.7,"1500":3.2,"1600":2.7,"1700":2.6,"1800":2.5,"1900":2.4,"2000":2.1,"2100":1.7,"2200":1.5,"2300":1.2,"2400":1.0,"2500":1.0,"2600":1.0,"2700":1.0,"2800":0.9,"2900":0.9,"3000":0.8,"3500":0.6,"4000":0.4,"4500":0.2,"5000":0.1,"6000":0.0,"7000":0.0,"8000":0.0,"9000":0.0,"10000":0.0,"12000":0.0,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":0,"100":2,"150":4,"200":6,"250":8,"300":10,"350":12,"400":14,"450":16,"500":18,"600":23,"700":27,"800":31,"900":35,"1000":40,"1100":44,"1200":48,"1300":52,"1400":56,"1500":61,"1600":65,"1700":69,"1800":73,"1900":77,"2000":82,"2100":86,"2200":90,"2300":94,"2400":99,"2500":103,"2600":107,"2700":111,"2800":115,"2900":120,"3000":124,"3500":145,"4000":166,"4500":187,"5000":208,"6000":250,"7000":293,"8000":335,"9000":377,"10000":419,"12000":503,"14000":588,"16000":672,"18000":756,"20000":841}},{"n":"Starter $25","cost":25,"bb":85.0,"sus":93.71,"hit":80,"floor":6.74,"step":3.71,"fresh":"Nov 22","recon":false,"hitmed":33,"hitodds":5,"clr":{"25":59.3,"50":36.2,"100":11.8,"150":5.4,"200":2.3,"250":1.1,"300":0.5,"350":0.1,"400":0.0,"450":0.0,"500":0.0,"600":0.0,"700":0.0,"800":0.0,"900":0.0,"1000":0.0,"1100":0.0,"1200":0.0,"1300":0.0,"1400":0.0,"1500":0.0,"1600":0.0,"1700":0.0,"1800":0.0,"1900":0.0,"2000":0.0,"2100":0.0,"2200":0.0,"2300":0.0,"2400":0.0,"2500":0.0,"2600":0.0,"2700":0.0,"2800":0.0,"2900":0.0,"3000":0.0,"3500":0.0,"4000":0.0,"4500":0.0,"5000":0.0,"6000":0.0,"7000":0.0,"8000":0.0,"9000":0.0,"10000":0.0,"12000":0.0,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":1,"50":4,"100":12,"150":19,"200":26,"250":34,"300":41,"350":49,"400":56,"450":64,"500":71,"600":86,"700":101,"800":116,"900":130,"1000":145,"1100":160,"1200":175,"1300":190,"1400":205,"1500":219,"1600":234,"1700":249,"1800":264,"1900":279,"2000":294,"2100":309,"2200":323,"2300":338,"2400":353,"2500":368,"2600":383,"2700":398,"2800":413,"2900":427,"3000":442,"3500":516,"4000":591,"4500":665,"5000":739,"6000":888,"7000":1036,"8000":1185,"9000":1333,"10000":1481,"12000":1778,"14000":2075,"16000":2372,"18000":2669,"20000":2966}},{"n":"Elite $50","cost":50,"bb":85.0,"sus":93.65,"hit":207,"floor":15.13,"step":7.35,"fresh":"Nov 22","recon":false,"hitmed":73,"hitodds":5,"clr":{"25":100.0,"50":62.5,"100":38.4,"150":20.5,"200":18.8,"250":17.1,"300":15.4,"350":13.8,"400":11.7,"450":9.5,"500":7.4,"600":4.0,"700":2.5,"800":1.4,"900":1.0,"1000":0.7,"1100":0.6,"1200":0.5,"1300":0.4,"1400":0.4,"1500":0.4,"1600":0.4,"1700":0.4,"1800":0.4,"1900":0.3,"2000":0.3,"2100":0.3,"2200":0.3,"2300":0.2,"2400":0.2,"2500":0.2,"2600":0.2,"2700":0.2,"2800":0.2,"2900":0.1,"3000":0.0,"3500":0.0,"4000":0.0,"4500":0.0,"5000":0.0,"6000":0.0,"7000":0.0,"8000":0.0,"9000":0.0,"10000":0.0,"12000":0.0,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":1,"100":4,"150":7,"200":10,"250":14,"300":17,"350":20,"400":24,"450":27,"500":30,"600":37,"700":43,"800":50,"900":57,"1000":63,"1100":70,"1200":76,"1300":83,"1400":90,"1500":96,"1600":103,"1700":110,"1800":116,"1900":123,"2000":129,"2100":136,"2200":143,"2300":149,"2400":156,"2500":162,"2600":169,"2700":176,"2800":182,"2900":189,"3000":195,"3500":228,"4000":262,"4500":295,"5000":328,"6000":394,"7000":460,"8000":526,"9000":592,"10000":658,"12000":790,"14000":922,"16000":1055,"18000":1187,"20000":1319}},{"n":"One Piece $50","cost":50,"bb":85.0,"sus":93.5,"hit":206,"floor":16.0,"step":11.73,"fresh":"Nov 22","recon":false,"hitmed":87,"hitodds":5,"clr":{"25":100.0,"50":81.7,"100":42.2,"150":20.6,"200":18.4,"250":16.3,"300":14.2,"350":12.1,"400":10.0,"450":8.0,"500":6.0,"600":3.0,"700":1.9,"800":1.1,"900":0.9,"1000":0.7,"1100":0.6,"1200":0.5,"1300":0.5,"1400":0.5,"1500":0.4,"1600":0.4,"1700":0.3,"1800":0.3,"1900":0.3,"2000":0.3,"2100":0.3,"2200":0.3,"2300":0.2,"2400":0.2,"2500":0.2,"2600":0.2,"2700":0.1,"2800":0.1,"2900":0.1,"3000":0.1,"3500":0.0,"4000":0.0,"4500":0.0,"5000":0.0,"6000":0.0,"7000":0.0,"8000":0.0,"9000":0.0,"10000":0.0,"12000":0.0,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":1,"100":4,"150":7,"200":10,"250":13,"300":16,"350":19,"400":22,"450":25,"500":29,"600":35,"700":41,"800":47,"900":54,"1000":60,"1100":66,"1200":72,"1300":79,"1400":85,"1500":91,"1600":97,"1700":104,"1800":110,"1900":116,"2000":122,"2100":129,"2200":135,"2300":141,"2400":147,"2500":154,"2600":160,"2700":166,"2800":172,"2900":179,"3000":185,"3500":216,"4000":247,"4500":279,"5000":310,"6000":372,"7000":435,"8000":497,"9000":560,"10000":622,"12000":747,"14000":872,"16000":997,"18000":1122,"20000":1247}},{"n":"Riftbound 250","cost":250,"bb":93.0,"sus":93.02,"hit":999,"floor":92.24,"step":71.39,"fresh":"Nov 22","recon":false,"hitmed":449,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":100.0,"150":100.0,"200":100.0,"250":85.4,"300":74.2,"350":64.8,"400":54.5,"450":49.9,"500":45.9,"600":38.2,"700":27.0,"800":20.6,"900":20.0,"1000":18.8,"1100":17.6,"1200":16.3,"1300":14.9,"1400":13.6,"1500":12.4,"1600":11.1,"1700":9.8,"1800":8.5,"1900":7.2,"2000":6.1,"2100":5.8,"2200":5.5,"2300":5.2,"2400":4.9,"2500":4.6,"2600":4.3,"2700":4.0,"2800":3.8,"2900":3.5,"3000":3.2,"3500":2.7,"4000":2.3,"4500":1.4,"5000":0.4,"6000":0.0,"7000":0.0,"8000":0.0,"9000":0.0,"10000":0.0,"12000":0.0,"14000":0.0,"16000":0.0,"18000":0.0,"20000":0.0},"dry":{"25":0,"50":0,"100":0,"150":0,"200":0,"250":1,"300":1,"350":2,"400":2,"450":3,"500":3,"600":4,"700":5,"800":6,"900":8,"1000":9,"1100":10,"1200":11,"1300":12,"1400":13,"1500":14,"1600":15,"1700":16,"1800":17,"1900":18,"2000":19,"2100":21,"2200":22,"2300":23,"2400":24,"2500":25,"2600":26,"2700":27,"2800":28,"2900":29,"3000":30,"3500":36,"4000":41,"4500":47,"5000":52,"6000":63,"7000":74,"8000":85,"9000":95,"10000":106,"12000":128,"14000":150,"16000":171,"18000":193,"20000":215}},{"n":"Pokemon $2500","cost":2500,"bb":93.0,"sus":92.21,"hit":9509,"floor":897.74,"step":640.79,"fresh":"Nov 22","recon":false,"hitmed":3583,"hitodds":5,"clr":{"25":100.0,"50":100.0,"100":100.0,"150":100.0,"200":100.0,"250":100.0,"300":100.0,"350":100.0,"400":100.0,"450":100.0,"500":100.0,"600":100.0,"700":100.0,"800":100.0,"900":100.0,"1000":100.0,"1100":100.0,"1200":100.0,"1300":100.0,"1400":100.0,"1500":100.0,"1600":100.0,"1700":100.0,"1800":100.0,"1900":100.0,"2000":100.0,"2100":100.0,"2200":97.1,"2300":91.4,"2400":86.8,"2500":85.3,"2600":83.6,"2700":77.9,"2800":72.1,"2900":69.5,"3000":67.5,"3500":51.6,"4000":45.8,"4500":40.4,"5000":33.5,"6000":24.9,"7000":19.7,"8000":18.5,"9000":17.3,"10000":16.1,"12000":13.6,"14000":11.8,"16000":10.5,"18000":9.2,"20000":8.0},"dry":{"25":0,"50":0,"100":0,"150":0,"200":0,"250":0,"300":0,"350":0,"400":0,"450":0,"500":0,"600":0,"700":0,"800":0,"900":0,"1000":0,"1100":0,"1200":0,"1300":0,"1400":0,"1500":0,"1600":0,"1700":0,"1800":0,"1900":0,"2000":0,"2100":0,"2200":0,"2300":0,"2400":0,"2500":1,"2600":1,"2700":1,"2800":1,"2900":1,"3000":1,"3500":2,"4000":2,"4500":3,"5000":3,"6000":4,"7000":6,"8000":7,"9000":8,"10000":9,"12000":11,"14000":13,"16000":16,"18000":18,"20000":20}}],"T":30000,"epic":{"grid":[25,50,75,100,150,200,250,300,350,400,450,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000,2100,2200,2300,2400,2500,2600,2700,2800,2900,3000,3500,4000,4500,5000,6000,7000,8000,9000,10000,12000,14000,16000,18000,20000],"m":{"Elite $50":{"cost":50,"wait":862.26,"eavg":544.58,"emed":488.4,"ne":200,"nc":340,"pulls":[null,1,3,5,10,16,22,28,34,40,46,52,64,76,89,101,113,125,137,150,162,174,186,199,210,223,234,247,259,271,283,295,307,320,332,344,357,418,479,540,600,724,847,968,1090,1212,1455,1699,1941,2186,2430],"ch":[null,1.65,3.97,6.77,12.13,17.31,22.17,26.52,30.92,34.97,38.8,42.39,48.82,54.6,59.71,64.2,68.2,71.76,74.9,77.75,80.25,82.48,84.45,86.22,87.75,89.12,90.34,91.43,92.38,93.23,93.99,94.66,95.26,95.8,96.28,96.69,97.06,98.38,99.11,99.5,99.73,99.92,99.98,99.99,100.0,100.0,100.0,100.0,100.0,100.0,100.0]},"Dragonball $50":{"cost":50,"wait":693.19,"eavg":476.36,"emed":344.99,"ne":239,"nc":223,"pulls":[null,1,3,5,12,19,26,33,41,48,56,63,78,93,109,124,139,154,170,186,200,216,231,247,263,278,293,310,325,340,355,371,386,402,417,433,449,525,602,678,756,909,1065,1218,1371,1525,1835,2143,2448,2756,3065],"ch":[null,2.13,4.96,8.29,14.87,20.87,26.28,31.49,36.35,40.85,45.03,48.66,55.48,61.58,66.79,71.31,75.18,78.55,81.56,84.02,86.2,88.06,89.68,91.14,92.36,93.4,94.3,95.07,95.75,96.33,96.84,97.26,97.64,97.96,98.24,98.48,98.68,99.36,99.69,99.85,99.93,99.98,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0]},"Starter $25":{"cost":25,"wait":314.58,"eavg":157.3,"emed":136.84,"ne":201,"nc":326,"pulls":[1,7,14,22,38,55,72,89,106,123,140,157,191,226,260,294,328,362,396,430,465,498,531,567,601,634,668,703,737,772,805,839,874,908,942,978,1012,1184,1356,1523,1694,2035,2376,2718,3059,3405,4093,4774,5455,6140,6822],"ch":[2.05,9.09,16.38,22.83,34.42,44.33,52.49,59.68,65.74,70.9,75.28,79.06,84.91,89.07,92.17,94.32,95.9,97.04,97.87,98.45,98.88,99.19,99.41,99.58,99.69,99.78,99.84,99.88,99.92,99.94,99.96,99.97,99.98,99.98,99.99,99.99,99.99,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0]},"Bronze $100":{"cost":100,"wait":1380.19,"eavg":829.05,"emed":699.87,"ne":200,"nc":3397,"pulls":[null,null,null,1,3,5,8,11,14,18,22,25,33,40,48,56,63,71,78,86,94,102,109,116,124,132,140,147,155,162,171,179,186,194,202,210,217,255,294,332,371,449,526,603,682,761,916,1070,1226,1378,1531],"ch":[null,null,null,1.89,4.7,8.17,11.42,14.61,17.75,20.87,23.77,26.39,31.56,36.42,41.03,45.2,49.02,52.64,55.92,59.03,61.92,64.58,67.05,69.41,71.47,73.5,75.38,77.1,78.76,80.25,81.63,82.94,84.13,85.23,86.31,87.25,88.12,91.74,94.26,96.01,97.23,98.66,99.35,99.69,99.85,99.93,99.98,100.0,100.0,100.0,100.0]},"Riftbound 100":{"cost":100,"wait":1243.36,"eavg":841.14,"emed":697.77,"ne":493,"nc":970,"pulls":[null,null,null,1,3,5,9,12,15,19,23,27,35,43,52,61,70,77,85,94,103,112,120,129,138,146,154,163,172,181,190,198,207,216,225,233,242,285,329,372,415,500,586,672,763,849,1021,1196,1366,1539,1718],"ch":[null,null,null,2.21,5.46,9.11,12.63,16.04,19.38,22.53,25.63,28.51,33.76,39.08,43.9,48.17,52.18,55.66,59.09,62.31,65.23,67.93,70.39,72.59,74.67,76.64,78.34,80.08,81.63,83.01,84.32,85.53,86.66,87.65,88.6,89.47,90.25,93.49,95.62,97.05,98.02,99.1,99.59,99.81,99.92,99.96,99.99,100.0,100.0,100.0,100.0]},"Dragonball $100":{"cost":100,"wait":1662.61,"eavg":1332.02,"emed":907.36,"ne":195,"nc":323,"pulls":[null,null,null,1,2,5,8,10,13,16,19,23,29,35,41,47,54,60,66,72,78,85,91,98,104,110,117,123,130,136,142,149,155,161,167,174,180,212,243,276,307,371,434,497,560,625,751,878,1004,1131,1258],"ch":[null,null,null,1.77,4.13,6.98,9.8,12.54,15.16,17.67,20.09,22.56,27.16,31.59,35.7,39.58,43.14,46.48,49.58,52.47,55.33,58.07,60.6,62.94,65.17,67.28,69.24,71.08,72.81,74.39,75.93,77.4,78.75,80.06,81.24,82.33,83.39,87.76,90.99,93.39,95.16,97.38,98.58,99.23,99.58,99.78,99.93,99.98,99.99,100.0,100.0]},"Basketball $100":{"cost":100,"wait":1729.95,"eavg":1191.24,"emed":843.98,"ne":386,"nc":433,"pulls":[null,null,null,1,2,5,7,10,12,15,18,21,27,33,39,45,51,56,62,69,74,80,87,93,99,105,111,117,123,130,135,141,148,153,159,166,172,201,232,263,294,354,416,475,537,597,720,841,962,1085,1206],"ch":[null,null,null,1.82,3.93,6.72,9.43,12.02,14.62,16.99,19.33,21.66,26.11,30.33,34.39,38.17,41.7,44.95,47.93,50.85,53.63,56.29,58.82,61.18,63.39,65.56,67.5,69.39,71.15,72.76,74.27,75.75,77.16,78.5,79.72,80.88,81.98,86.5,89.95,92.52,94.41,96.9,98.27,99.03,99.46,99.7,99.91,99.97,99.99,100.0,100.0]},"Sports $100":{"cost":100,"wait":1582.66,"eavg":1034.22,"emed":843.56,"ne":1601,"nc":2262,"pulls":[null,null,null,1,2,5,7,10,13,16,19,22,29,35,42,48,55,61,68,74,80,87,94,101,108,114,122,128,135,141,148,155,161,168,175,181,188,221,255,288,321,388,456,521,589,656,790,924,1058,1190,1322],"ch":[null,null,null,1.99,4.28,7.3,10.16,13.06,15.72,18.2,20.82,23.29,28.02,32.46,36.68,40.62,44.23,47.57,50.75,53.68,56.59,59.29,61.87,64.19,66.49,68.56,70.54,72.32,73.99,75.59,77.1,78.56,79.92,81.14,82.31,83.39,84.4,88.62,91.74,93.99,95.65,97.69,98.77,99.35,99.66,99.82,99.95,99.99,100.0,100.0,100.0]},"Baseball $100":{"cost":100,"wait":1640.68,"eavg":1089.98,"emed":768.97,"ne":267,"nc":867,"pulls":[null,null,null,1,2,5,8,10,13,16,19,22,28,35,41,48,54,60,66,73,79,85,92,99,105,111,118,124,131,137,144,150,156,162,169,176,182,214,246,279,311,375,439,502,567,634,763,890,1019,1148,1276],"ch":[null,null,null,1.88,4.17,7.05,9.9,12.68,15.34,17.8,20.3,22.74,27.39,31.84,35.96,39.82,43.42,46.71,49.84,52.81,55.66,58.37,60.91,63.26,65.51,67.6,69.57,71.39,73.09,74.68,76.23,77.71,79.05,80.32,81.52,82.61,83.63,87.99,91.2,93.54,95.28,97.46,98.63,99.26,99.6,99.79,99.94,99.98,99.99,100.0,100.0]},"Football $100":{"cost":100,"wait":1586.45,"eavg":1034.62,"emed":707.03,"ne":406,"nc":396,"pulls":[null,null,null,1,2,5,8,10,13,16,20,23,29,36,42,49,55,62,68,75,81,88,95,102,108,115,122,129,135,141,148,155,161,168,175,181,188,221,255,288,321,388,454,521,588,654,788,921,1056,1188,1321],"ch":[null,null,null,1.94,4.31,7.31,10.17,13.02,15.73,18.23,20.86,23.38,28.03,32.54,36.81,40.72,44.33,47.68,50.87,53.85,56.71,59.43,61.96,64.33,66.57,68.68,70.63,72.41,74.11,75.71,77.21,78.66,80.0,81.26,82.4,83.48,84.5,88.72,91.81,94.05,95.7,97.72,98.79,99.36,99.66,99.82,99.95,99.99,100.0,100.0,100.0]},"Soccer $100":{"cost":100,"wait":1526.61,"eavg":979.22,"emed":725.77,"ne":253,"nc":403,"pulls":[null,null,null,1,2,5,7,9,12,15,18,21,28,34,42,48,55,62,68,76,83,89,96,104,111,117,124,131,138,145,152,159,166,173,179,186,192,226,261,295,330,400,468,538,607,677,817,957,1095,1235,1372],"ch":[null,null,null,2.08,4.39,7.48,10.25,13.13,15.93,18.67,21.32,23.85,28.61,33.12,37.38,41.36,45.2,48.46,51.69,54.86,57.69,60.31,62.8,65.25,67.46,69.54,71.43,73.24,74.87,76.44,77.94,79.32,80.64,81.85,83.03,84.06,85.03,89.14,92.14,94.28,95.84,97.84,98.87,99.41,99.69,99.84,99.96,99.99,100.0,100.0,100.0]},"Riftbound 250":{"cost":250,"wait":4047.34,"eavg":2302.27,"emed":1930.25,"ne":136,"nc":913,"pulls":[null,null,null,null,null,null,1,1,2,3,4,5,7,9,11,13,16,18,21,24,26,28,31,34,36,39,41,44,47,49,51,54,57,60,62,65,67,80,93,106,119,145,170,196,222,248,301,353,405,457,509],"ch":[null,null,null,null,null,null,2.05,2.69,3.61,5.09,6.08,7.33,9.6,11.8,13.96,16.07,18.17,20.16,22.22,24.16,25.98,27.88,29.68,31.48,33.21,34.81,36.39,37.98,39.49,41.0,42.47,43.87,45.22,46.61,47.93,49.19,50.41,56.29,61.5,65.97,69.94,76.47,81.67,85.67,88.85,91.28,94.71,96.78,98.05,98.81,99.27]},"Pokemon $250":{"cost":250,"wait":4484.81,"eavg":3105.0,"emed":2750.48,"ne":200,"nc":1101,"pulls":[null,null,null,null,null,null,1,1,2,3,4,4,6,8,10,11,13,15,17,19,21,23,26,28,30,32,35,37,39,42,44,46,49,51,53,55,58,69,80,92,103,127,150,173,197,220,266,313,360,406,453],"ch":[null,null,null,null,null,null,1.69,2.04,3.21,4.25,5.39,6.43,8.48,10.66,12.61,14.43,16.25,18.05,19.89,21.76,23.61,25.29,26.91,28.51,30.08,31.71,33.22,34.72,36.15,37.63,39.03,40.42,41.72,42.96,44.16,45.41,46.6,52.25,57.29,61.84,65.81,72.59,78.05,82.45,85.92,88.73,92.78,95.37,97.04,98.1,98.78]},"Watch $250":{"cost":250,"wait":3558.95,"eavg":2345.25,"emed":1712.79,"ne":130,"nc":147,"pulls":[null,null,null,null,null,null,1,1,2,3,4,5,7,10,12,15,17,20,23,26,29,32,34,37,40,44,47,50,52,55,58,61,64,67,70,73,76,92,106,121,135,163,194,224,253,282,343,403,463,522,582],"ch":[null,null,null,null,null,null,2.38,3.1,4.11,5.75,6.9,8.27,10.71,13.15,15.55,18.01,20.29,22.44,24.62,26.74,28.79,30.81,32.76,34.66,36.45,38.18,39.94,41.61,43.14,44.78,46.35,47.75,49.17,50.57,51.93,53.29,54.58,60.71,65.81,70.29,74.01,80.26,85.12,88.76,91.47,93.55,96.3,97.9,98.79,99.3,99.6]},"Hyper $500":{"cost":500,"wait":8132.67,"eavg":5397.52,"emed":4082.51,"ne":744,"nc":1072,"pulls":[null,null,null,null,null,null,null,null,null,null,null,1,1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,17,18,19,21,22,23,25,26,27,28,35,41,48,54,67,79,93,105,118,144,170,195,222,246],"ch":[null,null,null,null,null,null,null,null,null,null,null,2.02,2.6,3.63,5.0,6.05,7.32,8.45,9.57,10.65,11.72,12.85,13.87,15.0,16.0,17.06,18.02,19.03,20.04,21.12,22.11,23.11,24.04,24.95,25.88,26.81,27.7,32.17,36.25,40.14,43.79,50.28,56.16,61.33,65.85,69.85,76.36,81.55,85.59,88.77,91.2]},"Pokemon $2500":{"cost":2500,"wait":42544.76,"eavg":23077.32,"emed":19274.21,"ne":81,"nc":438,"pulls":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,1,1,1,1,1,2,3,4,5,7,9,11,14,16,21,26,30,36,40],"ch":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1.95,2.02,2.08,2.17,2.34,2.54,3.42,4.84,5.88,7.1,9.28,11.34,13.42,15.47,17.44,21.47,25.09,28.64,32.1,35.25]},"Watch $500":{"cost":500,"wait":12902.86,"eavg":10855.27,"emed":11197.15,"ne":33,"nc":346,"pulls":[null,null,null,null,null,null,null,null,null,null,null,1,1,2,2,3,4,4,5,6,7,7,8,9,10,10,11,12,13,14,14,15,16,17,18,18,19,23,27,31,35,43,51,59,67,75,91,107,123,139,154],"ch":[null,null,null,null,null,null,null,null,null,null,null,1.41,1.64,2.26,3.29,3.89,4.77,5.46,6.25,6.98,7.74,8.5,9.2,9.92,10.64,11.33,12.0,12.7,13.36,14.04,14.68,15.36,16.05,16.73,17.36,18.05,18.75,21.95,24.95,27.91,30.72,36.05,40.93,45.44,49.58,53.48,60.32,66.13,71.07,75.32,78.93]},"Grail $1000":{"cost":1000,"wait":18561.67,"eavg":13391.74,"emed":11016.82,"ne":40,"nc":527,"pulls":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,1,1,2,2,3,3,3,4,4,5,5,6,6,7,7,8,8,8,9,9,12,14,17,20,25,31,36,42,48,59,70,81,92,103],"ch":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1.56,1.74,1.94,2.45,3.15,3.73,4.15,4.72,5.28,5.78,6.26,6.81,7.33,7.82,8.31,8.87,9.38,9.91,10.38,10.88,11.36,13.69,16.01,18.33,20.71,24.93,29.01,32.88,36.49,39.89,46.16,51.81,56.87,61.39,65.39]},"Pokemon $5000":{"cost":5000,"wait":69191.47,"eavg":39334.1,"emed":28459.25,"ne":55,"nc":311,"pulls":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,1,2,3,4,5,8,10,13,16,18],"ch":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,2.2,2.83,4.2,5.63,7.01,8.41,10.95,13.61,16.0,18.4,20.76]},"Basketball $250":{"cost":250,"wait":4475.98,"eavg":3098.56,"emed":2792.23,"ne":220,"nc":274,"pulls":[null,null,null,null,null,null,1,1,2,3,4,5,7,9,11,13,15,17,20,22,25,27,29,31,34,36,39,41,43,46,48,50,53,55,57,60,62,73,85,97,108,132,155,178,202,225,271,319,366,414,459],"ch":[null,null,null,null,null,null,1.55,2.1,3.21,4.35,5.44,6.49,8.65,10.77,12.72,14.69,16.65,18.56,20.49,22.36,24.08,25.76,27.48,29.15,30.83,32.41,33.93,35.44,36.88,38.35,39.77,41.15,42.5,43.79,45.05,46.27,47.47,53.2,58.34,62.87,66.88,73.61,79.01,83.34,86.77,89.46,93.34,95.8,97.35,98.32,98.93]},"Baseball $250":{"cost":250,"wait":4714.41,"eavg":3339.05,"emed":3020.37,"ne":117,"nc":432,"pulls":[null,null,null,null,null,null,1,1,2,3,4,4,6,8,10,11,13,15,17,19,21,23,25,28,30,32,34,36,39,41,43,45,48,50,52,54,56,67,78,89,100,122,144,166,188,211,254,299,342,387,432],"ch":[null,null,null,null,null,null,1.58,2.0,3.05,4.13,5.18,6.18,8.16,10.23,12.13,13.94,15.7,17.48,19.27,21.05,22.77,24.44,26.0,27.63,29.17,30.67,32.15,33.6,35.04,36.4,37.75,39.16,40.47,41.71,42.89,44.13,45.27,50.81,55.87,60.41,64.42,71.22,76.74,81.26,84.85,87.76,92.01,94.8,96.62,97.8,98.56]},"Football $250":{"cost":250,"wait":4485.23,"eavg":3111.33,"emed":2835.58,"ne":129,"nc":377,"pulls":[null,null,null,null,null,null,1,1,2,3,4,4,6,8,10,12,13,15,17,20,22,24,26,28,31,33,35,38,40,42,45,47,49,51,54,56,58,70,81,93,104,128,151,174,198,221,267,314,361,407,454],"ch":[null,null,null,null,null,null,1.69,2.06,3.19,4.31,5.43,6.4,8.58,10.66,12.66,14.49,16.36,18.15,20.04,21.89,23.7,25.39,27.0,28.69,30.21,31.87,33.4,34.83,36.28,37.77,39.17,40.58,41.85,43.09,44.33,45.55,46.72,52.41,57.51,62.04,66.05,72.77,78.22,82.59,86.07,88.86,92.87,95.45,97.09,98.14,98.81]},"Sports $500":{"cost":500,"wait":7892.81,"eavg":5324.43,"emed":3820.63,"ne":102,"nc":1429,"pulls":[null,null,null,null,null,null,null,null,null,null,null,1,1,2,3,4,5,6,7,8,9,10,11,13,14,15,16,17,18,20,21,22,24,25,26,27,29,35,42,49,56,69,82,96,108,122,148,175,202,228,255],"ch":[null,null,null,null,null,null,null,null,null,null,null,2.13,2.65,3.7,5.14,6.25,7.49,8.7,9.83,10.87,12.0,13.18,14.28,15.39,16.38,17.45,18.45,19.53,20.61,21.69,22.69,23.67,24.61,25.53,26.51,27.41,28.37,32.89,37.1,41.0,44.69,51.21,57.2,62.37,66.86,70.84,77.27,82.39,86.35,89.42,91.76]},"Soccer $250":{"cost":250,"wait":4059.25,"eavg":2692.24,"emed":2006.48,"ne":122,"nc":352,"pulls":[null,null,null,null,null,null,1,1,2,3,4,4,6,8,10,13,15,17,20,22,25,27,30,32,35,37,40,43,45,48,50,53,55,58,61,63,65,78,91,104,117,143,168,195,220,245,298,350,402,453,505],"ch":[null,null,null,null,null,null,2.11,2.62,3.59,5.02,6.09,7.25,9.54,11.71,13.83,15.9,17.96,19.88,21.94,23.85,25.69,27.56,29.31,31.11,32.76,34.5,36.07,37.64,39.11,40.65,42.1,43.5,44.93,46.25,47.53,48.82,50.05,55.84,61.03,65.5,69.52,76.03,81.22,85.33,88.52,91.01,94.49,96.63,97.94,98.73,99.22]},"Soccer $50":{"cost":50,"wait":855.49,"eavg":548.31,"emed":403.1,"ne":624,"nc":367,"pulls":[null,1,2,5,10,15,21,27,33,39,45,51,63,76,88,100,112,124,136,149,161,174,186,198,210,222,234,247,259,272,283,296,308,320,332,345,357,419,480,539,603,726,848,972,1094,1216,1461,1708,1954,2201,2447],"ch":[null,1.97,4.15,6.88,12.24,17.16,21.86,26.36,30.58,34.53,38.3,41.91,48.36,54.11,59.28,63.81,67.83,71.45,74.65,77.49,80.03,82.32,84.23,85.96,87.53,88.93,90.15,91.25,92.22,93.1,93.86,94.55,95.17,95.72,96.2,96.62,97.0,98.34,99.08,99.49,99.72,99.91,99.97,99.99,100.0,100.0,100.0,100.0,100.0,100.0,100.0]},"One Piece $50":{"cost":50,"wait":835.35,"eavg":510.2,"emed":448.83,"ne":200,"nc":6352,"pulls":[null,1,2,5,10,16,22,28,34,41,47,53,66,78,92,104,116,129,141,153,166,179,192,204,217,229,242,254,266,279,291,304,316,330,342,354,368,430,494,557,620,747,875,998,1126,1250,1501,1754,2007,2259,2511],"ch":[null,1.83,4.18,7.0,12.5,17.82,22.68,27.14,31.59,35.68,39.53,43.04,49.64,55.41,60.64,65.16,69.14,72.74,75.83,78.64,81.1,83.27,85.23,86.93,88.41,89.75,90.94,91.97,92.89,93.71,94.43,95.08,95.65,96.15,96.59,96.98,97.33,98.55,99.21,99.57,99.77,99.93,99.98,99.99,100.0,100.0,100.0,100.0,100.0,100.0,100.0]},"One Piece $250":{"cost":250,"wait":4125.47,"eavg":2749.5,"emed":2498.89,"ne":200,"nc":1237,"pulls":[null,null,null,null,null,null,1,1,2,3,4,5,7,9,11,13,15,17,19,22,24,26,29,31,34,36,39,41,43,46,49,51,54,56,58,61,64,76,89,101,114,139,164,191,216,240,291,343,394,444,495],"ch":[null,null,null,null,null,null,1.79,2.24,3.45,4.63,5.86,6.96,9.26,11.44,13.56,15.57,17.52,19.61,21.64,23.56,25.35,27.09,28.94,30.66,32.41,34.07,35.63,37.24,38.71,40.3,41.73,43.13,44.44,45.79,47.06,48.38,49.62,55.41,60.51,65.1,69.03,75.68,80.92,85.06,88.27,90.78,94.34,96.52,97.86,98.68,99.19]},"One Piece $1000":{"cost":1000,"wait":17045.58,"eavg":11901.7,"emed":10173.87,"ne":101,"nc":388,"pulls":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,1,1,2,2,3,3,4,4,4,5,5,6,6,7,7,8,8,9,10,10,13,15,18,21,27,33,39,45,52,64,76,88,100,112],"ch":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1.69,1.87,2.12,2.76,3.38,4.03,4.51,5.11,5.74,6.25,6.78,7.36,7.96,8.5,9.03,9.59,10.14,10.65,11.21,11.71,12.23,14.84,17.28,19.8,22.29,26.74,31.1,35.09,38.91,42.47,48.95,54.74,59.94,64.37,68.39]},"PSA 10 $500":{"cost":500,"wait":7627.16,"eavg":4798.31,"emed":3753.68,"ne":159,"nc":188,"pulls":[null,null,null,null,null,null,null,null,null,null,null,1,1,2,3,4,5,6,7,8,9,10,12,13,14,15,16,18,19,20,22,23,24,26,27,28,30,37,44,50,57,71,85,98,112,126,153,181,209,236,263],"ch":[null,null,null,null,null,null,null,null,null,null,null,2.11,2.7,3.79,5.24,6.39,7.71,8.97,10.06,11.21,12.37,13.5,14.63,15.75,16.84,17.93,19.0,20.07,21.22,22.26,23.34,24.28,25.27,26.24,27.22,28.19,29.15,33.79,38.03,41.96,45.71,52.33,58.38,63.51,68.05,71.95,78.31,83.35,87.21,90.16,92.4]},"Dragonball $250":{"cost":250,"wait":4745.95,"eavg":3898.52,"emed":3104.12,"ne":51,"nc":376,"pulls":[null,null,null,null,null,null,1,1,2,3,4,5,7,9,11,13,14,17,19,21,23,25,28,30,32,34,36,38,41,43,45,48,50,52,54,56,58,69,80,91,102,124,146,168,190,212,256,300,344,389,432],"ch":[null,null,null,null,null,null,1.64,2.23,3.11,4.32,5.27,6.33,8.33,10.24,12.14,13.99,15.81,17.65,19.44,21.18,22.88,24.54,26.17,27.76,29.36,30.86,32.37,33.8,35.22,36.63,37.95,39.35,40.62,41.87,43.13,44.32,45.51,51.09,56.13,60.71,64.68,71.51,77.0,81.47,85.05,87.97,92.16,94.9,96.7,97.85,98.6]},"Riftbound 50":{"cost":50,"wait":751.48,"eavg":517.72,"emed":411.28,"ne":278,"nc":323,"pulls":[null,1,2,5,10,16,23,29,36,43,50,57,70,84,98,112,126,140,153,167,182,195,210,224,238,253,268,281,296,310,323,338,353,367,380,395,409,478,549,620,692,832,971,1116,1256,1398,1678,1963,2246,2526,2809],"ch":[null,2.26,4.64,7.71,13.71,19.18,24.44,29.15,33.66,38.01,41.95,45.59,52.12,57.93,63.19,67.8,71.78,75.22,78.3,81.06,83.4,85.43,87.24,88.85,90.21,91.49,92.57,93.5,94.31,94.99,95.63,96.19,96.66,97.08,97.44,97.76,98.04,98.98,99.47,99.73,99.86,99.96,99.99,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0]},"Lorcana $50":{"cost":50,"wait":724.59,"eavg":495.83,"emed":371.72,"ne":268,"nc":298,"pulls":[null,1,2,5,11,17,24,31,38,45,52,59,73,87,102,116,131,145,160,175,189,204,218,233,248,264,278,294,308,322,337,352,367,381,396,412,425,498,571,646,720,864,1011,1158,1303,1450,1743,2040,2334,2626,2918],"ch":[null,2.33,4.7,7.95,14.24,19.86,25.22,30.03,34.74,39.08,43.06,46.8,53.41,59.3,64.55,69.1,73.07,76.48,79.52,82.23,84.45,86.47,88.2,89.7,91.06,92.25,93.25,94.14,94.87,95.53,96.12,96.62,97.06,97.44,97.77,98.06,98.31,99.14,99.57,99.78,99.89,99.97,99.99,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0]},"Lorcana $100":{"cost":100,"wait":1471.47,"eavg":1041.34,"emed":715.17,"ne":204,"nc":393,"pulls":[null,null,null,1,3,5,9,12,15,18,22,25,32,39,47,54,61,68,74,82,89,97,104,111,118,125,133,140,147,154,161,169,176,182,190,197,205,240,277,313,349,422,493,565,639,711,856,1000,1145,1289,1431],"ch":[null,null,null,1.96,4.63,7.96,11.01,14.06,16.89,19.71,22.51,25.11,30.13,34.88,39.29,43.33,47.01,50.45,53.71,56.87,59.85,62.55,65.09,67.43,69.65,71.67,73.57,75.32,76.97,78.56,80.04,81.37,82.61,83.72,84.84,85.83,86.8,90.65,93.41,95.35,96.72,98.36,99.17,99.59,99.79,99.9,99.97,99.99,100.0,100.0,100.0]},"Anime $75":{"cost":75,"wait":1438.46,"eavg":975.06,"emed":663.36,"ne":209,"nc":449,"pulls":[null,null,1,2,4,7,10,14,17,20,24,28,35,42,49,56,64,71,78,85,92,100,107,114,122,129,136,144,151,158,166,173,180,188,195,202,209,245,282,318,355,428,500,573,645,719,864,1009,1155,1299,1443],"ch":[null,null,1.45,2.58,5.96,9.27,12.41,15.48,18.44,21.26,24.01,26.59,31.7,36.36,40.79,44.76,48.5,52.0,55.26,58.42,61.22,63.93,66.39,68.67,70.82,72.84,74.69,76.5,78.08,79.6,81.0,82.29,83.51,84.64,85.69,86.65,87.57,91.3,93.9,95.73,97.01,98.53,99.27,99.64,99.82,99.91,99.98,100.0,100.0,100.0,100.0]}}},"cc":{"Elite $50":"pokemon_50","Dragonball $50":"dragonball_50","Starter $25":"pokemon_25","Bronze $100":"pokemon_100","Riftbound 100":"riftbound_100","Dragonball $100":"dragonball_100","Basketball $100":"basketball_100","Sports $100":"sports_100","Baseball $100":"baseball_100","Football $100":"football_100","Soccer $100":"soccer_100","Riftbound 250":"riftbound_250","Pokemon $250":"pokemon_250","Watch $250":"ewatch_250","Hyper $500":"pokemon_500","Pokemon $2500":"pokemon_2500","Watch $500":"ewatch_500","Grail $1000":"pokemon_1000","Pokemon $5000":"pokemon_5000","Basketball $250":"basketball_250","Baseball $250":"baseball_250","Football $250":"football_250","Sports $500":"sports_500","Soccer $250":"soccer_250","Soccer $50":"soccer_50","One Piece $50":"onepiece_50","One Piece $250":"onepiece_250","One Piece $1000":"onepiece_1000","PSA 10 $500":"e10_10","Dragonball $250":"dragonball_250","Riftbound 50":"riftbound_50","Lorcana $50":"lorcana_50","Lorcana $100":"lorcana_100","Anime $75":"anime_75"}};
+const ZN_LIST={"d": "$25 - $100", "a": "$150 - $900", "b": "$1,000 - $4,000", "c": "$4,500+"};
+const ZCUT=[100, 900, 4000];
+const ZONES=[{"z": "d", "rng": "$25 &ndash; $100", "pick": "Starter&nbsp;$25", "body": "<b>Starter&nbsp;$25</b> $25&ndash;$100 (6&ndash;17&#37;)"}, {"z": "a", "rng": "$150 &ndash; $900", "pick": "Riftbound&nbsp;50 &rarr; Lorcana&nbsp;$50 &rarr; Riftbound&nbsp;100", "body": "<b>Riftbound&nbsp;50</b> / <b>Lorcana&nbsp;$50</b> $150&ndash;$200 (19&ndash;20&#37;, all ties)<br><b>Riftbound&nbsp;50</b> $250&ndash;$350 (22&ndash;23&#37;, some ties)<br><b>Riftbound&nbsp;100</b> $400&ndash;$900 (22&ndash;23&#37;)"}, {"z": "b", "rng": "$1,000 &ndash; $4,000", "pick": "Mixed: Riftbound&nbsp;100 &rarr; Dragonball&nbsp;$250", "body": "<b>Riftbound&nbsp;100</b> / <b>Dragonball&nbsp;$100</b> $1,000&ndash;$1,100 (22&#37;, all ties)<br><b>One Piece&nbsp;$250</b> $1,200&ndash;$1,600 (22&ndash;24&#37;, some ties)<br><b>Football&nbsp;$250</b> / <b>Baseball&nbsp;$250</b> / <b>Dragonball&nbsp;$250</b> $1,700&ndash;$2,700 (24&ndash;25&#37;, all ties)<br><b>Dragonball&nbsp;$250</b> $2,800&ndash;$4,000 (25&ndash;27&#37;, some ties)"}, {"z": "c", "rng": "$4,500 and up", "pick": "Dragonball&nbsp;$250 &rarr; Watch&nbsp;$500", "body": "<b>Dragonball&nbsp;$250</b> $4,500&ndash;$6,000 (28&ndash;29&#37;, some ties)<br><b>Watch&nbsp;$500</b> $7,000&ndash;$20,000 (30&ndash;32&#37;)"}];
+function ROWS(){ return D.rows; }
+function ZN(){ return ZN_LIST; }
+const nm=s=>s;
+const EXT='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M10 14 20 4"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>';
+const ccUrl=n=>(D.cc&&D.cc[n])?'https://collectorcrypt.com/r/1bg5sijn55vk/gacha/'+encodeURIComponent(D.cc[n]):null;   // new CC site: /r/{ref}/{path} saves the referral, then opens the path
+const goBtn=n=>{const u=ccUrl(n);return u?`<a class="go-btn" href="${u}" target="_blank" rel="noopener">Open ${nm(n)} ${EXT}</a>`:'';};
+const nmLink=n=>{const u=ccUrl(n);return u?`<a href="${u}" target="_blank" rel="noopener">${nm(n)}</a>`:nm(n);};
+const money=n=>'$'+n.toLocaleString();
+const tb=document.querySelector('#tbl tbody');
+function zoneOf(r){
+  const z = ZCUT;
+  return r.bank<=z[0]?'d':(r.bank<=z[1]?'a':(r.bank<=z[2]?'b':'c'));
+}
+function drawTable(){
+ tb.innerHTML='';
+ ROWS().forEach(r=>{
+  const tr=document.createElement('tr');
+  tr.className='z'+zoneOf(r); tr.dataset.bank=r.bank;
+  tr.innerHTML=`<td class="bank">${money(r.bank)}</td>`+
+    `<td class="pick"><span class="dot"></span>${nm(r.best)}${r.tie?'<span class="tiemark">TIE</span>':''}</td>`+
+    `<td class="dim">${nm(r.second)}</td>`+
+    `<td class="n">${r.p2.toFixed(2)}%</td>`+
+    `<td class="n dim">${r.p2b.toFixed(2)}%</td>`+
+    `<td class="n">${r.md}</td>`+
+    `<td class="n dim">${r.bank>=5000?"&mdash;":r.k1.toFixed(2)+"%"}</td>`;
+  tb.appendChild(tr);
+ });
+}
+function drawZones(){
+  const zc=document.getElementById('zones');
+  zc.innerHTML=ZONES.map(z=>
+    `<div class="zone z-${z.z}"><div class="rng">${z.rng}</div>`+
+    `<div class="pick">${z.pick}</div><p>${z.body}</p></div>`).join('');
+}
+const FRESH=["Nov 22"];
+const mb=document.querySelector('#mtbl tbody');
+D.mach.forEach(m=>{
+  const stale=(!FRESH.includes(m.fresh) && m.fresh!=='recon');
+  const tr=document.createElement('tr');
+  tr.innerHTML=`<td style="font-weight:600">${nm(m.n)}${m.recon?'<span class="reconpill">recon</span>':''}</td>`+
+    `<td class="n">$${m.cost.toLocaleString()}</td>`+
+    `<td class="n dim">${m.bb.toFixed(1)}%</td>`+
+    `<td class="n">${m.sus.toFixed(2)}%</td>`+
+    `<td class="n">-$${m.floor.toFixed(2)}</td>`+
+    `<td class="n">+$${m.step.toFixed(2)}</td>`+
+    `<td class="n dim">$${m.hit.toLocaleString()}</td>`+
+    `<td class="n ${m.fresh==='recon'?'dim':(stale?'stale':'dim')}">${m.fresh}</td>`;
+  mb.appendChild(tr);
+});
+const chips=document.getElementById('chips');
+const inp=document.getElementById('bank'), ans=document.getElementById('ans');
+[100,250,500,1000,2000,3000,5000,10000,20000].forEach(v=>{
+  const b=document.createElement('button');
+  b.className='chip'; b.type='button'; b.textContent=money(v);
+  b.onclick=()=>{inp.value=String(v);render();};
+  chips.appendChild(b);
+});
+function nearest(v){
+  const rs=ROWS(); let best=rs[0];
+  for(const r of rs) if(Math.abs(r.bank-v)<Math.abs(best.bank-v)) best=r;
+  return best;
+}
+const MBY={}; D.mach.forEach(m=>MBY[m.n]=m);
+const play=document.getElementById('play');
+function pcard(lab, name, r, accent){
+  const m=MBY[name]; if(!m) return '';
+  const k=String(r.bank), dry=m.dry[k], clr=m.clr[k], every=Math.round(100/m.hitodds);
+  const floor=m.floor.toFixed(2);
+  return `<div class="pcard" style="--pc:${accent}">`+
+    `<span class="plab">${lab}</span>`+
+    `<span class="pnm">${nm(name)}</span>`+
+    `<p>Common pull: <b>&minus;$${floor}</b>. ~<b>${dry}</b> in a row from ${money(r.bank)} &rarr; under one pack.</p>`+
+    `<p>Rare+ every <b>1 in ${every}</b> pulls, typically <b>+$${m.hitmed.toLocaleString()}</b>. <b>${clr.toFixed(1)}%</b> of them cover your whole ${money(r.bank)} alone.</p>`+
+  `</div>`;
+}
+function drawPlay(r, zk){
+  if(!r){ play.innerHTML=''; return; }
+  const hasAlt = r.second && r.second !== '—';
+  play.innerHTML='<div class="phead">How they play at this bankroll</div>'+
+    pcard('The pick', r.best, r, `var(--${zk})`)+
+    (hasAlt ? pcard(r.tie?'Tied with':'Runner-up', r.second, r, 'var(--line)') : '');
+}
+const E=D.epic, EG=E.grid;
+const eb=document.querySelector('#etbl tbody'), esum=document.getElementById('esum');
+function eAt(m,v){
+  if(v<m.cost) return null;
+  const L=EG.length-1;
+  if(v>EG[L]){ const k=v/EG[L];   // past the last simulated bankroll: pulls scale with money, no-epic chance compounds
+    return {pulls:m.pulls[L]*k, ch:100*(1-Math.pow(1-m.ch[L]/100,k))}; }
+  const x=v;
+  let i=0; while(i<EG.length-1 && EG[i+1]<=x) i++;
+  if(i===EG.length-1 || EG[i]===x) return {pulls:m.pulls[i], ch:m.ch[i]};
+  const t=(x-EG[i])/(EG[i+1]-EG[i]);
+  return {pulls:m.pulls[i]+t*(m.pulls[i+1]-m.pulls[i]), ch:m.ch[i]+t*(m.ch[i+1]-m.ch[i])};
+}
+const pct=c=>c<1?'&lt;1%':(c>99.4?'&gt;99%':Math.round(c)+'%');
+const cents=m=>Math.round(m.eavg/m.wait*100)+'&cent;';
+function drawEpic(v){
+  if(isNaN(v)||v<25){
+    esum.innerHTML = isNaN(v) ? 'Enter a bankroll above to fill this table.'
+                              : 'Below one pack &mdash; cheapest is $25 (Starter).';
+    eb.innerHTML=''; return;
+  }
+  const rows=[];
+  for(const n in E.m){
+    const m=E.m[n], a=eAt(m,v); if(!a) continue;
+    rows.push({n,m,pulls:a.pulls,ch:a.ch,r:m.eavg/m.wait});
+  }
+  const ok=rows.filter(r=>r.ch>=50).sort((a,b)=>(Math.round(b.r*100)-Math.round(a.r*100))||(b.ch-a.ch));
+  const off=rows.filter(r=>r.ch<50).sort((a,b)=>b.ch-a.ch);
+  const tr=(r,cls)=>{
+    const m=r.m, thin=(m.ne<50||m.nc<100);
+    const add=m.eavg/v*100;
+    return `<tr class="${cls}"><td style="font-weight:600">${nm(r.n)}${thin?'<span class="thinpill">thin</span>':''}</td>`+
+      `<td class="n">${Math.round(r.pulls).toLocaleString()}</td>`+
+      `<td class="n">${pct(r.ch)}</td>`+
+      `<td class="n">$${Math.round(m.wait).toLocaleString()}</td>`+
+      `<td class="n sub2">$${Math.round(m.eavg).toLocaleString()}<span class="typ">typ $${Math.round(m.emed).toLocaleString()}</span></td>`+
+      `<td class="n" style="font-weight:600">${cents(m)}</td>`+
+      `<td class="n">+${Math.round(add).toLocaleString()}%</td></tr>`;
+  };
+  let h=ok.map((r,i)=>tr(r,i===0?'top':'')).join('');
+  if(off.length) h+=`<tr class="divrow"><td colspan="7">${ok.length?'Epic less likely than not at '+money(v)+' &mdash; by chance':'No machine gives even epic odds at '+money(v)+' &mdash; by chance'}</td></tr>`+
+    off.map(r=>tr(r,'off')).join('');
+  eb.innerHTML=h;
+  if(ok.length){
+    const r=ok[0], m=r.m;
+    esum.innerHTML=`<span class="eyebrow">Best epic return you can afford at ${money(v)}</span><br>`+
+      `<span class="enm">${nm(r.n)}</span><br>`+
+      `~<b>${Math.round(r.pulls).toLocaleString()} pulls</b> if no epic. <b>${pct(r.ch)}</b> chance one lands. `+
+      `Wait &asymp; <b>$${Math.round(m.wait).toLocaleString()}</b>, epic pays <b>$${Math.round(m.eavg).toLocaleString()}</b> avg (<b>${cents(m)} per $1</b>). `+
+      `One epic = +${Math.round(m.eavg/v*100).toLocaleString()}% bankroll.`;
+  } else if(off.length){
+    const r=off[0];
+    esum.innerHTML=`<span class="eyebrow">At ${money(v)}</span><br>`+
+      `No machine gives better-than-even epic odds. Closest: <b>${nm(r.n)}</b> &mdash; `+
+      `~<b>${Math.round(r.pulls).toLocaleString()} pulls</b>, <b>${pct(r.ch)}</b> chance, $${Math.round(r.m.eavg).toLocaleString()} avg epic.`;
+  } else { esum.innerHTML=''; }
+}
+function render(){
+  const raw=parseInt(String(inp.value).replace(/[^0-9]/g,''),10);
+  drawEpic(raw);
+  if(isNaN(raw)){
+    try{localStorage.removeItem('cc-bank');}catch(e){}
+    ans.style.setProperty('--zc','var(--muted)'); ans.style.setProperty('--zbg','var(--sunk)');
+    ans.innerHTML=`<div class="ans-main"><div class="eyebrow">Start here</div>`+
+      `<div class="ans-pick" style="color:var(--muted)">Enter a bankroll</div>`+
+      `<p class="ans-why">Type it above or tap a preset. The best machine changes a lot with bankroll.</p></div><div></div>`;
+    drawPlay(null); hl(null); return;
+  }
+  const v=raw;
+  try{localStorage.setItem('cc-bank',String(v));}catch(e){}
+  if(v<25){
+    ans.style.setProperty('--zc','var(--muted)'); ans.style.setProperty('--zbg','var(--sunk)');
+    ans.innerHTML=`<div class="ans-main"><div class="ans-pick" style="color:var(--muted)">Below one pack</div>`+
+      `<p class="ans-why">Cheapest pack: $25 (Starter).</p></div><div></div>`;
+    drawPlay(null); hl(null); return;
+  }
+  const r=nearest(v);
+  const zk=zoneOf(r);
+  ans.style.setProperty('--zc',`var(--${zk})`); ans.style.setProperty('--zbg',`var(--${zk}-bg)`);
+  const near = r.bank===v ? '' : ` &nbsp;<span class="dim n" style="font-size:13px">nearest row ${money(r.bank)}</span>`;
+  const hasAlt = r.second && r.second !== '—';
+  const alt = hasAlt
+    ? `<div class="ans-alt">`+
+        `<span class="alt-lab${r.tie?' is-tie':''}">${r.tie?'Tied with':'Runner-up'}</span>`+
+        `<span class="alt-nm">${nmLink(r.second)}</span>`+
+        `<span class="alt-p">${r.p2b.toFixed(2)}%</span>`+
+      `</div>`
+    : '';
+  const why = r.tie
+    ? `Within sim noise &rarr; interchangeable. Take whichever has stock.`
+    : `Ahead by ${(r.p2-r.p2b).toFixed(2)} pts (outside noise).`;
+  ans.innerHTML=
+    `<div class="ans-main">`+
+      `<div class="eyebrow">At ${money(v)}, play${near}</div>`+
+      `<div class="ans-pick">${nm(r.best)}</div>`+
+      goBtn(r.best)+
+      alt+
+      `<p class="ans-why">${why}${r.bank<=3000?` Longest session: <b>${nm(r.lng)}</b> (${r.lngmd} packs median) &mdash; to sit, not climb.`:''}</p>`+
+    `</div>`+
+    `<div class="ans-stats">`+
+      `<div class="stat"><b>${r.p2.toFixed(1)}%</b><span>reach ${money(r.bank*2)}</span></div>`+
+      (r.bank<5000?`<div class="stat"><b>${r.k1.toFixed(1)}%</b><span>reach $5,000</span></div>`:"")+
+      `<div class="stat"><b>${r.md}</b><span>median packs</span></div>`+
+      `<div class="stat"><span class="zbadge">${ZN()[zk]}</span></div>`+
+    `</div>`;
+  drawPlay(r, zk);
+  hl(r.bank);
+}
+function hl(bank){
+  document.querySelectorAll('#tbl tbody tr').forEach(tr=>{
+    tr.classList.toggle('hi', bank!==null && +tr.dataset.bank===bank);
+  });
+}
+function redraw(){
+  drawZones(); drawTable(); render();
+}
+inp.addEventListener('input',render);
+try{const s=localStorage.getItem('cc-bank'); if(s) inp.value=s;}catch(e){}
+redraw();
+
+(function(){
+  const box=document.getElementById('updated'); if(!box) return;
+  const t=Date.parse(box.dataset.t), ago=document.getElementById('upAgo'), sub=document.getElementById('upSub');
+  if(isNaN(t)) return;
+  const when=new Date(t).toLocaleString('en-US',{timeZone:'America/Los_Angeles',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+' PT';
+  function tick(){
+    const h=(Date.now()-t)/3.6e6; let s;
+    if(h<1) s=Math.max(1,Math.round(h*60))+' min ago';
+    else if(h<48){ const r=Math.round(h); s=r+(r===1?' hour ago':' hours ago'); }
+    else s=Math.round(h/24)+' days ago';
+    ago.textContent=s;
+    box.classList.toggle('old',h>=14&&h<36); box.classList.toggle('stale',h>=36);
+    sub.textContent = 'Pulled '+when+'. '+(h>=36
+      ? 'Out of date \u2014 inventories change daily, use with care.'
+      : h>=14 ? 'Missed an update; next one within 12h.'
+      : 'Auto-updates ~9 am & 9 pm PT.');
+  }
+  tick(); setInterval(tick,60000);
+  try{ localStorage.removeItem('cc-ref-hidden'); }catch(e){}   // clear the old 'hide' flag; the card is always shown
+})();
+
+(function(){
+  const tabs=[...document.querySelectorAll('.tab')], ids=tabs.map(t=>t.dataset.tab);
+  const bar=document.querySelector('.toc');
+  const DEFAULT='table';
+  let current=DEFAULT;
+  const narrow=()=>window.matchMedia('(max-width:1100px)').matches;
+  function show(id, focus){
+    // What to play / bands / changes live outside the tabs now (left panel and top strip)
+    if(id==='changes'){ const d=document.getElementById('changes'); d.open=true; d.scrollIntoView({block:'start'}); id=current; }
+    else if(id==='pick'||id==='bands'){ if(narrow()) document.getElementById(id==='bands'?'bands':'pickpane').scrollIntoView({block:'start'}); id=current; }
+    if(id==='defs') id='machines';   // old link: definitions now sit with each table
+    if(!ids.includes(id)) id=DEFAULT;
+    current=id;
+    tabs.forEach(t=>{const on=t.dataset.tab===id; t.setAttribute('aria-selected',on?'true':'false'); t.tabIndex=on?0:-1; if(on&&focus) t.focus();});
+    ids.forEach(i=>{document.getElementById(i).hidden=(i!==id);});
+    const active=tabs[ids.indexOf(id)], strip=active.parentElement;   // scroll the tab strip sideways only, never the page
+    strip.scrollLeft += active.getBoundingClientRect().left - strip.getBoundingClientRect().left - (strip.clientWidth - active.offsetWidth)/2;
+    if(bar.getBoundingClientRect().top<0) window.scrollTo({top:bar.getBoundingClientRect().top+window.scrollY});
+    try{history.replaceState(null,'',id===DEFAULT?location.pathname+location.search:'#'+id);}catch(e){}
+  }
+  tabs.forEach((t,i)=>{
+    t.addEventListener('click',()=>show(t.dataset.tab));
+    t.addEventListener('keydown',e=>{
+      let j=null;
+      if(e.key==='ArrowRight') j=(i+1)%tabs.length; else if(e.key==='ArrowLeft') j=(i-1+tabs.length)%tabs.length;
+      else if(e.key==='Home') j=0; else if(e.key==='End') j=tabs.length-1;
+      if(j!==null){e.preventDefault(); show(ids[j],true);}
+    });
+  });
+  window.addEventListener('hashchange',()=>show(location.hash.slice(1)));
+  show(location.hash.slice(1)||DEFAULT);
+})();
+
+(function(){   // column key <-> table column highlight
+  [['#epics','etbl'],['#table','tbl'],['#machines','mtbl']].forEach(([sec,tid])=>{
+    const s=document.querySelector(sec), t=document.getElementById(tid); if(!s||!t) return;
+    const norm=x=>x.textContent.replace(/\s+/g,' ').trim().toLowerCase();
+    const heads=[...t.querySelectorAll('thead th')].map(norm);
+    const terms=[...s.querySelectorAll('.term')];
+    const pill={'tie':'.tiemark','thin tier':'.thinpill'};
+    function on(term, yes){
+      const k=norm(term.querySelector('dt')), i=heads.indexOf(k);
+      term.classList.toggle('on',yes);
+      if(i>=0) t.querySelectorAll('tr').forEach(r=>{const c=r.children[i]; if(c&&r.children.length===heads.length) c.classList.toggle('colhl',yes);});
+      else if(pill[k]) t.querySelectorAll(pill[k]).forEach(p=>p.classList.toggle('pop',yes));
+    }
+    let pinned=null;
+    terms.forEach(term=>{
+      term.tabIndex=0;
+      term.addEventListener('mouseenter',()=>{ if(pinned&&pinned!==term) on(pinned,false); on(term,true); });
+      term.addEventListener('mouseleave',()=>{ if(pinned!==term) on(term,false); });
+      term.addEventListener('focus',()=>on(term,true));
+      term.addEventListener('blur',()=>{ if(pinned!==term) on(term,false); });
+      term.addEventListener('click',()=>{   // tap to pin on phones; tap again to clear
+        if(pinned===term){ on(term,false); pinned=null; return; }
+        if(pinned) on(pinned,false); pinned=term; on(term,true);
+      });
+    });
+    t.querySelectorAll('thead th').forEach((th,i)=>{
+      const term=terms.find(x=>norm(x.querySelector('dt'))===heads[i]); if(!term) return;
+      th.addEventListener('mouseenter',()=>on(term,true));
+      th.addEventListener('mouseleave',()=>{ if(pinned!==term) on(term,false); });
+    });
+  });
+})();
+</script>
+
+</body></html>
