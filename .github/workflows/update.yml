@@ -1,0 +1,57 @@
+name: Update Epicenter
+
+# Twice a day: pull Knut's Gap Tracker, re-run the sims, rebuild the page.
+# GitHub's schedule is in UTC: 05:13 and 17:13 UTC = 9:13 pm / 9:13 am PST
+# (10:13 during daylight saving time). GitHub may start scheduled runs a few
+# minutes late; that's normal.
+on:
+  schedule:
+    - cron: "13 5,17 * * *"
+  workflow_dispatch: {}        # "Run workflow" button on the Actions tab
+  push:
+    branches: [main]
+    paths: ["sim/**", ".github/workflows/**"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install numpy
+        run: pip install numpy
+
+      - name: Pull the tracker
+        run: |
+          mkdir -p build && cp sim/* build/
+          cd build && python3 pull.py pull.json
+
+      - name: Run the sims and build the page
+        run: |
+          cd build && sh run_all.sh pull.json ../state/prev_state.json
+          cat merge.log | tail -n 3 || true
+
+      - name: Publish
+        run: |
+          mkdir -p state
+          cp build/bankroll-table.html index.html
+          cp build/new_state.json state/prev_state.json
+          cp build/pull.json state/last_pull.json
+          git config user.name "epicenter-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html state/
+          git diff --cached --quiet && echo "nothing changed" && exit 0
+          git commit -m "Auto update $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push
