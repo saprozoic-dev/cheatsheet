@@ -42,7 +42,13 @@ def main(dst):
         for n in ORDER:
             a = ax.get(n, [0, 0, 0]); t = vt.get(n)
             if t:
-                tiers.append([a[0], a[1], a[2], t["count"], t["minValue"], t["maxValue"], r2(t["medianValue"]),
+                # The tracker now leaves the top tier open-ended (maxValue null, Nov 24 2026).
+                # The 20 histogram bars carry their own edges, so use those for the range
+                # whenever the tier itself gives none.
+                h = t.get("histogram") or []
+                lo = a[0] if a[0] is not None else (h[0].get("min") if h else t["minValue"])
+                hi = a[1] if a[1] is not None else (h[-1].get("max") if h and h[-1].get("max") is not None else t["maxValue"])
+                tiers.append([lo, hi, a[2], t["count"], t["minValue"], t["maxValue"], r2(t["medianValue"]),
                               t["totalValue"], [h["count"] for h in t["histogram"]]])
             else:
                 tiers.append([a[0], a[1], a[2], 0])
