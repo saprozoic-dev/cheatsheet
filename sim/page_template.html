@@ -252,6 +252,26 @@ thead th.colhl{color:var(--b)}
 .moves li span{display:block;font-size:13px;color:var(--muted)}
 
 /* tables */
+/* All machines: filters + sortable columns */
+.mfilters{display:flex;flex-direction:column;gap:10px;margin:14px 0 12px}
+.mf-row{display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap}
+.mf-lab{font-size:13px;font-weight:700;color:var(--muted);min-width:68px}
+.mfilters .chip{padding:7px 10px;font-size:13px}
+.mfilters .chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.mf-foot{display:flex;align-items:center;gap:8px 16px;flex-wrap:wrap}
+.mf-count{font-size:13.5px;color:var(--muted)}
+.mf-reset{border:0;background:none;padding:2px 0;font:600 13.5px var(--sans);color:var(--muted);text-decoration:underline;cursor:pointer}
+.mf-reset:hover{color:var(--ink)}.mf-reset:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.mf-reset[disabled]{opacity:.45;cursor:default;text-decoration:none}
+#mtbl thead th{padding:0}
+#mtbl .sortbtn{all:unset;box-sizing:border-box;display:flex;justify-content:flex-end;align-items:center;gap:6px;width:100%;padding:10px 14px;cursor:pointer;font:inherit;color:inherit}
+#mtbl th:first-child .sortbtn{justify-content:flex-start}
+#mtbl .sortbtn:hover{background:var(--sunk)}
+#mtbl .sortbtn:focus-visible{outline:2px solid var(--acc);outline-offset:-2px}
+#mtbl .sortbtn::after{content:"\2195";font-size:11px;color:var(--faint);opacity:.6}
+#mtbl th[aria-sort="ascending"] .sortbtn::after{content:"\25B2";color:var(--acc);opacity:1}
+#mtbl th[aria-sort="descending"] .sortbtn::after{content:"\25BC";color:var(--acc);opacity:1}
+#mtbl td.mf-empty{text-align:center;color:var(--muted);padding:28px 14px;white-space:normal}
 .tblbox{background:var(--panel);border:1px solid var(--line);border-radius:6px;overflow-x:auto}
 table{border-collapse:collapse;width:100%;min-width:660px;font-size:14.5px}
 th,td{text-align:right;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
@@ -405,7 +425,7 @@ __CALLOUTS__
 </section>
 
 <section id="machines" role="tabpanel" aria-labelledby="tab-machines" tabindex="0">
-  <div class="shead"><h2>All machines</h2><span class="eyebrow">Sorted by sustain (&ne; pick order)</span></div>
+  <div class="shead"><h2>All machines</h2><span class="eyebrow" id="msortnote">Sorted by sustain (&ne; pick order) &middot; click a column to sort</span></div>
   <details class="keybox" open><summary><span>Column key</span><span class="ch-i" aria-hidden="true"></span></summary>
   <dl class="defs defs-3">
     <div class="term money"><dt>Sustain</dt><dd>How long you survive on a machine. % of pack price you get back on avg, all tiers.</dd></div>
@@ -416,8 +436,13 @@ __CALLOUTS__
     <div class="term money"><dt>Read</dt><dd>When the machine&rsquo;s inventory was last pulled. <span class="stale">Amber</span> = older than the newest pull.</dd></div>
   </dl>
   </details>
+  <div class="mfilters" id="mfilters">
+    <div class="mf-row"><span class="mf-lab" id="mfCatLab">Category</span><div class="chips" id="mfCat" role="group" aria-labelledby="mfCatLab"></div></div>
+    <div class="mf-row"><span class="mf-lab" id="mfPackLab">Pack</span><div class="chips" id="mfPack" role="group" aria-labelledby="mfPackLab"></div></div>
+    <div class="mf-foot"><span class="mf-count" id="mfCount" aria-live="polite"></span><button type="button" class="mf-reset" id="mfReset">Reset filters &amp; sort</button></div>
+  </div>
   <div class="tblbox"><table id="mtbl">
-    <thead><tr><th>Machine</th><th>Pack</th><th>Buyback</th><th>Sustain</th><th>Floor loss</th><th>Step-up</th><th>Hit size</th><th>Read</th></tr></thead>
+    <thead><tr><th data-k="n">Machine</th><th data-k="cost">Pack</th><th data-k="bb">Buyback</th><th data-k="sus">Sustain</th><th data-k="floor">Floor loss</th><th data-k="step">Step-up</th><th data-k="hit">Hit size</th><th data-k="fresh">Read</th></tr></thead>
     <tbody></tbody>
   </table></div>
   <p class="note">Read floor loss + step-up together: you want a floor that keeps you alive and a step-up that climbs.</p>
@@ -491,7 +516,34 @@ function drawZones(){
 }
 const FRESH=__FRESH__;
 const mb=document.querySelector('#mtbl tbody');
-D.mach.forEach(m=>{
+// All machines: category + pack filters and click-to-sort columns, remembered in this browser.
+const CATS=[['pokemon','Pok\u00e9mon'],['e10','Pok\u00e9mon'],['onepiece','One Piece'],['dragonball','Dragon Ball'],['riftbound','Riftbound'],['lorcana','Lorcana'],
+  ['anime','Anime'],['ewatch','Watches'],['sports','Sports (mixed)'],['basketball','Basketball'],['baseball','Baseball'],['football','Football'],['soccer','Soccer']];
+const catOf=m=>{const code=String((D.cc&&D.cc[m.n])||'').toLowerCase(),pre=code.split('_')[0];const hit=CATS.find(c=>c[0]===pre);
+  return hit?hit[1]:(pre?pre.charAt(0).toUpperCase()+pre.slice(1):'Other');};
+const MSORT={n:['asc','Machine'],cost:['asc','pack price'],bb:['desc','buyback'],sus:['desc','sustain'],floor:['asc','floor loss'],step:['desc','step-up'],hit:['desc','hit size'],fresh:['desc','read time']};
+const MDEF={cats:[],packs:[],sort:null,dir:null};
+let MF;try{MF=Object.assign({},MDEF,JSON.parse(localStorage.getItem('epi-machines')||'{}'));}catch(e){MF={...MDEF};}
+const saveMF=()=>{try{localStorage.setItem('epi-machines',JSON.stringify(MF));}catch(e){}};
+const mCats=[...new Set(D.mach.map(catOf))].sort((a,b)=>(CATS.findIndex(c=>c[1]===a)+99)%99-(CATS.findIndex(c=>c[1]===b)+99)%99||a.localeCompare(b));
+const mPacks=[...new Set(D.mach.map(m=>m.cost))].sort((a,b)=>a-b);
+function mChips(el,items,key,label){
+  el.innerHTML='';
+  items.forEach(v=>{const b=document.createElement('button');b.type='button';b.className='chip';b.dataset.v=String(v);b.textContent=label(v);
+    b.onclick=()=>{const a=MF[key],i=a.indexOf(v);i<0?a.push(v):a.splice(i,1);saveMF();drawMachines();};el.appendChild(b);});
+}
+mChips(document.getElementById('mfCat'),mCats,'cats',v=>v);
+mChips(document.getElementById('mfPack'),mPacks,'packs',v=>money(v));
+document.querySelectorAll('#mtbl thead th').forEach(th=>{
+  const b=document.createElement('button');b.type='button';b.className='sortbtn';b.textContent=th.textContent;th.textContent='';th.appendChild(b);
+  b.onclick=()=>{const k=th.dataset.k;
+    if(MF.sort!==k){MF.sort=k;MF.dir=MSORT[k][0];}
+    else if(MF.dir===MSORT[k][0]){MF.dir=MF.dir==='asc'?'desc':'asc';}
+    else{MF.sort=null;MF.dir=null;}           // third click: back to the default order
+    saveMF();drawMachines();};
+});
+document.getElementById('mfReset').onclick=()=>{MF={...MDEF,cats:[],packs:[]};try{localStorage.removeItem('epi-machines');}catch(e){}drawMachines();};
+function machineRow(m){
   const stale=(!FRESH.includes(m.fresh) && m.fresh!=='recon');
   const tr=document.createElement('tr');
   tr.innerHTML=`<td style="font-weight:600">${nm(m.n)}${m.recon?'<span class="reconpill">recon</span>':''}</td>`+
@@ -502,8 +554,26 @@ D.mach.forEach(m=>{
     `<td class="n">+$${m.step.toFixed(2)}</td>`+
     `<td class="n dim">$${m.hit.toLocaleString()}</td>`+
     `<td class="n ${m.fresh==='recon'?'dim':(stale?'stale':'dim')}">${m.fresh}</td>`;
-  mb.appendChild(tr);
-});
+  return tr;
+}
+function drawMachines(){
+  MF.cats=MF.cats.filter(c=>mCats.includes(c));MF.packs=MF.packs.filter(p=>mPacks.includes(p));   // drop saved choices that no longer exist
+  let list=D.mach.filter(m=>(!MF.cats.length||MF.cats.includes(catOf(m)))&&(!MF.packs.length||MF.packs.includes(m.cost)));
+  if(MF.sort&&MSORT[MF.sort]){const k=MF.sort,s=MF.dir==='asc'?1:-1;
+    const val=m=>k==='fresh'?(m.fresh==='recon'?'':String(m.fresh)):m[k];
+    list=[...list].sort((a,b)=>{const x=val(a),y=val(b);return (typeof x==='string'?x.localeCompare(y,undefined,{numeric:true}):x-y)*s||b.sus-a.sus;});}
+  mb.replaceChildren(...list.map(machineRow));
+  if(!list.length){const tr=document.createElement('tr');tr.innerHTML='<td class="mf-empty" colspan="8">No machines match these filters.</td>';mb.appendChild(tr);}
+  document.querySelectorAll('#mfCat .chip').forEach(b=>b.setAttribute('aria-pressed',MF.cats.includes(b.dataset.v)));
+  document.querySelectorAll('#mfPack .chip').forEach(b=>b.setAttribute('aria-pressed',MF.packs.includes(+b.dataset.v)));
+  document.querySelectorAll('#mtbl thead th').forEach(th=>{if(th.dataset.k===MF.sort)th.setAttribute('aria-sort',MF.dir==='asc'?'ascending':'descending');else th.removeAttribute('aria-sort');});
+  const on=MF.cats.length||MF.packs.length||MF.sort;
+  document.getElementById('mfCount').textContent=on?`Showing ${list.length} of ${D.mach.length} machines`:`${D.mach.length} machines`;
+  document.getElementById('mfReset').disabled=!on;
+  document.getElementById('msortnote').innerHTML=MF.sort?`Sorted by ${MSORT[MF.sort][1]}${MF.dir==='asc'?' (low to high)':' (high to low)'} &middot; click again to flip`
+    :'Sorted by sustain (&ne; pick order) &middot; click a column to sort';
+}
+drawMachines();
 const chips=document.getElementById('chips');
 const inp=document.getElementById('bank'), ans=document.getElementById('ans');
 [100,250,500,1000,2000,3000,5000,10000,20000].forEach(v=>{
