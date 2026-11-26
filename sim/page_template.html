@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Epicenter · Collector Crypt Gacha Cheatsheet</title>
-<meta name="description" content="Type your bankroll, get the Collector Crypt gacha machine most likely to grow it. Live inventory, every machine, updated every hour.">
+<meta name="description" content="Type your bankroll, get the Collector Crypt gacha machine most likely to grow it. Live inventory, every machine, updates every hour.">
 <meta name="theme-color" content="#dc9c45">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="saprozoic.dev">
 <meta property="og:title" content="Epicenter · Collector Crypt Gacha Cheatsheet">
-<meta property="og:description" content="Type your bankroll, get the Collector Crypt gacha machine most likely to grow it. Live inventory, every machine, updated every hour.">
+<meta property="og:description" content="Type your bankroll, get the Collector Crypt gacha machine most likely to grow it. Live inventory, every machine, updates every hour.">
 <meta property="og:url" content="https://epicenter.saprozoic.dev/">
 <meta property="og:image" content="https://epicenter.saprozoic.dev/sim/og.png">
 <meta property="og:image:width" content="1200">
@@ -332,7 +332,7 @@ footer b{color:var(--ink)}
     <div class="updated" id="updated" data-t="__PULLISO__">
       <span class="up-pulse" aria-hidden="true"></span>
       <div class="up-main">Updated <b id="upAgo">__UPDATED__</b></div>
-      <div class="up-sub" id="upSub">Auto-updates ~9&nbsp;am &amp; 9&nbsp;pm PT</div>
+      <div class="up-sub" id="upSub">Updates every hour</div>
     </div>
   </div>
 </div></header>
@@ -451,7 +451,7 @@ __CALLOUTS__
 <section id="about" role="tabpanel" aria-labelledby="tab-about" tabindex="0">
   <div class="shead"><h2>About the data</h2><span class="eyebrow">How it stays current</span></div>
   <ol class="proto">
-    <li><b>Auto-updates 2&times;/day.</b> Pulls the tracker &rarr; re-sims &rarr; republishes. &ldquo;Updated&rdquo; card amber/red = runs skipped.</li>
+    <li><b>Updates every hour.</b> Pulls the tracker &rarr; re-sims &rarr; republishes. &ldquo;Updated&rdquo; card amber/red = runs skipped.</li>
     <li>__READSLINE__</li>
     <li><b>Restock tell:</b> common count &uarr; + common avg &darr;. Check uncommons too &mdash; a refill can drop commons but lift uncommons &rarr; better machine.</li>
     <li><b>Thin epic tiers swing hardest.</b> __THINLINE__ Watch the avg, not the count.</li>
@@ -738,11 +738,11 @@ redraw();
     else if(h<48){ const r=Math.round(h); s=r+(r===1?' hour ago':' hours ago'); }
     else s=Math.round(h/24)+' days ago';
     ago.textContent=s;
-    box.classList.toggle('old',h>=14&&h<36); box.classList.toggle('stale',h>=36);
-    sub.textContent = 'Pulled '+when+'. '+(h>=36
-      ? 'Out of date \u2014 inventories change daily, use with care.'
-      : h>=14 ? 'Missed an update; next one within 12h.'
-      : 'Auto-updates ~9 am & 9 pm PT.');
+    box.classList.toggle('old',h>=3&&h<12); box.classList.toggle('stale',h>=12);
+    sub.textContent = 'Pulled '+when+'. '+(h>=12
+      ? 'Out of date \u2014 pools change by the hour, use with care.'
+      : h>=3 ? 'Missed a few updates; the next one should come within the hour.'
+      : 'Updates every hour.');
   }
   tick(); setInterval(tick,60000);
   try{ localStorage.removeItem('cc-ref-hidden'); }catch(e){}   // clear the old 'hide' flag; the card is always shown
