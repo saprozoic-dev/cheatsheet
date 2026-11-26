@@ -1,10 +1,13 @@
 """Machine model. Rebuilt Oct 31 after a workspace reset (same method as before)."""
 import numpy as np
 
-def T(odds, axis, mn, mx, avg, med, items, total, counts):
-    """One tier as read off the Value Distribution panel. avg is recomputed as total/items."""
+def T(odds, axis, mn, mx, avg, med, items, total, counts, bins=None):
+    """One tier as read off the tracker. avg is recomputed as total/items.
+    counts: cards per histogram bar. bins (optional): each bar's own [lo, hi] value range;
+    without it the bars split axis into equal widths (the old tracker's 20-bar panel)."""
     return dict(odds=odds, axis=tuple(axis), mn=mn, mx=mx, shown_avg=avg, med=med,
-                items=items, total=total, avg=total / items, counts=list(counts))
+                items=items, total=total, avg=total / items, counts=list(counts),
+                bins=[tuple(b) for b in bins] if bins else None)
 
 class Machine:
     def __init__(self, name, cost, buyback, recon, tiers):
@@ -22,9 +25,13 @@ class Machine:
         d = self.tiers[tier]
         mn, mx, avg = float(d['mn']), float(d['mx']), float(d['avg'])
         c = np.asarray(d['counts'], dtype=float)
-        lo, hi = d['axis']; w = (hi - lo) / len(c)
         b = rng.choice(len(c), size=size, p=c / c.sum())
-        v = lo + (b + rng.random(size)) * w
+        if d.get('bins'):   # bars with their own ranges (v1 API)
+            edges = np.asarray(d['bins'], dtype=float)
+            v = edges[b, 0] + rng.random(size) * (edges[b, 1] - edges[b, 0])
+        else:               # equal-width bars across the tier's axis (old tracker)
+            lo, hi = d['axis']; w = (hi - lo) / len(c)
+            v = lo + (b + rng.random(size)) * w
         v = np.clip(v, mn, mx)
         for _ in range(4):   # rescale + clip, repeated so clipping does not shift the mean
             m = v.mean()

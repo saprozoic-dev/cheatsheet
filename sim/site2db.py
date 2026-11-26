@@ -1,10 +1,11 @@
-"""Build db.py straight from a gap.knutegil.dev pull.
+"""Build db.py straight from a Holoscope (Knut's Gap Tracker) pull.
 
   python3 site2db.py pull.json            -> writes db.py next to it (cwd)
 
-Pull format (made by pull.js in the browser):
+Pull format (made by pull.py):
   {"t": iso_time, "m": {code: [price, buyback, name,
-        [[axis_lo, axis_hi, odds, items, min, max, median, total, bins20], ... x4  C/U/R/E]]}}
+        [[axis_lo, axis_hi, odds, items, min, max, median, total, counts(, bins)], ... x4  C/U/R/E]]}}
+counts = cards per histogram bar; bins (v1 API) = each bar's [lo, hi] value range.
 Older pulls without the name field ([price, buyback, all24, tiers]) are accepted too.
 """
 import json, sys, datetime
@@ -64,8 +65,9 @@ def main(src, dst='db.py'):
     for code, name, var, price, bb, tiers in rows:
         L.append("%s = M.Machine(%r, %.1f, %.2f, None, dict(" % (var, name, price, bb))
         for k, t in zip(TIERS, tiers):
-            lo, hi, odds, items, mn, mx, med, total, bins = t
-            L.append(" %-8s=T(%r,(%r, %r),%r,%r,%d,%r,%d,%r,%r)," % (k, odds, lo, hi, mn, mx, round(total / items), med, items, total, bins))
+            lo, hi, odds, items, mn, mx, med, total, counts = t[:9]
+            ranges = t[9] if len(t) > 9 else None
+            L.append(" %-8s=T(%r,(%r, %r),%r,%r,%d,%r,%d,%r,%r,%r)," % (k, odds, lo, hi, mn, mx, round(total / items), med, items, total, counts, ranges))
         L.append('))')
     L.append('\nBOARD = [')
     for code, name, var, *_ in rows: L.append("    (%r, %s, %r)," % (name, var, lab))
