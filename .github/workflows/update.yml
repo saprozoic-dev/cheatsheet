@@ -1,12 +1,11 @@
 name: Update Epicenter
 
-# Twice a day: pull Holoscope (Knut's Gap Tracker, v1 API), re-run the sims, rebuild the page.
-# GitHub's schedule is in UTC: 05:13 and 17:13 UTC = 9:13 pm / 9:13 am PST
-# (10:13 during daylight saving time). GitHub may start scheduled runs a few
-# minutes late; that's normal.
+# Every hour: pull Holoscope (Knut's Gap Tracker, v1 API), re-run the sims, rebuild the page.
+# Runs at 13 minutes past each hour (GitHub's busiest moment is :00). GitHub may
+# start scheduled runs a few minutes late; that's normal.
 on:
   schedule:
-    - cron: "13 5,17 * * *"
+    - cron: "13 * * * *"
   workflow_dispatch: {}        # "Run workflow" button on the Actions tab
   push:
     branches: [main]
