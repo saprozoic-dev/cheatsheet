@@ -1,6 +1,6 @@
 name: Update Epicenter
 
-# Twice a day: pull Knut's Gap Tracker, re-run the sims, rebuild the page.
+# Twice a day: pull Holoscope (Knut's Gap Tracker, v1 API), re-run the sims, rebuild the page.
 # GitHub's schedule is in UTC: 05:13 and 17:13 UTC = 9:13 pm / 9:13 am PST
 # (10:13 during daylight saving time). GitHub may start scheduled runs a few
 # minutes late; that's normal.
@@ -34,6 +34,10 @@ jobs:
         run: pip install numpy
 
       - name: Pull the tracker
+        env:
+          # Free key from https://holoscope.app/developers, saved in this repo's
+          # Settings -> Secrets and variables -> Actions as GAP_API_KEY. Never put it in a file.
+          GAP_API_KEY: ${{ secrets.GAP_API_KEY }}
         run: |
           mkdir -p build && cp sim/* build/
           cd build && python3 pull.py pull.json
