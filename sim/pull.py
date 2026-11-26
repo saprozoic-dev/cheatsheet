@@ -20,7 +20,7 @@ import json, math, os, sys, time, urllib.request, urllib.error, datetime
 
 BASE = os.environ.get("GAP_API_BASE", "https://api.holoscope.app/v1").rstrip("/")
 KEY = os.environ.get("GAP_API_KEY", "").strip()
-UA = "Epicenter cheatsheet (epicenter.saprozoic.dev) - twice-daily read via the v1 API"
+UA = "Epicenter cheatsheet (epicenter.saprozoic.dev) - hourly read via the v1 API"
 ORDER = ["common", "uncommon", "rare", "epic"]
 SPACING = 2.2 if KEY else 31.0
 
