@@ -1,7 +1,7 @@
 {
  "schema": "epicenter/1",
- "generatedAt": "2026-11-27T05:16:46.519Z",
- "generatedAtPT": "Nov 26, 9:16 pm PT",
+ "generatedAt": "2026-11-27T07:24:41.229Z",
+ "generatedAtPT": "Nov 26, 11:24 pm PT",
  "about": "Which Collector Crypt gacha machine gives a bankroll the best chance to double before it runs out, from 30,000 simulated sessions per bankroll, selling every card back instantly. Every machine loses money on average; this only ranks them against each other. Not financial advice.",
  "site": "https://epicenter.saprozoic.dev",
  "source": {
@@ -28,9 +28,9 @@
    "name": "Dragonball $50",
    "packPriceUsd": 50,
    "buybackPct": 93.0,
-   "sustainPct": 97.52,
+   "sustainPct": 97.53,
    "floorLossUsd": 14.82,
-   "stepUpUsd": 11.38,
+   "stepUpUsd": 11.43,
    "hitSizeUsd": 202
   },
   {
@@ -38,9 +38,9 @@
    "name": "Dragonball $250",
    "packPriceUsd": 250,
    "buybackPct": 93.0,
-   "sustainPct": 97.47,
+   "sustainPct": 97.53,
    "floorLossUsd": 82.92,
-   "stepUpUsd": 22.08,
+   "stepUpUsd": 22.83,
    "hitSizeUsd": 1279
   },
   {
@@ -48,9 +48,9 @@
    "name": "Watch $500",
    "packPriceUsd": 500,
    "buybackPct": 93.0,
-   "sustainPct": 97.36,
-   "floorLossUsd": 192.78,
-   "stepUpUsd": 19.37,
+   "sustainPct": 97.43,
+   "floorLossUsd": 192.24,
+   "stepUpUsd": 19.26,
    "hitSizeUsd": 3050
   },
   {
@@ -58,8 +58,8 @@
    "name": "Dragonball $100",
    "packPriceUsd": 100,
    "buybackPct": 93.0,
-   "sustainPct": 96.9,
-   "floorLossUsd": 32.76,
+   "sustainPct": 96.91,
+   "floorLossUsd": 32.75,
    "stepUpUsd": 17.93,
    "hitSizeUsd": 458
   },
@@ -88,9 +88,9 @@
    "name": "Watch $250",
    "packPriceUsd": 250,
    "buybackPct": 90.0,
-   "sustainPct": 95.52,
-   "floorLossUsd": 92.24,
-   "stepUpUsd": 96.55,
+   "sustainPct": 95.57,
+   "floorLossUsd": 92.13,
+   "stepUpUsd": 96.7,
    "hitSizeUsd": 1023
   },
   {
@@ -131,37 +131,57 @@
    "sustainPct": 94.82,
    "floorLossUsd": 318.63,
    "stepUpUsd": 13.6,
-   "hitSizeUsd": 4689
-  },
-  {
-   "code": "pokemon_100",
-   "name": "Bronze $100",
-   "packPriceUsd": 100,
-   "buybackPct": 90.0,
-   "sustainPct": 94.6,
-   "floorLossUsd": 30.49,
-   "stepUpUsd": 22.73,
-   "hitSizeUsd": 412
+   "hitSizeUsd": 4688
   },
   {
    "code": "pokemon_500",
    "name": "Hyper $500",
    "packPriceUsd": 500,
    "buybackPct": 90.0,
-   "sustainPct": 94.59,
-   "floorLossUsd": 181.59,
+   "sustainPct": 94.58,
+   "floorLossUsd": 181.62,
    "stepUpUsd": 122.8,
    "hitSizeUsd": 2191
   },
   {
-   "code": "soccer_100",
-   "name": "Soccer $100",
+   "code": "pokemon_100",
+   "name": "Bronze $100",
    "packPriceUsd": 100,
    "buybackPct": 90.0,
-   "sustainPct": 94.52,
-   "floorLossUsd": 37.2,
-   "stepUpUsd": 21.71,
-   "hitSizeUsd": 462
+   "sustainPct": 94.57,
+   "floorLossUsd": 30.5,
+   "stepUpUsd": 22.64,
+   "hitSizeUsd": 411
+  },
+  {
+   "code": "soccer_250",
+   "name": "Soccer $250",
+   "packPriceUsd": 250,
+   "buybackPct": 90.0,
+   "sustainPct": 94.55,
+   "floorLossUsd": 93.98,
+   "stepUpUsd": 52.67,
+   "hitSizeUsd": 1176
+  },
+  {
+   "code": "football_250",
+   "name": "Football $250",
+   "packPriceUsd": 250,
+   "buybackPct": 90.0,
+   "sustainPct": 94.53,
+   "floorLossUsd": 84.52,
+   "stepUpUsd": 5.01,
+   "hitSizeUsd": 1224
+  },
+  {
+   "code": "e10_10",
+   "name": "PSA 10 $500",
+   "packPriceUsd": 500,
+   "buybackPct": 93.0,
+   "sustainPct": 94.53,
+   "floorLossUsd": 169.41,
+   "stepUpUsd": 103.72,
+   "hitSizeUsd": 2079
   },
   {
    "code": "baseball_250",
@@ -174,24 +194,34 @@
    "hitSizeUsd": 1244
   },
   {
-   "code": "soccer_250",
-   "name": "Soccer $250",
-   "packPriceUsd": 250,
-   "buybackPct": 90.0,
-   "sustainPct": 94.52,
-   "floorLossUsd": 94.07,
-   "stepUpUsd": 52.67,
-   "hitSizeUsd": 1176
-  },
-  {
-   "code": "pokemon_250",
-   "name": "Pokemon $250",
-   "packPriceUsd": 250,
+   "code": "sports_100",
+   "name": "Sports $100",
+   "packPriceUsd": 100,
    "buybackPct": 90.0,
    "sustainPct": 94.51,
-   "floorLossUsd": 85.0,
-   "stepUpUsd": -2.67,
-   "hitSizeUsd": 1261
+   "floorLossUsd": 36.07,
+   "stepUpUsd": 24.85,
+   "hitSizeUsd": 432
+  },
+  {
+   "code": "soccer_100",
+   "name": "Soccer $100",
+   "packPriceUsd": 100,
+   "buybackPct": 90.0,
+   "sustainPct": 94.51,
+   "floorLossUsd": 37.2,
+   "stepUpUsd": 21.67,
+   "hitSizeUsd": 462
+  },
+  {
+   "code": "baseball_100",
+   "name": "Baseball $100",
+   "packPriceUsd": 100,
+   "buybackPct": 90.0,
+   "sustainPct": 94.5,
+   "floorLossUsd": 34.93,
+   "stepUpUsd": 22.21,
+   "hitSizeUsd": 425
   },
   {
    "code": "basketball_250",
@@ -200,38 +230,38 @@
    "buybackPct": 90.0,
    "sustainPct": 94.5,
    "floorLossUsd": 76.43,
-   "stepUpUsd": 9.23,
+   "stepUpUsd": 9.26,
    "hitSizeUsd": 1085
   },
   {
-   "code": "baseball_100",
-   "name": "Baseball $100",
-   "packPriceUsd": 100,
+   "code": "pokemon_250",
+   "name": "Pokemon $250",
+   "packPriceUsd": 250,
    "buybackPct": 90.0,
    "sustainPct": 94.49,
-   "floorLossUsd": 34.94,
-   "stepUpUsd": 22.2,
-   "hitSizeUsd": 425
+   "floorLossUsd": 85.03,
+   "stepUpUsd": -2.61,
+   "hitSizeUsd": 1260
+  },
+  {
+   "code": "soccer_50",
+   "name": "Soccer $50",
+   "packPriceUsd": 50,
+   "buybackPct": 90.0,
+   "sustainPct": 94.49,
+   "floorLossUsd": 18.86,
+   "stepUpUsd": 14.29,
+   "hitSizeUsd": 221
   },
   {
    "code": "football_100",
    "name": "Football $100",
    "packPriceUsd": 100,
    "buybackPct": 90.0,
-   "sustainPct": 94.49,
-   "floorLossUsd": 34.36,
-   "stepUpUsd": 20.78,
-   "hitSizeUsd": 422
-  },
-  {
-   "code": "sports_100",
-   "name": "Sports $100",
-   "packPriceUsd": 100,
-   "buybackPct": 90.0,
    "sustainPct": 94.48,
-   "floorLossUsd": 36.12,
-   "stepUpUsd": 24.88,
-   "hitSizeUsd": 432
+   "floorLossUsd": 34.36,
+   "stepUpUsd": 20.71,
+   "hitSizeUsd": 422
   },
   {
    "code": "pokemon_5000",
@@ -242,26 +272,6 @@
    "floorLossUsd": 1633.53,
    "stepUpUsd": 1148.0,
    "hitSizeUsd": 19391
-  },
-  {
-   "code": "football_250",
-   "name": "Football $250",
-   "packPriceUsd": 250,
-   "buybackPct": 90.0,
-   "sustainPct": 94.48,
-   "floorLossUsd": 84.68,
-   "stepUpUsd": 5.01,
-   "hitSizeUsd": 1224
-  },
-  {
-   "code": "soccer_50",
-   "name": "Soccer $50",
-   "packPriceUsd": 50,
-   "buybackPct": 90.0,
-   "sustainPct": 94.48,
-   "floorLossUsd": 18.86,
-   "stepUpUsd": 14.28,
-   "hitSizeUsd": 221
   },
   {
    "code": "onepiece_250",
@@ -278,29 +288,19 @@
    "name": "Basketball $100",
    "packPriceUsd": 100,
    "buybackPct": 90.0,
-   "sustainPct": 94.46,
-   "floorLossUsd": 36.26,
-   "stepUpUsd": 18.35,
+   "sustainPct": 94.43,
+   "floorLossUsd": 36.3,
+   "stepUpUsd": 18.33,
    "hitSizeUsd": 460
-  },
-  {
-   "code": "e10_10",
-   "name": "PSA 10 $500",
-   "packPriceUsd": 500,
-   "buybackPct": 93.0,
-   "sustainPct": 94.44,
-   "floorLossUsd": 169.97,
-   "stepUpUsd": 103.72,
-   "hitSizeUsd": 2079
   },
   {
    "code": "pokemon_25",
    "name": "Starter $25",
    "packPriceUsd": 25,
    "buybackPct": 85.0,
-   "sustainPct": 93.89,
-   "floorLossUsd": 6.76,
-   "stepUpUsd": 3.65,
+   "sustainPct": 94.11,
+   "floorLossUsd": 6.68,
+   "stepUpUsd": 3.62,
    "hitSizeUsd": 81
   },
   {
@@ -328,7 +328,7 @@
    "name": "One Piece $50",
    "packPriceUsd": 50,
    "buybackPct": 85.0,
-   "sustainPct": 93.51,
+   "sustainPct": 93.5,
    "floorLossUsd": 16.0,
    "stepUpUsd": 11.69,
    "hitSizeUsd": 206
@@ -338,9 +338,9 @@
    "name": "Elite $50",
    "packPriceUsd": 50,
    "buybackPct": 85.0,
-   "sustainPct": 93.36,
-   "floorLossUsd": 15.53,
-   "stepUpUsd": 7.5,
+   "sustainPct": 93.37,
+   "floorLossUsd": 15.54,
+   "stepUpUsd": 7.57,
    "hitSizeUsd": 210
   },
   {
@@ -358,8 +358,8 @@
    "name": "Pokemon $2500",
    "packPriceUsd": 2500,
    "buybackPct": 93.0,
-   "sustainPct": 92.19,
-   "floorLossUsd": 896.23,
+   "sustainPct": 92.17,
+   "floorLossUsd": 896.91,
    "stepUpUsd": 645.35,
    "hitSizeUsd": 9456
   }
@@ -370,7 +370,7 @@
    "best": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "chanceToDoublePct": 5.93,
+    "chanceToDoublePct": 5.96,
     "medianPacks": 1
    },
    "runnerUp": null,
@@ -387,7 +387,7 @@
    "best": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "chanceToDoublePct": 14.6,
+    "chanceToDoublePct": 14.51,
     "medianPacks": 7
    },
    "runnerUp": {
@@ -408,7 +408,7 @@
    "best": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "chanceToDoublePct": 17.45,
+    "chanceToDoublePct": 17.83,
     "medianPacks": 25
    },
    "runnerUp": {
@@ -435,14 +435,14 @@
    "runnerUp": {
     "code": "dragonball_50",
     "name": "Dragonball $50",
-    "chanceToDoublePct": 19.34
+    "chanceToDoublePct": 19.58
    },
-   "tie": false,
+   "tie": true,
    "chanceToReach5000Pct": 0.55,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 48
+    "medianPacks": 49
    }
   },
   {
@@ -456,14 +456,14 @@
    "runnerUp": {
     "code": "dragonball_50",
     "name": "Dragonball $50",
-    "chanceToDoublePct": 19.87
+    "chanceToDoublePct": 20.1
    },
    "tie": false,
    "chanceToReach5000Pct": 0.82,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 73
+    "medianPacks": 76
    }
   },
   {
@@ -484,7 +484,7 @@
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 101
+    "medianPacks": 104
    }
   },
   {
@@ -505,7 +505,7 @@
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 130
+    "medianPacks": 134
    }
   },
   {
@@ -526,7 +526,7 @@
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 159
+    "medianPacks": 165
    }
   },
   {
@@ -547,7 +547,7 @@
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 190
+    "medianPacks": 196
    }
   },
   {
@@ -568,7 +568,7 @@
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 222
+    "medianPacks": 227
    }
   },
   {
@@ -589,7 +589,7 @@
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 251
+    "medianPacks": 259
    }
   },
   {
@@ -601,16 +601,16 @@
     "medianPacks": 104
    },
    "runnerUp": {
-    "code": "soccer_50",
-    "name": "Soccer $50",
-    "chanceToDoublePct": 20.54
+    "code": "sports_100",
+    "name": "Sports $100",
+    "chanceToDoublePct": 20.62
    },
    "tie": false,
    "chanceToReach5000Pct": 2.0,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 314
+    "medianPacks": 323
    }
   },
   {
@@ -624,14 +624,14 @@
    "runnerUp": {
     "code": "sports_100",
     "name": "Sports $100",
-    "chanceToDoublePct": 20.94
+    "chanceToDoublePct": 20.91
    },
    "tie": false,
    "chanceToReach5000Pct": 2.36,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 378
+    "medianPacks": 389
    }
   },
   {
@@ -645,14 +645,14 @@
    "runnerUp": {
     "code": "sports_100",
     "name": "Sports $100",
-    "chanceToDoublePct": 21.36
+    "chanceToDoublePct": 21.6
    },
    "tie": true,
    "chanceToReach5000Pct": 2.77,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 441
+    "medianPacks": 456
    }
   },
   {
@@ -660,41 +660,41 @@
    "best": {
     "code": "dragonball_100",
     "name": "Dragonball $100",
-    "chanceToDoublePct": 21.69,
-    "medianPacks": 63
+    "chanceToDoublePct": 21.63,
+    "medianPacks": 64
    },
    "runnerUp": {
     "code": "sports_100",
     "name": "Sports $100",
-    "chanceToDoublePct": 21.68
+    "chanceToDoublePct": 21.53
    },
    "tie": true,
-   "chanceToReach5000Pct": 7.63,
+   "chanceToReach5000Pct": 7.64,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 505
+    "medianPacks": 521
    }
   },
   {
    "bankrollUsd": 1000,
    "best": {
-    "code": "dragonball_100",
-    "name": "Dragonball $100",
-    "chanceToDoublePct": 21.88,
-    "medianPacks": 74
-   },
-   "runnerUp": {
     "code": "dragonball_50",
     "name": "Dragonball $50",
-    "chanceToDoublePct": 21.49
+    "chanceToDoublePct": 21.8,
+    "medianPacks": 285
+   },
+   "runnerUp": {
+    "code": "dragonball_100",
+    "name": "Dragonball $100",
+    "chanceToDoublePct": 21.77
    },
    "tie": true,
-   "chanceToReach5000Pct": 8.58,
+   "chanceToReach5000Pct": 6.56,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 570
+    "medianPacks": 591
    }
   },
   {
@@ -702,20 +702,20 @@
    "best": {
     "code": "dragonball_100",
     "name": "Dragonball $100",
-    "chanceToDoublePct": 21.91,
+    "chanceToDoublePct": 22.16,
     "medianPacks": 85
    },
    "runnerUp": {
     "code": "dragonball_50",
     "name": "Dragonball $50",
-    "chanceToDoublePct": 21.89
+    "chanceToDoublePct": 21.81
    },
    "tie": true,
-   "chanceToReach5000Pct": 9.45,
+   "chanceToReach5000Pct": 9.6,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 631
+    "medianPacks": 655
    }
   },
   {
@@ -723,20 +723,20 @@
    "best": {
     "code": "dragonball_100",
     "name": "Dragonball $100",
-    "chanceToDoublePct": 22.24,
+    "chanceToDoublePct": 22.41,
     "medianPacks": 97
    },
    "runnerUp": {
     "code": "dragonball_50",
     "name": "Dragonball $50",
-    "chanceToDoublePct": 22.0
+    "chanceToDoublePct": 22.25
    },
    "tie": true,
-   "chanceToReach5000Pct": 10.5,
+   "chanceToReach5000Pct": 10.52,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 698
+    "medianPacks": 723
    }
   },
   {
@@ -744,20 +744,20 @@
    "best": {
     "code": "dragonball_100",
     "name": "Dragonball $100",
-    "chanceToDoublePct": 22.69,
+    "chanceToDoublePct": 22.71,
     "medianPacks": 109
    },
    "runnerUp": {
     "code": "dragonball_50",
     "name": "Dragonball $50",
-    "chanceToDoublePct": 22.33
+    "chanceToDoublePct": 22.32
    },
    "tie": true,
-   "chanceToReach5000Pct": 11.6,
+   "chanceToReach5000Pct": 11.7,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 765
+    "medianPacks": 788
    }
   },
   {
@@ -765,20 +765,20 @@
    "best": {
     "code": "dragonball_100",
     "name": "Dragonball $100",
-    "chanceToDoublePct": 22.74,
+    "chanceToDoublePct": 22.64,
     "medianPacks": 122
    },
    "runnerUp": {
     "code": "dragonball_50",
     "name": "Dragonball $50",
-    "chanceToDoublePct": 22.34
+    "chanceToDoublePct": 22.61
    },
    "tie": true,
-   "chanceToReach5000Pct": 12.66,
+   "chanceToReach5000Pct": 12.67,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 827
+    "medianPacks": 855
    }
   },
   {
@@ -786,20 +786,20 @@
    "best": {
     "code": "dragonball_100",
     "name": "Dragonball $100",
-    "chanceToDoublePct": 23.09,
+    "chanceToDoublePct": 23.38,
     "medianPacks": 135
    },
    "runnerUp": {
     "code": "dragonball_50",
     "name": "Dragonball $50",
-    "chanceToDoublePct": 22.49
+    "chanceToDoublePct": 22.76
    },
    "tie": true,
-   "chanceToReach5000Pct": 13.53,
+   "chanceToReach5000Pct": 13.79,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 894
+    "medianPacks": 924
    }
   },
   {
@@ -807,20 +807,20 @@
    "best": {
     "code": "dragonball_100",
     "name": "Dragonball $100",
-    "chanceToDoublePct": 23.2,
-    "medianPacks": 148
+    "chanceToDoublePct": 23.42,
+    "medianPacks": 149
    },
    "runnerUp": {
     "code": "dragonball_50",
     "name": "Dragonball $50",
-    "chanceToDoublePct": 22.99
+    "chanceToDoublePct": 22.83
    },
    "tie": true,
-   "chanceToReach5000Pct": 14.75,
+   "chanceToReach5000Pct": 14.66,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 956
+    "medianPacks": 989
    }
   },
   {
@@ -828,20 +828,20 @@
    "best": {
     "code": "dragonball_100",
     "name": "Dragonball $100",
-    "chanceToDoublePct": 23.67,
-    "medianPacks": 161
+    "chanceToDoublePct": 23.66,
+    "medianPacks": 163
    },
    "runnerUp": {
-    "code": "dragonball_50",
-    "name": "Dragonball $50",
-    "chanceToDoublePct": 22.95
+    "code": "football_250",
+    "name": "Football $250",
+    "chanceToDoublePct": 23.02
    },
-   "tie": false,
-   "chanceToReach5000Pct": 15.87,
+   "tie": true,
+   "chanceToReach5000Pct": 15.72,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 1021
+    "medianPacks": 1058
    }
   },
   {
@@ -849,20 +849,20 @@
    "best": {
     "code": "dragonball_100",
     "name": "Dragonball $100",
-    "chanceToDoublePct": 23.99,
-    "medianPacks": 175
+    "chanceToDoublePct": 24.08,
+    "medianPacks": 177
    },
    "runnerUp": {
     "code": "dragonball_50",
     "name": "Dragonball $50",
-    "chanceToDoublePct": 22.85
+    "chanceToDoublePct": 23.1
    },
    "tie": false,
-   "chanceToReach5000Pct": 17.06,
+   "chanceToReach5000Pct": 16.96,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 1087
+    "medianPacks": 1127
    }
   },
   {
@@ -870,8 +870,8 @@
    "best": {
     "code": "dragonball_100",
     "name": "Dragonball $100",
-    "chanceToDoublePct": 24.29,
-    "medianPacks": 190
+    "chanceToDoublePct": 24.16,
+    "medianPacks": 191
    },
    "runnerUp": {
     "code": "football_250",
@@ -879,11 +879,11 @@
     "chanceToDoublePct": 23.28
    },
    "tie": false,
-   "chanceToReach5000Pct": 18.19,
+   "chanceToReach5000Pct": 18.28,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 1151
+    "medianPacks": 1194
    }
   },
   {
@@ -891,8 +891,8 @@
    "best": {
     "code": "dragonball_100",
     "name": "Dragonball $100",
-    "chanceToDoublePct": 24.44,
-    "medianPacks": 206
+    "chanceToDoublePct": 24.43,
+    "medianPacks": 208
    },
    "runnerUp": {
     "code": "football_250",
@@ -900,11 +900,11 @@
     "chanceToDoublePct": 23.51
    },
    "tie": false,
-   "chanceToReach5000Pct": 19.23,
+   "chanceToReach5000Pct": 19.13,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 1218
+    "medianPacks": 1259
    }
   },
   {
@@ -912,20 +912,20 @@
    "best": {
     "code": "dragonball_100",
     "name": "Dragonball $100",
-    "chanceToDoublePct": 24.43,
+    "chanceToDoublePct": 24.55,
     "medianPacks": 222
    },
    "runnerUp": {
     "code": "dragonball_250",
     "name": "Dragonball $250",
-    "chanceToDoublePct": 23.84
+    "chanceToDoublePct": 23.78
    },
-   "tie": true,
-   "chanceToReach5000Pct": 20.29,
+   "tie": false,
+   "chanceToReach5000Pct": 20.31,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 1281
+    "medianPacks": 1326
    }
   },
   {
@@ -933,62 +933,62 @@
    "best": {
     "code": "dragonball_100",
     "name": "Dragonball $100",
-    "chanceToDoublePct": 24.54,
-    "medianPacks": 238
+    "chanceToDoublePct": 24.68,
+    "medianPacks": 235
    },
    "runnerUp": {
     "code": "dragonball_250",
     "name": "Dragonball $250",
-    "chanceToDoublePct": 24.33
+    "chanceToDoublePct": 24.41
    },
    "tie": true,
-   "chanceToReach5000Pct": 21.39,
+   "chanceToReach5000Pct": 21.54,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 1346
+    "medianPacks": 1395
    }
   },
   {
    "bankrollUsd": 2300,
    "best": {
-    "code": "dragonball_100",
-    "name": "Dragonball $100",
-    "chanceToDoublePct": 24.85,
-    "medianPacks": 253
-   },
-   "runnerUp": {
     "code": "dragonball_250",
     "name": "Dragonball $250",
-    "chanceToDoublePct": 24.5
+    "chanceToDoublePct": 24.9,
+    "medianPacks": 55
+   },
+   "runnerUp": {
+    "code": "dragonball_100",
+    "name": "Dragonball $100",
+    "chanceToDoublePct": 24.89
    },
    "tie": true,
-   "chanceToReach5000Pct": 22.67,
+   "chanceToReach5000Pct": 23.25,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 1412
+    "medianPacks": 1464
    }
   },
   {
    "bankrollUsd": 2400,
    "best": {
-    "code": "dragonball_250",
-    "name": "Dragonball $250",
-    "chanceToDoublePct": 25.33,
-    "medianPacks": 58
-   },
-   "runnerUp": {
     "code": "dragonball_100",
     "name": "Dragonball $100",
-    "chanceToDoublePct": 25.04
+    "chanceToDoublePct": 25.1,
+    "medianPacks": 272
+   },
+   "runnerUp": {
+    "code": "dragonball_250",
+    "name": "Dragonball $250",
+    "chanceToDoublePct": 25.1
    },
    "tie": true,
-   "chanceToReach5000Pct": 24.54,
+   "chanceToReach5000Pct": 23.9,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 1478
+    "medianPacks": 1530
    }
   },
   {
@@ -996,20 +996,20 @@
    "best": {
     "code": "dragonball_250",
     "name": "Dragonball $250",
-    "chanceToDoublePct": 25.41,
+    "chanceToDoublePct": 25.6,
     "medianPacks": 62
    },
    "runnerUp": {
     "code": "dragonball_100",
     "name": "Dragonball $100",
-    "chanceToDoublePct": 24.97
+    "chanceToDoublePct": 25.14
    },
    "tie": true,
-   "chanceToReach5000Pct": 25.41,
+   "chanceToReach5000Pct": 25.6,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 1537
+    "medianPacks": 1599
    }
   },
   {
@@ -1017,20 +1017,20 @@
    "best": {
     "code": "dragonball_250",
     "name": "Dragonball $250",
-    "chanceToDoublePct": 25.85,
-    "medianPacks": 65
+    "chanceToDoublePct": 26.18,
+    "medianPacks": 66
    },
    "runnerUp": {
     "code": "dragonball_100",
     "name": "Dragonball $100",
-    "chanceToDoublePct": 25.09
+    "chanceToDoublePct": 24.98
    },
    "tie": false,
-   "chanceToReach5000Pct": 26.68,
+   "chanceToReach5000Pct": 26.95,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 1607
+    "medianPacks": 1665
    }
   },
   {
@@ -1038,20 +1038,20 @@
    "best": {
     "code": "dragonball_250",
     "name": "Dragonball $250",
-    "chanceToDoublePct": 26.04,
+    "chanceToDoublePct": 26.2,
     "medianPacks": 69
    },
    "runnerUp": {
     "code": "dragonball_100",
     "name": "Dragonball $100",
-    "chanceToDoublePct": 25.32
+    "chanceToDoublePct": 25.09
    },
    "tie": false,
-   "chanceToReach5000Pct": 27.64,
+   "chanceToReach5000Pct": 27.87,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 1672
+    "medianPacks": 1734
    }
   },
   {
@@ -1059,20 +1059,20 @@
    "best": {
     "code": "dragonball_250",
     "name": "Dragonball $250",
-    "chanceToDoublePct": 26.69,
+    "chanceToDoublePct": 26.65,
     "medianPacks": 73
    },
    "runnerUp": {
     "code": "dragonball_100",
     "name": "Dragonball $100",
-    "chanceToDoublePct": 25.19
+    "chanceToDoublePct": 25.24
    },
    "tie": false,
-   "chanceToReach5000Pct": 29.15,
+   "chanceToReach5000Pct": 29.04,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 1736
+    "medianPacks": 1800
    }
   },
   {
@@ -1080,20 +1080,20 @@
    "best": {
     "code": "dragonball_250",
     "name": "Dragonball $250",
-    "chanceToDoublePct": 27.03,
+    "chanceToDoublePct": 27.1,
     "medianPacks": 77
    },
    "runnerUp": {
     "code": "dragonball_100",
     "name": "Dragonball $100",
-    "chanceToDoublePct": 25.37
+    "chanceToDoublePct": 25.3
    },
    "tie": false,
-   "chanceToReach5000Pct": 30.44,
+   "chanceToReach5000Pct": 30.31,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 1804
+    "medianPacks": 1867
    }
   },
   {
@@ -1101,20 +1101,20 @@
    "best": {
     "code": "dragonball_250",
     "name": "Dragonball $250",
-    "chanceToDoublePct": 27.17,
+    "chanceToDoublePct": 26.88,
     "medianPacks": 81
    },
    "runnerUp": {
     "code": "dragonball_100",
     "name": "Dragonball $100",
-    "chanceToDoublePct": 25.43
+    "chanceToDoublePct": 25.53
    },
    "tie": false,
-   "chanceToReach5000Pct": 31.38,
+   "chanceToReach5000Pct": 31.0,
    "longestSession": {
     "code": "pokemon_25",
     "name": "Starter $25",
-    "medianPacks": 1868
+    "medianPacks": 1938
    }
   },
   {
@@ -1122,61 +1122,61 @@
    "best": {
     "code": "dragonball_250",
     "name": "Dragonball $250",
-    "chanceToDoublePct": 28.44,
+    "chanceToDoublePct": 28.56,
     "medianPacks": 73
    },
    "runnerUp": {
     "code": "dragonball_100",
     "name": "Dragonball $100",
-    "chanceToDoublePct": 25.44
+    "chanceToDoublePct": 25.34
    },
    "tie": false,
-   "chanceToReach5000Pct": 37.28
+   "chanceToReach5000Pct": 37.4
   },
   {
    "bankrollUsd": 4000,
    "best": {
     "code": "dragonball_250",
     "name": "Dragonball $250",
-    "chanceToDoublePct": 29.56,
-    "medianPacks": 87
+    "chanceToDoublePct": 29.62,
+    "medianPacks": 88
    },
    "runnerUp": {
     "code": "dragonball_100",
     "name": "Dragonball $100",
-    "chanceToDoublePct": 24.95
+    "chanceToDoublePct": 25.14
    },
    "tie": false,
-   "chanceToReach5000Pct": 43.9
+   "chanceToReach5000Pct": 44.0
   },
   {
    "bankrollUsd": 4500,
    "best": {
     "code": "dragonball_250",
     "name": "Dragonball $250",
-    "chanceToDoublePct": 30.21,
+    "chanceToDoublePct": 30.42,
     "medianPacks": 103
    },
    "runnerUp": {
     "code": "ewatch_500",
     "name": "Watch $500",
-    "chanceToDoublePct": 24.84
+    "chanceToDoublePct": 24.87
    },
    "tie": false,
-   "chanceToReach5000Pct": 52.11
+   "chanceToReach5000Pct": 52.25
   },
   {
    "bankrollUsd": 5000,
    "best": {
     "code": "dragonball_250",
     "name": "Dragonball $250",
-    "chanceToDoublePct": 30.96,
+    "chanceToDoublePct": 31.05,
     "medianPacks": 119
    },
    "runnerUp": {
     "code": "ewatch_500",
     "name": "Watch $500",
-    "chanceToDoublePct": 26.93
+    "chanceToDoublePct": 27.06
    },
    "tie": false
   },
@@ -1185,28 +1185,28 @@
    "best": {
     "code": "dragonball_250",
     "name": "Dragonball $250",
-    "chanceToDoublePct": 31.67,
+    "chanceToDoublePct": 31.84,
     "medianPacks": 156
    },
    "runnerUp": {
     "code": "ewatch_500",
     "name": "Watch $500",
-    "chanceToDoublePct": 29.9
+    "chanceToDoublePct": 29.99
    },
    "tie": false
   },
   {
    "bankrollUsd": 7000,
    "best": {
-    "code": "ewatch_500",
-    "name": "Watch $500",
-    "chanceToDoublePct": 31.78,
-    "medianPacks": 51
-   },
-   "runnerUp": {
     "code": "dragonball_250",
     "name": "Dragonball $250",
-    "chanceToDoublePct": 31.67
+    "chanceToDoublePct": 31.91,
+    "medianPacks": 200
+   },
+   "runnerUp": {
+    "code": "ewatch_500",
+    "name": "Watch $500",
+    "chanceToDoublePct": 31.84
    },
    "tie": true
   },
@@ -1215,13 +1215,13 @@
    "best": {
     "code": "ewatch_500",
     "name": "Watch $500",
-    "chanceToDoublePct": 32.85,
+    "chanceToDoublePct": 32.97,
     "medianPacks": 61
    },
    "runnerUp": {
     "code": "dragonball_250",
     "name": "Dragonball $250",
-    "chanceToDoublePct": 31.37
+    "chanceToDoublePct": 31.65
    },
    "tie": false
   },
@@ -1230,13 +1230,13 @@
    "best": {
     "code": "ewatch_500",
     "name": "Watch $500",
-    "chanceToDoublePct": 33.45,
+    "chanceToDoublePct": 33.55,
     "medianPacks": 71
    },
    "runnerUp": {
     "code": "dragonball_250",
     "name": "Dragonball $250",
-    "chanceToDoublePct": 31.12
+    "chanceToDoublePct": 31.32
    },
    "tie": false
   },
@@ -1245,13 +1245,13 @@
    "best": {
     "code": "ewatch_500",
     "name": "Watch $500",
-    "chanceToDoublePct": 33.93,
+    "chanceToDoublePct": 34.1,
     "medianPacks": 81
    },
    "runnerUp": {
     "code": "dragonball_250",
     "name": "Dragonball $250",
-    "chanceToDoublePct": 30.46
+    "chanceToDoublePct": 30.74
    },
    "tie": false
   },
@@ -1260,13 +1260,13 @@
    "best": {
     "code": "ewatch_500",
     "name": "Watch $500",
-    "chanceToDoublePct": 34.3,
-    "medianPacks": 103
+    "chanceToDoublePct": 34.51,
+    "medianPacks": 104
    },
    "runnerUp": {
     "code": "dragonball_250",
     "name": "Dragonball $250",
-    "chanceToDoublePct": 29.05
+    "chanceToDoublePct": 29.49
    },
    "tie": false
   },
@@ -1275,13 +1275,13 @@
    "best": {
     "code": "ewatch_500",
     "name": "Watch $500",
-    "chanceToDoublePct": 34.47,
-    "medianPacks": 129
+    "chanceToDoublePct": 34.63,
+    "medianPacks": 130
    },
    "runnerUp": {
     "code": "dragonball_250",
     "name": "Dragonball $250",
-    "chanceToDoublePct": 27.45
+    "chanceToDoublePct": 27.9
    },
    "tie": false
   },
@@ -1290,13 +1290,13 @@
    "best": {
     "code": "ewatch_500",
     "name": "Watch $500",
-    "chanceToDoublePct": 34.85,
-    "medianPacks": 160
+    "chanceToDoublePct": 34.93,
+    "medianPacks": 161
    },
    "runnerUp": {
     "code": "dragonball_250",
     "name": "Dragonball $250",
-    "chanceToDoublePct": 26.15
+    "chanceToDoublePct": 26.34
    },
    "tie": false
   },
@@ -1305,13 +1305,13 @@
    "best": {
     "code": "ewatch_500",
     "name": "Watch $500",
-    "chanceToDoublePct": 34.71,
-    "medianPacks": 202
+    "chanceToDoublePct": 34.77,
+    "medianPacks": 205
    },
    "runnerUp": {
     "code": "dragonball_250",
     "name": "Dragonball $250",
-    "chanceToDoublePct": 24.45
+    "chanceToDoublePct": 24.85
    },
    "tie": false
   },
@@ -1320,13 +1320,13 @@
    "best": {
     "code": "ewatch_500",
     "name": "Watch $500",
-    "chanceToDoublePct": 34.13,
-    "medianPacks": 246
+    "chanceToDoublePct": 34.31,
+    "medianPacks": 249
    },
    "runnerUp": {
     "code": "dragonball_250",
     "name": "Dragonball $250",
-    "chanceToDoublePct": 23.03
+    "chanceToDoublePct": 23.08
    },
    "tie": false
   }
