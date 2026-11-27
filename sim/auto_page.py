@@ -73,6 +73,49 @@ def zones(rows):
 def tier_stats(x):
     return {k: [x.tiers[k]['items'], x.tiers[k]['avg']] for k in TIERS}
 
+def open_data(pull, stamp, rows, mach, X, cc):
+    """epicenter.json: the page's results as an open data file, published next to the page
+    (https://epicenter.saprozoic.dev/data/epicenter.json) for anyone to build on."""
+    code = lambda n: cc.get(n, n)
+    def r1(v): return None if v is None else round(v, 2)
+    machines = []
+    for m in mach:
+        machines.append(dict(
+            code=code(m['n']), name=m['n'], packPriceUsd=m['cost'], buybackPct=m['bb'],
+            sustainPct=r1(m['sus']), floorLossUsd=r1(m['floor']), stepUpUsd=r1(m['step']), hitSizeUsd=r1(m['hit'])))
+        # Raw pool numbers (cards left, values) are Holoscope's data, so they stay out of this file.
+    machines.sort(key=lambda m: -(m['sustainPct'] or 0))
+    best = []
+    for r in rows:
+        e = dict(bankrollUsd=r['bank'],
+                 best=dict(code=code(r['best']), name=r['best'], chanceToDoublePct=r['p2'], medianPacks=r['md']),
+                 runnerUp=(dict(code=code(r['second']), name=r['second'], chanceToDoublePct=r['p2b']) if r['second'] != '\u2014' else None),
+                 tie=r['tie'])
+        if r['bank'] < 5000: e['chanceToReach5000Pct'] = r['k1']
+        if r['bank'] <= 3000: e['longestSession'] = dict(code=code(r['lng']), name=r['lng'], medianPacks=r['lngmd'])
+        best.append(e)
+    return dict(
+        schema='epicenter/1',
+        generatedAt=pull['t'], generatedAtPT=stamp,
+        about='Which Collector Crypt gacha machine gives a bankroll the best chance to double before it runs out, '
+              'from 30,000 simulated sessions per bankroll, selling every card back instantly. Every machine loses '
+              'money on average; this only ranks them against each other. Not financial advice.',
+        site='https://epicenter.saprozoic.dev',
+        source=dict(name='Holoscope', url='https://holoscope.app', note='Pool inventories, odds and buybacks via the Holoscope API (Knut\u2019s Gap Tracker).'),
+        license='Free to use with a link to https://epicenter.saprozoic.dev and to Holoscope (https://holoscope.app) as the data source.',
+        updates='Every hour at about :13 UTC. Fetch at most a few times an hour.',
+        fields=dict(
+            sustainPct='% of the pack price returned on average per pull, all tiers, after buyback',
+            floorLossUsd='what a plain common pull costs you (pack price minus its buyback)',
+            stepUpUsd='what an average uncommon gains over the pack price (negative = loses)',
+            hitSizeUsd='average rare/epic payout after buyback',
+            chanceToDoublePct='% of simulated sessions that reach 2x the bankroll before it can no longer buy a pack',
+            medianPacks='packs a typical session lasts',
+            tie='best and runner-up are within simulation noise (2 standard errors)',
+            chanceToReach5000Pct='% of sessions that ever reach $5,000 (bankrolls under $5,000)',
+            longestSession='the machine a bankroll lasts longest on (bankrolls up to $3,000)'),
+        machines=machines, bestByBankroll=best)
+
 def main(pull_path, prev_path=None):
     D = json.load(open('sheetdata.json')); pull = json.load(open(pull_path))
     notes = json.load(open('pull_notes.json')) if os.path.exists('pull_notes.json') else []
@@ -215,6 +258,7 @@ def main(pull_path, prev_path=None):
         h = h.replace(k, v)
     assert '__' not in h.replace('__proto__', '').replace('__gap', ''), [l for l in h.splitlines() if '__' in l][:3]
     open('bankroll-table.html', 'w').write(h)
+    json.dump(open_data(pull, stamp, rows, mach, X, cc), open('epicenter.json', 'w'), indent=1, ensure_ascii=False)
     json.dump(dict(t=pull['t'], stamp=stamp, sus=sus, tiers={n: tier_stats(x) for n, x in X.items()},
                    rows=[[r['bank'], r['best'], r['p2'], r['tie']] for r in rows],
                    rows_nobot=[[r['bank'], r['best'], r['p2'], r['tie']] for r in rowsn]),
