@@ -311,7 +311,12 @@ footer b{color:var(--ink)}
 @media(max-width:720px){.defs,.defs-3{grid-template-columns:repeat(2,minmax(0,1fr))}.answer{grid-template-columns:minmax(0,1fr);gap:18px}.play{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:520px){.defs,.defs-3,.zones{grid-template-columns:minmax(0,1fr)}.lk-in{padding:14px}.tab{padding:14px 9px 12px;font-size:14px}.answer{padding:20px 16px}.play{padding:0 16px 18px}table{font-size:13.5px}th,td{padding:8px 10px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+/* auto-refresh: the old and new versions of the page cross-fade instead of blinking (Chrome, Edge, Safari) */
+@media(prefers-reduced-motion:no-preference){@view-transition{navigation:auto}}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.4s}
 </style>
+<!-- auto-refresh: draw the page only once it is fully read, so the cross-fade lands on the finished page at your scroll spot -->
+<link rel="expect" href="#epi-end" blocking="render">
 </head>
 <body>
 
@@ -758,7 +763,9 @@ redraw();
     const st=JSON.parse(sessionStorage.getItem(SS)||'null');
     if(/[?&]r=\d/.test(location.search)) history.replaceState(null,'',location.pathname+location.hash);
     if(st&&Date.now()-st.at<15000){ sessionStorage.removeItem(SS);
-      const go=()=>scrollTo(0,st.y||0); addEventListener('load',()=>setTimeout(go,60)); setTimeout(go,400); }
+      const go=()=>scrollTo(0,st.y||0);
+      addEventListener('pagereveal',go,{once:true}); // before the first frame, so the fade lands on the same spot
+      addEventListener('load',()=>setTimeout(go,60)); setTimeout(go,400); }
   }catch(e){}
   let newer=null, busy=false;
   const typing=()=>{const a=document.activeElement;return a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName);};
@@ -854,4 +861,5 @@ redraw();
 </script>
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "864249d2378c47bcb02c3be50dc1a919"}'></script><!-- End Cloudflare Web Analytics -->
+<div id="epi-end" hidden></div>
 </body></html>
