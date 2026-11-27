@@ -747,6 +747,43 @@ redraw();
   }
   tick(); setInterval(tick,60000);
   try{ localStorage.removeItem('cc-ref-hidden'); }catch(e){}   // clear the old 'hide' flag; the card is always shown
+
+  // ---- auto-refresh: when a newer update is published, load it by itself ----
+  // Every few minutes (and when you come back to the tab) it peeks at the small open-data file
+  // the same update publishes. If that's newer than this page, the page reloads in place: your
+  // bankroll, tab and filters are already remembered, and the scroll position is kept too.
+  // It waits while you're typing, and while the tab is in the background.
+  const SS='epi-autorefresh';
+  try{ // just reloaded by this: tidy the address bar and go back to where you were
+    const st=JSON.parse(sessionStorage.getItem(SS)||'null');
+    if(/[?&]r=\d/.test(location.search)) history.replaceState(null,'',location.pathname+location.hash);
+    if(st&&Date.now()-st.at<15000){ sessionStorage.removeItem(SS);
+      const go=()=>scrollTo(0,st.y||0); addEventListener('load',()=>setTimeout(go,60)); setTimeout(go,400); }
+  }catch(e){}
+  let newer=null, busy=false;
+  const typing=()=>{const a=document.activeElement;return a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName);};
+  function apply(){
+    if(!newer||document.hidden||typing()) return;
+    // the same version already tried once and still not served (GitHub's cache lagging): wait 10 min
+    try{const st=JSON.parse(localStorage.getItem(SS+'-tried')||'null');
+      if(st&&st.v===newer&&Date.now()-st.at<600000) return;
+      localStorage.setItem(SS+'-tried',JSON.stringify({v:newer,at:Date.now()}));}catch(e){}
+    sub.textContent='New data published \u2014 updating\u2026';
+    try{sessionStorage.setItem(SS,JSON.stringify({y:scrollY,at:Date.now()}));}catch(e){}
+    location.replace(location.pathname+'?r='+Date.now()+location.hash);
+  }
+  async function check(){
+    if(busy||document.hidden) return; busy=true;
+    try{
+      const r=await fetch('data/epicenter.json?v='+Date.now(),{cache:'no-store'});
+      if(r.ok){const j=await r.json(), g=Date.parse(j.generatedAt);
+        if(g>t+1000) {newer=j.generatedAt; apply();}}
+    }catch(e){} finally{busy=false;}
+  }
+  window.epiCheck=check;
+  setTimeout(check,20000); setInterval(check,5*60000);
+  document.addEventListener('visibilitychange',()=>{ if(!document.hidden){ if(newer) apply(); else check(); }});
+  document.addEventListener('focusout',()=>setTimeout(apply,1500));
 })();
 
 (function(){
