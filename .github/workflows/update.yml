@@ -52,9 +52,11 @@ jobs:
           cp build/bankroll-table.html index.html
           cp build/new_state.json state/prev_state.json
           cp build/pull.json state/last_pull.json
+          mkdir -p data
+          cp build/epicenter.json data/epicenter.json
           git config user.name "epicenter-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html state/
+          git add index.html state/ data/
           git diff --cached --quiet && echo "nothing changed" && exit 0
           git commit -m "Auto update $(date -u +'%Y-%m-%d %H:%M UTC')"
           git push
